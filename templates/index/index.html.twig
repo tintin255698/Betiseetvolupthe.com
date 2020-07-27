@@ -1,0 +1,535 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    <section id="hero">
+        <div class="hero-container">
+            <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+                <div class="carousel-inner" role="listbox">
+
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" style="background: url(/img/slide/slide-1.PNG);">
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animate__animated animate__fadeInDown"><span>Un restaurant</span> unique</h2>
+                                <p class="animate__animated animate__fadeInUp">Un zeste d'originalité, un mélange des saveurs, une assiette aussi belle que bonne ..</p>
+                                <div>
+                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
+                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Reserver une table</a>
+                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Commander a emporter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" style="background: url(/img/slide/slide-2.PNG);">
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animate__animated animate__fadeInDown">Un monde feerique</h2>
+                                <p class="animate__animated animate__fadeInUp">Un petit coin de paradis ou le temps est suspendu le temps d’un agréable repas</p>
+                                <div>
+                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
+                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Reserver une table</a>
+                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Commander a emporter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" style="background: url(/img/slide/slide-3.PNG);">
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animate__animated animate__fadeInDown">Des moments inoubliables</h2>
+                                <p class="animate__animated animate__fadeInUp">Jolie petite enseigne au coeur de la ville idéale pour une petite faim gourmande aux quatre heures</p>
+                                <div>
+                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
+                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Reserver une table</a>
+                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Commander a emporter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Whu Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Pourquoi choisir <span>notre restaurant</span></h2>
+                    <p>Ouvert depuis 1981, nous vous offrons :</p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <div class="box">
+                            <span>01</span>
+                            <h4>Un decor féerique</h4>
+                            <p>Un p'tit coin de paradis avec un personnel au top. Un cadre atypique qui rappel un peu le monde d'Alice au pays des merveilles </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="box">
+                            <span>02</span>
+                            <h4>Une cuisine faite maison</h4>
+                            <p>Des plats succulents aux saveurs savamment entremêlés afin de vous surprendre aussi bien les papilles que les yeux!</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="box">
+                            <span>03</span>
+                            <h4>Des produits issus de la region</h4>
+                            <p>Salon de thé et restaurant féerique, toute la cuisine est faite maison et souvent bio. Convient parfaitement pour les végétaliens et végétariens.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Whu Us Section -->
+
+        <!-- ======= Menu Section ======= -->
+        <section id="menu" class="menu">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Check our tasty <span>Menu</span></h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="menu-flters">
+                            <li data-filter="*" class="filter-active">Show All</li>
+                            <li data-filter=".filter-starters">Starters</li>
+                            <li data-filter=".filter-salads">Salads</li>
+                            <li data-filter=".filter-specialty">Specialty</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row menu-container">
+
+                    <div class="col-lg-6 menu-item filter-starters">
+                        <div class="menu-content">
+                            <a href="#">Lobster Bisque</a><span>$5.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Lorem, deren, trataro, filede, nerada
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-specialty">
+                        <div class="menu-content">
+                            <a href="#">Bread barrel</a><span>$6.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Lorem, deren, trataro, filede, nerada
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-starters">
+                        <div class="menu-content">
+                            <a href="#">Crab Cake</a><span>$7.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-salads">
+                        <div class="menu-content">
+                            <a href="#">Caesar Selections</a><span>$8.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Lorem, deren, trataro, filede, nerada
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-specialty">
+                        <div class="menu-content">
+                            <a href="#">Tuscan Grilled</a><span>$9.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Grilled chicken with provolone, artichoke hearts, and roasted red pesto
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-starters">
+                        <div class="menu-content">
+                            <a href="#">Mozzarella Stick</a><span>$4.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Lorem, deren, trataro, filede, nerada
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-salads">
+                        <div class="menu-content">
+                            <a href="#">Greek Salad</a><span>$9.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Fresh spinach, crisp romaine, tomatoes, and Greek olives
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-salads">
+                        <div class="menu-content">
+                            <a href="#">Spinach Salad</a><span>$9.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 menu-item filter-specialty">
+                        <div class="menu-content">
+                            <a href="#">Lobster Roll</a><span>$12.95</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Menu Section -->
+
+        <!-- ======= Book A Table Section ======= -->
+        <section id="book-a-table" class="book-a-table">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Reserver une <span>Table</span></h2>
+                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                </div>
+
+                <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+                    <div class="form-row">
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                            <div class="validate"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                    </div>
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+
+            </div>
+        </section><!-- End Book A Table Section -->
+
+        <!-- ======= Gallery Section ======= -->
+        <section id="gallery" class="gallery">
+            <div class="container-fluid">
+
+                <div class="section-title">
+                    <h2>Quelques Photos de <span>Notre Restaurant</span></h2>
+                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                </div>
+
+                <div class="row no-gutters">
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-1.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-2.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-3.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-4.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-5.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-6.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-7.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="gallery-item">
+                            <a href="/img/gallery/gallery-8.jpg" class="venobox" data-gall="gallery-item">
+                                <img src="/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Gallery Section -->
+
+
+        <!-- ======= Testimonials Section ======= -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+
+                <div class="owl-carousel testimonials-carousel">
+
+                    <div class="testimonial-item">
+                        <img src="/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                        <h3>Saul Goodman</h3>
+                        <h4>Ceo &amp; Founder</h4>
+                        <div class="stars">
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                        </div>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <img src="/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                        <h3>Sara Wilsson</h3>
+                        <h4>Designer</h4>
+                        <div class="stars">
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                        </div>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <img src="/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                        <h3>Jena Karlis</h3>
+                        <h4>Store Owner</h4>
+                        <div class="stars">
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                        </div>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <img src="/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                        <h3>Matt Brandon</h3>
+                        <h4>Freelancer</h4>
+                        <div class="stars">
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                        </div>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <img src="/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                        <h3>John Larson</h3>
+                        <h4>Entrepreneur</h4>
+                        <div class="stars">
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                            <i class="icofont-star"></i>
+                        </div>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Testimonials Section -->
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2><span>Contacter</span> nous</h2>
+                    <p>N'hesitez pas a nous contacter, nous vous répondrons avec sympathie et sourire.</p>
+                </div>
+            </div>
+
+            <div class="map">
+                <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2708.9484242333965!2d6.02546371565421!3d47.23715472141885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478d633be49c3835%3A0x89f966870d807650!2s79%20Rue%20des%20Granges%2C%2025000%20Besan%C3%A7on!5e0!3m2!1sfr!2sfr!4v1595879910538!5m2!1sfr!2sfr" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="container mt-5">
+
+                <div class="info-wrap">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 info">
+                            <i class="icofont-google-map"></i>
+                            <h4>Adresse:</h4>
+                            <p>79 Rue des Granges<br>25000 Besançon</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+                            <i class="icofont-clock-time icofont-rotate-90"></i>
+                            <h4>Horaire:</h4>
+                            <p>Mardi-Samedi:<br>12:00 - 22:00</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+                            <i class="icofont-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>eglantinedebetises<br>@hotmail.fr</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+                            <i class="icofont-phone"></i>
+                            <h4>Telephone:</h4>
+                            <p>03 81 50 83 45</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <div class="validate"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                    </div>
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+
+            </div>
+        </section><!-- End Contact Section -->
+
+    </main><!-- End #main -->
+
+
+{% endblock %}
+

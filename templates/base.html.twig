@@ -3,10 +3,118 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link href="/img/favicon.png" rel="icon">
+        <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
+
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/icofont/icofont.min.css" rel="stylesheet">
+        <link href="/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="/animate/animate.min.css" rel="stylesheet">
+        <link href="/venobox/venobox.css" rel="stylesheet">
+        <link href="/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+        <link href="/css/style.css" rel="stylesheet">
+
+
+
+
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+    <body>
+
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container text-right">
+            <i class="icofont-phone"></i> 03 81 50 83 45
+            <i class="icofont-clock-time icofont-rotate-180"></i> Lundi-Samedi: 12:00 - 22:00
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href=""><span>Bêtises et Volupthé</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="">Acceuil</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallery">Gallerie</a></li>
+                    <li><a href="#contact">Nous contacter</a></li>
+
+                    <li class="book-a-table text-center"><a href="">Reserver</a></li>
+                    <li class="book-a-table text-center"><a href="">Commander</a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+
+    <!-- ======= Footer ======= -->
+
+
+
+
+
+    </body>
+
+
+
+
+
+
+    {% block body %}{% endblock %}
+
+
+
+
+    <footer id="footer">
+        <div class="container">
+            <h3>Bêtises et Volupthé</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/BetisesEtVolupthe" class="facebook"><i class="bx bxl-facebook"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; Copyright <strong><span>Vivien</span></strong>. All Rights Reserved
+            </div>
+
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+
+
+
+
+    {% block footer %}{% endblock %}
+
+
+    <!-- Vendor JS Files -->
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/php-email-form/validate.js"></script>
+    <script src="/jquery-sticky/jquery.sticky.js"></script>
+    <script src="/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/venobox/venobox.min.js"></script>
+    <script src="/owl.carousel/owl.carousel.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
+
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
