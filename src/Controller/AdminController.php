@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Image;
+use App\Form\ContactType;
+use App\Form\ImageType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
+class AdminController extends AbstractController
+{
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function index(Request $request)
+    {
+        // Formulaire insertion image
+
+        $image = new Image();
+
+        $form = $this->createForm(ImageType::class, $image);
+        $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $doctrine = $this->getDoctrine()->getManager();
+                $doctrine->persist($image);
+                $doctrine->flush();
+        }
+
+        return $this->render('admin/index.html.twig', [
+            'imageForm' =>$form->createView()
+        ]);
+    }
+}

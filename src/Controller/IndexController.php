@@ -35,10 +35,7 @@ class IndexController extends AbstractController
             $mailer->send($message);
         }
 
-
-
             // Formulaire de reservation
-
 
             $reservation = new Reservation();
 
@@ -73,4 +70,8 @@ class IndexController extends AbstractController
                 'contactForm' =>$form->createView()
             ]);
         }
+
+
+
+
 }
