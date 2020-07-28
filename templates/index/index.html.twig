@@ -30,7 +30,7 @@
                     <div class="carousel-item" style="background: url(/img/slide/slide-2.PNG);">
                         <div class="carousel-container">
                             <div class="carousel-content">
-                                <h2 class="animate__animated animate__fadeInDown">Un monde feerique</h2>
+                                <h2 class="animate__animated animate__fadeInDown">Un monde féérique</h2>
                                 <p class="animate__animated animate__fadeInUp">Un petit coin de paradis ou le temps est suspendu le temps d’un agréable repas</p>
                                 <div>
                                     <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
@@ -88,7 +88,7 @@
                     <div class="col-lg-4">
                         <div class="box">
                             <span>01</span>
-                            <h4>Un decor féerique</h4>
+                            <h4>La magie</h4>
                             <p>Un p'tit coin de paradis avec un personnel au top. Un cadre atypique qui rappel un peu le monde d'Alice au pays des merveilles </p>
                         </div>
                     </div>
@@ -104,8 +104,8 @@
                     <div class="col-lg-4 mt-4 mt-lg-0">
                         <div class="box">
                             <span>03</span>
-                            <h4>Des produits issus de la region</h4>
-                            <p>Salon de thé et restaurant féerique, toute la cuisine est faite maison et souvent bio. Convient parfaitement pour les végétaliens et végétariens.</p>
+                            <h4>Des produits issus de la région</h4>
+                            <p>Toute la cuisine faite maison est souvent biologique. Nous proposons des plats pour les végétaliens et végétariens.</p>
                         </div>
                     </div>
 
@@ -226,48 +226,45 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2>Reserver une <span>Table</span></h2>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                    <h2>Réserver une <span>Table ...</span></h2>
+                    <p>... pour être sur de manger chez nous !</p>
                 </div>
 
-                <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
-                    <div class="form-row">
-                        <div class="col-lg-4 col-md-6 form-group">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 form-group">
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 form-group">
-                            <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 form-group">
-                            <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 form-group">
-                            <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-                            <div class="validate"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                {{ form_start(reservationForm) }}
+
+                <div class="form-row">
+                    <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_widget(reservationForm.nom) }}
                         <div class="validate"></div>
                     </div>
-                    <div class="mb-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_widget(reservationForm.email) }}
+                        <div class="validate"></div>
                     </div>
-                    <div class="text-center"><button type="submit">Send Message</button></div>
-                </form>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_widget(reservationForm.telephone) }}
+                        <div class="validate"></div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_widget(reservationForm.date, {'attr': {'placeholder': 'Exemple : 05-09-2020'}}) }}
+                        <div class="validate"></div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_widget(reservationForm.heure, {'attr': {'placeholder': 'Exemple : 12-30'}}) }}
+                        <div class="validate"></div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_widget(reservationForm.personne) }}
+                        <div class="validate"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_widget(reservationForm.message) }}
+                    <div class="validate"></div>
+                </div>
+
+        {{ form_end(reservationForm) }}
+
 
             </div>
         </section><!-- End Book A Table Section -->
@@ -460,7 +457,7 @@
 
                 <div class="section-title">
                     <h2><span>Contacter</span> nous</h2>
-                    <p>N'hesitez pas a nous contacter, nous vous répondrons avec sympathie et sourire.</p>
+                    <p>N'hesitez pas à nous contacter, nous vous ferons un plaisir de vous répondre.</p>
                 </div>
             </div>
 
@@ -498,10 +495,31 @@
                     </div>
                 </div>
 
-                {{ form(contactForm) }}
-                {{ form_widget(contactForm) }}
+                {{ form_start(contactForm) }}
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                {{ form_widget(contactForm.Nom) }}
+                    <div class="validate"></div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                {{ form_widget(contactForm.Email) }}
+                    <div class="validate"></div>
+                    </div>
+                </div>
 
+                <div class="form-group">
+                {{ form_widget(contactForm.Sujet) }}
+                <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                {{ form_widget(contactForm.Message) }}
+                <div class="validate"></div>
+                </div>
 
+                <div class="form-group">
+                {{ form_end(contactForm) }}
+                <div class="validate"></div>
+                </div>
             </div>
         </section><!-- End Contact Section -->
 
