@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Image;
-use App\Form\ContactType;
 use App\Form\ImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,8 +27,21 @@ class AdminController extends AbstractController
                 $doctrine->flush();
         }
 
+
+        $repo = $this->getDoctrine()->getRepository(Image::class);
+        $pla = $repo->findall();
+
         return $this->render('admin/index.html.twig', [
-            'imageForm' =>$form->createView()
+            'imageForm' =>$form->createView(),
+            'pla'=>$pla
         ]);
     }
+
+
+
+
+
+
+
+
 }

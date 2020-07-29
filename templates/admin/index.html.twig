@@ -17,6 +17,13 @@
             </div>
         </section>
 
+
+
+        <h1>Liste des images</h1>
+        {% for plas in pla %}
+            <img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}">
+        {% endfor %}
+
     </main><!-- End #main -->
 
 

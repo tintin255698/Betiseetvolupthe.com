@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Reservation;
 use App\Form\ContactType;
 use App\Form\ReservationType;
@@ -65,13 +66,18 @@ class IndexController extends AbstractController
 
         }
 
+        $repo = $this->getDoctrine()->getRepository(Image::class);
+        $pla = $repo->findall();
+
+
+
+
             return $this->render('index/index.html.twig', [
                 'reservationForm' => $form1->createView(),
-                'contactForm' =>$form->createView()
+                'contactForm' =>$form->createView(),
+                'pla'=>$pla
             ]);
         }
-
-
 
 
 }
