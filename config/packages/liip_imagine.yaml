@@ -15,6 +15,11 @@ liip_imagine:
                 thumbnail:
                     size: [800, 600]
                     mode: outbound
-
+        cercle:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [200, 150]
+                    mode: outbound
 
 

@@ -4,39 +4,30 @@
 
 {% block body %}
 
-    <main id="main">
-
-        <!-- ======= Breadcrumbs Section ======= -->
-
-
-        <section class="inner-page">
             <div class="container">
-                <h1 class = mt-5>Inserer des images</h1>
+                <h1 class="text-center mt-5 mb-5">Insertion des images</h1>
                 {{ form(imageForm) }}
                 {{ form_widget(imageForm) }}
+
+
+
+            <h1 class="text-center mt-5 mb-5">Liste des images (multiple de 4 obligatoire)</h1>
+
+                <table id="admin" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                    <th>Nom de l'image</th>
+                    <th>Image</th>
+                    <th>Supprimer</th>
+                    </thead>
+                    <tbody>
+                    {% for plas in pla %}
+                        <tr>
+                        <td>{{ plas.imageName}}</td>
+                        <td><img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('cercle') }}"></td>
+                        <td><a href="{{ path('supprimer_image', {'id':plas.id}) }}" class="btn btn-dark">Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
-        </section>
-
-
-
-        <h1>Liste des images</h1>
-        {% for plas in pla %}
-            <img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}">
-        {% endfor %}
-
-    </main><!-- End #main -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% endblock %}
