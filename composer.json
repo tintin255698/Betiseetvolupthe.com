@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "fzaninotto/faker": "^1.9",
         "intervention/image": "^2.5",
         "liip/imagine-bundle": "^2.3",
         "phpdocumentor/reflection-docblock": "^5.2",
@@ -41,6 +42,7 @@
         "vich/uploader-bundle": "^1.15"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "symfony/browser-kit": "^4.4",
         "symfony/css-selector": "^4.4",
         "symfony/debug-bundle": "^4.4",
