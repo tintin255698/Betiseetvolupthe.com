@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Image;
-use App\Entity\Portefeuille;
 use App\Form\ImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +40,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/image/supprimer/{id}", name="supprimer_image")
      */
-    public function supprimerPortefeuille(Image $id)
+    public function supprimerImage(Image $id)
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($id);

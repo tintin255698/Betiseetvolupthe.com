@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Image;
 use App\Entity\Reservation;
+use App\Entity\User;
 use App\Form\ContactType;
 use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -69,13 +71,14 @@ class IndexController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Image::class);
         $pla = $repo->findall();
 
-
-
+        $repo1 = $this->getDoctrine()->getRepository(Commentaire::class);
+        $pla1 = $repo1->findby(array(), array('id'=> 'DESC'), 5);
 
             return $this->render('index/index.html.twig', [
                 'reservationForm' => $form1->createView(),
                 'contactForm' =>$form->createView(),
-                'pla'=>$pla
+                'pla'=>$pla,
+                'pla1'=>$pla1
             ]);
         }
 

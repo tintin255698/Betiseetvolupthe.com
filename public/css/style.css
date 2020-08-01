@@ -1591,7 +1591,7 @@ section {
 }
 
 #footer p {
-  font-size: 15;
+  font-size: 15px;
   font-style: italic;
   padding: 0;
   margin: 0 0 40px 0;
@@ -1626,4 +1626,8 @@ section {
 
 #footer .credits {
   font-size: 13px;
+}
+
+span.note i {
+  color: goldenrod;
 }

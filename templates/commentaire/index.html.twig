@@ -3,5 +3,43 @@
 {% block title %}Hello CommentaireController!{% endblock %}
 
 {% block body %}
+<div class="container">
+
+    <h2 class="class mt-5">Commentaire des clients</h2>
+
+    {% for plas in pla %}
+        {% for commentaire in plas.commentaires %}
+            <div class="bg-light rounded mb-5 py-3 px-3">
+                <strong>{{ plas.prenom }} {{ plas.nom }}</strong> a dit :
+                <blockquote>
+                    {{ commentaire.contenu }}
+                </blockquote>
+                <strong>Note donnee par {{ plas.prenom }} {{ plas.nom }}</strong> :
+                {{ commentaire.note }}
+                <span class="note">
+        {% for i in 1..5 %}
+            {% if i <= commentaire.note %}
+                <i class="icofont-star"></i>
+            {% else  %}
+                <i class="icofont-star-shape"></i>
+            {% endif %}
+        {% endfor %}
+</span>
+            </div>
+        {% endfor%}
+    {% endfor %}
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

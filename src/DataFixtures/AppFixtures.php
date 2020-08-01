@@ -40,8 +40,8 @@ class AppFixtures extends Fixture
             $user = $users[mt_rand(0,count($users) - 1)];
 
             $commentaire = new Commentaire();
-            $commentaire->setNote($faker->randomNumber());
-            $commentaire->setContenu(($faker->sentence));
+            $commentaire->setNote(mt_rand(1, 5));
+            $commentaire->setContenu($faker->paragraph());
             $commentaire->setUser($user);
             $manager->persist($commentaire);
         }
