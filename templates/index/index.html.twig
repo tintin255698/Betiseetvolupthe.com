@@ -235,32 +235,26 @@
                 <div class="form-row">
                     <div class="col-lg-4 col-md-6 form-group">
                         {{ form_widget(reservationForm.nom) }}
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
                         {{ form_widget(reservationForm.email) }}
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
                         {{ form_widget(reservationForm.telephone) }}
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
                         {{ form_widget(reservationForm.date, {'attr': {'placeholder': 'Exemple : 05-09-2020'}}) }}
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
                         {{ form_widget(reservationForm.heure, {'attr': {'placeholder': 'Exemple : 12-30'}}) }}
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
                         {{ form_widget(reservationForm.personne) }}
-                        <div class="validate"></div>
                     </div>
                 </div>
                 <div class="form-group">
                     {{ form_widget(reservationForm.message) }}
-                    <div class="validate"></div>
+                    <button type="submit" class="btn btn-primary mt-3">Reserver</button>
                 </div>
 
         {{ form_end(reservationForm) }}
@@ -374,27 +368,22 @@
                 <div class="form-row">
                     <div class="col-md-6 form-group">
                 {{ form_widget(contactForm.Nom) }}
-                    <div class="validate"></div>
                     </div>
                     <div class="col-md-6 form-group">
                 {{ form_widget(contactForm.Email) }}
-                    <div class="validate"></div>
                     </div>
                 </div>
 
                 <div class="form-group">
                 {{ form_widget(contactForm.Sujet) }}
-                <div class="validate"></div>
                 </div>
                 <div class="form-group">
                 {{ form_widget(contactForm.Message) }}
-                <div class="validate"></div>
+                <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
                 </div>
 
-                <div class="form-group">
                 {{ form_end(contactForm) }}
-                <div class="validate"></div>
-                </div>
+
             </div>
         </section><!-- End Contact Section -->
 

@@ -1584,7 +1584,7 @@ section {
 #footer h3 {
   font-size: 36px;
   font-weight: 700;
-  color: #91125F;
+  color: #FFFFFF;
   position: relative;
   padding: 0;
   margin: 0 0 15px 0;
@@ -1630,4 +1630,13 @@ section {
 
 span.note i {
   color: goldenrod;
+}
+
+.btn{
+  background: #91125F;
+}
+
+.titre{
+  padding-top: 6em;
+  text-align: center;
 }

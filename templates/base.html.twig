@@ -45,12 +45,12 @@
 
             <nav class="nav-menu d-none d-lg-block pr-5 pl-5">
                 <ul>
-                   <li><a href="">Acceuil</a></li>
-                    <li><a href="#menu">Menu</a></li>
+                   <li><a href="{{ path('index')}}">Acceuil</a></li>
+                    <li><a href="{{ path('index')}}#menu">Menu</a></li>
                     <li><a href="">Commander</a></li>
-                    <li><a href="#gallery">Gallerie</a></li>
-                    <li><a href="">Reserver</a></li>
-                    <li><a href="#contact">Nous contacter</a></li>
+                    <li><a href="{{ path('index')}}#gallery">Gallerie</a></li>
+                    <li><a href="{{ path('index')}}#book-a-table">Reserver</a></li>
+                    <li><a href="{{ path('index')}}#contact">Nous contacter</a></li>
                     <li><a href="{{ path('commentaire')}}">Vos avis</a></li>
 
 

@@ -5,7 +5,7 @@
 {% block body %}
 
             <div class="container">
-                <h1 class="text-center mt-5 mb-5">Insertion des images</h1>
+                <h1 class="titre mb-3">Insertion des images</h1>
                 {{ form(imageForm) }}
                 {{ form_widget(imageForm) }}
 
@@ -24,7 +24,7 @@
                         <tr>
                         <td>{{ plas.imageName}}</td>
                         <td><img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('cercle') }}"></td>
-                        <td><a href="{{ path('supprimer_image', {'id':plas.id}) }}" class="btn btn-dark">Supprimer</a></td>
+                        <td><a href="{{ path('supprimer_image', {'id':plas.id}) }}"  class="btn btn-dark">Supprimer</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommentaireController!{% endblock %}
+{% block title %}Avis des clients{% endblock %}
 
 {% block body %}
 <div class="container">
 
-    <h2 class="class mt-5">Commentaire des clients</h2>
+    <h2 class="titre pb-3">Avis de nos clients</h2>
 
     {% for plas in pla %}
         {% for commentaire in plas.commentaires %}
@@ -15,7 +15,6 @@
                     {{ commentaire.contenu }}
                 </blockquote>
                 <strong>Note donnee par {{ plas.prenom }} {{ plas.nom }}</strong> :
-                {{ commentaire.note }}
                 <span class="note">
         {% for i in 1..5 %}
             {% if i <= commentaire.note %}

@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -36,7 +35,6 @@ class ReservationType extends AbstractType
             ->add('message', TextareaType::class, [
                 'required'=>false,
                 'attr'=>['placeholder'=>'Message']]  )
-            ->add('envoyer', SubmitType::class)
         ;
 
     }
