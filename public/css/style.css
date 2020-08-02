@@ -1640,3 +1640,7 @@ span.note i {
   padding-top: 6em;
   text-align: center;
 }
+
+.alert{
+  padding-top: 10em;
+}

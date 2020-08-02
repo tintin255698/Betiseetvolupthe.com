@@ -54,6 +54,13 @@ class IndexController extends AbstractController
                 $contact = $form1["email"]->getData();
 
 
+                $this->addFlash(
+                    'success',
+                    '<strong>Merci pour votre réservation !</strong>');
+
+                $this->get('session')->getFlashBag()->add('error', 'Does Not Exist');
+
+
                 $message = (new \Swift_Message('Nouvelle Reservation'))
                     ->setFrom('votre@adresse2.fr')
                     ->setTo($contact)

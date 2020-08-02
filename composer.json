@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.7",
         "fzaninotto/faker": "^1.9",
         "intervention/image": "^2.5",
+        "jms/serializer-bundle": "^3.7",
         "liip/imagine-bundle": "^2.3",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",

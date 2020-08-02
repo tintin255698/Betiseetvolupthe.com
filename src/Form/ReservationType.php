@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
+use libphonenumber\PhoneNumberFormat;
+use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
@@ -21,20 +23,16 @@ class ReservationType extends AbstractType
         $builder
             ->add('nom', TextType::class, [ 'attr'=>['placeholder'=>'Votre nom']])
             ->add('email', EmailType::class, [ 'attr'=>['placeholder'=>'Votre email ']])
-            ->add('telephone', NumberType::class, [ 'attr'=>['placeholder'=>'Votre téléphone']])
+            ->add('telephone', TelType::class, [ 'attr'=>['placeholder'=>'Votre nom']])
             ->add('date', DateType::class, array(
-                'widget' => 'single_text',
-                // this is actually the default format for single_text
-
-            ))
+                'widget' => 'single_text',))
             ->add('heure', TimeType::class, array(
-                'widget' => 'single_text',
-                // this is actually the default format for single_text
-            ))
-            ->add('personne', NumberType::class, [ 'attr'=>['placeholder'=>'Nombre de personne']] )
+                'widget' => 'single_text',))
+            ->add('personne', IntegerType::class, [ 'attr'=>['placeholder'=>'Nombre de personne']] )
             ->add('message', TextareaType::class, [
                 'required'=>false,
                 'attr'=>['placeholder'=>'Message']]  )
+
         ;
 
     }
