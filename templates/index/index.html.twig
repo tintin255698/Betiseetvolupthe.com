@@ -234,7 +234,7 @@
                     <p>... pour être sur de manger chez nous !</p>
                 </div>
 
-                {{ form_start(reservationForm) }}
+                {{ form_start(reservationForm, {'attr': {'novalidatr': 'novalidate'}}) }}
 
                 <div class="form-row">
                     <div class="col-lg-4 col-md-6 form-group">
@@ -244,15 +244,19 @@
                         {{ form_widget(reservationForm.email) }}
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_errors(reservationForm.telephone) }}
                         {{ form_widget(reservationForm.telephone) }}
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
-                        {{ form_widget(reservationForm.date, {'attr': {'placeholder': 'Exemple : 05-09-2020'}}) }}
+                        {{ form_errors(reservationForm.date) }}
+                        {{ form_widget(reservationForm.date)}}
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
-                        {{ form_widget(reservationForm.heure, {'attr': {'placeholder': 'Exemple : 12-30'}}) }}
+                        {{ form_errors(reservationForm.heure) }}
+                        {{ form_widget(reservationForm.heure)}}
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_errors(reservationForm.personne) }}
                         {{ form_widget(reservationForm.personne) }}
                     </div>
                 </div>

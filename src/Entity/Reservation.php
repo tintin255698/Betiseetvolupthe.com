@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReservationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -30,6 +31,7 @@ class Reservation
 
     /**
      * @ORM\Column(type="string", length=15)
+     *
      */
     private $telephone;
 

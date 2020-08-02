@@ -9,7 +9,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
@@ -23,12 +24,17 @@ class ReservationType extends AbstractType
         $builder
             ->add('nom', TextType::class, [ 'attr'=>['placeholder'=>'Votre nom']])
             ->add('email', EmailType::class, [ 'attr'=>['placeholder'=>'Votre email ']])
-            ->add('telephone', TelType::class, [ 'attr'=>['placeholder'=>'Votre nom']])
+            ->add('telephone', NumberType::class, [ 'attr'=>['placeholder'=>'Votre telephone', 'oninvalid' => "setCustomValidity('Your name cannot contain a number')" ]])
             ->add('date', DateType::class, array(
                 'widget' => 'single_text',))
             ->add('heure', TimeType::class, array(
                 'widget' => 'single_text',))
-            ->add('personne', IntegerType::class, [ 'attr'=>['placeholder'=>'Nombre de personne']] )
+            ->add('personne', IntegerType::class, [ 'attr'=>['placeholder'=>'Nombre de personne'], 'constraints' => [
+                new Assert\Range([
+                    'min' => 0,
+                    'minMessage' => "La question ne peut pas être vide.",
+                    'max' => 120,
+                    'maxMessage' => "La question doit faire moins de 120 caractères.",])]])
             ->add('message', TextareaType::class, [
                 'required'=>false,
                 'attr'=>['placeholder'=>'Message']]  )
