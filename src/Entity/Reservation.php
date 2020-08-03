@@ -21,33 +21,48 @@ class Reservation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Email
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=15)
-     *
+     * @Assert\NotBlank
+     * @Assert\PositiveOrZero
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 15,
+     *      minMessage = "Votre numero de telephone doit contenir au moins {{ limit }} caractere",
+     *      maxMessage = "Votre numero de telephone doit contenir maximun {{ limit }} caracteres",
+     *      allowEmptyString = false)
      */
     private $telephone;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
+     * @Assert\Date
      */
     private $date;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank
+     * @Assert\Time
      */
     private $heure;
 
     /**
      * @ORM\Column(type="integer")
-     *
+     * @Assert\PositiveOrZero
+     * @Assert\NotBlank
      */
     private $personne;
 

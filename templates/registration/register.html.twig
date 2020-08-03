@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="container">
+    <h1 class="titre mb-5">Inscription</h1>
+
+        {{ form_start(registrationForm) }}
+        <div class="form-row mt-3">
+            <div class="col-lg-6 col-md-6 form-group">
+        {{ form_row(registrationForm.prenom)}}
+            </div>
+            <div class="col-lg-6 col-md-6 form-group">
+                {{ form_row(registrationForm.nom)}}
+            </div>
+        </div>
+        <div class="form-row mt-3">
+            <div class="col-lg-6 col-md-6 form-group">
+                {{ form_row(registrationForm.telephone)}}
+            </div>
+            <div class="col-lg-6 col-md-6  form-group">
+                {{ form_row(registrationForm.email)}}
+            </div>
+        </div>
+        <div class="form-row mt-3">
+            <div class="col-lg-6 col-md-6  form-group">
+                {{ form_row(registrationForm.plainPassword.pass)}}
+            </div>
+            <div class="col-lg-6 col-md-6 form-group">
+                {{ form_row(registrationForm.plainPassword.confirm)}}
+            </div>
+        </div>
+        <div class="form-row mt-3">
+            <div class="col-lg-6 col-md-6 text-right">
+                {{ form_row(registrationForm.agreeTerms)}}
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <a target="_blank"  href="{{ path('condition_de_vente') }}">Voir les conditions générales de ventes et d'utilisations</a>
+            </div>
+        </div>
+        <div class="text-right">
+        <button type="submit" class="btn btn-primary mb-5 mt-5">Inscription</button>
+        </div>
+        {{ form_end(registrationForm) }}
+
+    </div>
+{% endblock %}

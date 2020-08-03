@@ -45,63 +45,47 @@
 
             <nav class="nav-menu d-none d-lg-block pr-5 pl-5">
                 <ul>
-                   <li><a href="{{ path('index')}}">Acceuil</a></li>
-                    <li><a href="{{ path('index')}}#menu">Menu</a></li>
+                   <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li><a href="{{ path('index')}}#menu">Menus</a></li>
                     <li><a href="">Commander</a></li>
-                    <li><a href="{{ path('index')}}#gallery">Gallerie</a></li>
-                    <li><a href="{{ path('index')}}#book-a-table">Reserver</a></li>
+                    <li><a href="{{ path('index')}}#book-a-table">Réserver</a></li>
+                    <li><a href="{{ path('index')}}#gallery">Galerie</a></li>
                     <li><a href="{{ path('index')}}#contact">Nous contacter</a></li>
                     <li><a href="{{ path('commentaire')}}">Vos avis</a></li>
 
+                    {% if app.user %}
+                    <li class="book-a-table text-center"><a >Espace personnel</a></li>
+                    <li class="book-a-table text-center"><a href ="{{ path ('app_logout') }}">Deconnexion</a></li>
 
-
-                    <li class="book-a-table text-center"><a >Inscription</a></li>
-                    <li class="book-a-table text-center"><a href="">Connexion</a></li>
-
+                    {% else %}
+                    <li class="book-a-table text-center"><a href = "{{ path ('app_login') }}">Connexion</a></li>
+                    <li class="book-a-table text-center"><a href = "{{ path ('app_register') }}">Inscription</a></li>
+                    {% endif %}
                 </ul>
             </nav><!-- .nav-menu -->
 
         </div>
     </header><!-- End Header -->
 
-
-
-    {% for label, messages in app.flashes %}
-
-        <div class="container">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success" role="alert">
-                    {{ message }}
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            {% if ( label == 'success' ) %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ flash }}
                 </div>
-            {% endfor %}
-            {% for message in app.flashes('info') %}
-                <div class="alert alert-info" role="alert">
-                    {{ message }}
+            {% elseif ( label == 'error' ) %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    {{ flash }}
                 </div>
-            {% endfor %}
-            {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning" role="alert">
-                    {{ message }}
-                </div>
-
-            {% endfor %}
-            {% for message in app.flashes('danger') %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
-            {% for flashMessage in app.session.flashbag.get('error') %}
-
-                {{ flashMessage }}
-
-            {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
 
 
         </div>
 
 
-    {% endfor %}
+
 
 
 
@@ -125,7 +109,7 @@
                 <a href="https://www.facebook.com/BetisesEtVolupthe" class="facebook"><i class="bx bxl-facebook"></i></a>
             </div>
             <div class="copyright">
-                &copy; Copyright <strong><span>Vivien</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Vivien</span></strong>. Tous droits réservés
             </div>
 
         </div>

@@ -24,17 +24,12 @@ class ReservationType extends AbstractType
         $builder
             ->add('nom', TextType::class, [ 'attr'=>['placeholder'=>'Votre nom']])
             ->add('email', EmailType::class, [ 'attr'=>['placeholder'=>'Votre email ']])
-            ->add('telephone', NumberType::class, [ 'attr'=>['placeholder'=>'Votre telephone', 'oninvalid' => "setCustomValidity('Your name cannot contain a number')" ]])
+            ->add('telephone', NumberType::class, [ 'attr'=>['placeholder'=>'Votre téléphone']])
             ->add('date', DateType::class, array(
                 'widget' => 'single_text',))
             ->add('heure', TimeType::class, array(
                 'widget' => 'single_text',))
-            ->add('personne', IntegerType::class, [ 'attr'=>['placeholder'=>'Nombre de personne'], 'constraints' => [
-                new Assert\Range([
-                    'min' => 0,
-                    'minMessage' => "La question ne peut pas être vide.",
-                    'max' => 120,
-                    'maxMessage' => "La question doit faire moins de 120 caractères.",])]])
+            ->add('personne', IntegerType::class, [ 'attr'=>['placeholder'=>'Nombre de personnes']])
             ->add('message', TextareaType::class, [
                 'required'=>false,
                 'attr'=>['placeholder'=>'Message']]  )

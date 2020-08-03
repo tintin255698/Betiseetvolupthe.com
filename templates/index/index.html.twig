@@ -34,7 +34,7 @@
                     <div class="carousel-item" style="background: url(/img/slide/slide-2.PNG);">
                         <div class="carousel-container">
                             <div class="carousel-content">
-                                <h2 class="animate__animated animate__fadeInDown">Un monde féérique</h2>
+                                <h2 class="animate__animated animate__fadeInDown">Un univers féérique</h2>
                                 <p class="animate__animated animate__fadeInUp">Un petit coin de paradis ou le temps est suspendu le temps d’un agréable repas</p>
                                 <div>
                                     <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
@@ -231,16 +231,18 @@
 
                 <div class="section-title">
                     <h2>Réserver une <span>Table ...</span></h2>
-                    <p>... pour être sur de manger chez nous !</p>
+                    <p>... pour être sûr de manger chez nous !</p>
                 </div>
 
-                {{ form_start(reservationForm, {'attr': {'novalidatr': 'novalidate'}}) }}
+                {{ form_start(reservationForm) }}
 
                 <div class="form-row">
                     <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_errors(reservationForm.nom) }}
                         {{ form_widget(reservationForm.nom) }}
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
+                        {{ form_errors(reservationForm.email) }}
                         {{ form_widget(reservationForm.email) }}
                     </div>
                     <div class="col-lg-4 col-md-6 form-group">
@@ -262,7 +264,7 @@
                 </div>
                 <div class="form-group">
                     {{ form_widget(reservationForm.message) }}
-                    <button type="submit" class="btn btn-primary mt-3">Reserver</button>
+                    <button type="submit" class="btn btn-primary mt-3">Réserver</button>
                 </div>
 
         {{ form_end(reservationForm) }}
@@ -278,7 +280,7 @@
 
                 <div class="section-title">
                     <h2>Quelques Photos de <span>Notre Restaurant</span></h2>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+                    <p>Découvrez ou redécouvrez le !</p>
                 </div>
 
                 <div class="row no-gutters">
@@ -335,7 +337,7 @@
 
                 <div class="section-title">
                     <h2><span>Contacter</span> nous</h2>
-                    <p>N'hesitez pas à nous contacter, nous vous ferons un plaisir de vous répondre.</p>
+                    <p>N'hésitez pas à nous contacter, nous vous ferons un plaisir de vous répondre.</p>
                 </div>
             </div>
 

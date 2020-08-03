@@ -14,7 +14,6 @@ class CommentaireType extends AbstractType
         $builder
             ->add('note')
             ->add('contenu')
-            ->add('user')
         ;
     }
 

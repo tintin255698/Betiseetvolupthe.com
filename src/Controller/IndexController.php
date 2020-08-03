@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Entity\Image;
 use App\Entity\Reservation;
-use App\Entity\User;
 use App\Form\ContactType;
 use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
     /**
-     * @Route("/index", name="index")
+     * @Route("/", name="index")
      */
     public function index(Request $request, \Swift_Mailer $mailer)
     {
@@ -28,7 +27,7 @@ class IndexController extends AbstractController
 
             $message = (new \Swift_Message('Nouveau Contact'))
                 ->setFrom($contact['Email'])
-                ->setTo('votre@adresse.fr')
+                ->setTo('betisesetvolupthe@gmail.com')
                 ->setBody(
                     $this->renderView(
                         'email/contact.html.twig', compact('contact')
@@ -47,22 +46,20 @@ class IndexController extends AbstractController
             $form1->handleRequest($request);
 
             if ($form1->isSubmitted() && $form1->isValid()) {
-                $doctrine = $this->getDoctrine()->getManager();
+                try{$doctrine = $this->getDoctrine()->getManager();
                 $doctrine->persist($reservation);
                 $doctrine->flush();
+                $this->addFlash('success', 'Votre reservation est effectuee');
+                } catch(\Exception $e) {
+                    // log $e->getMessage()
+                    $this->addFlash('error', 'Merci de remplir correctement le formulaire');
 
-                $contact = $form1["email"]->getData();
+                }
 
-
-                $this->addFlash(
-                    'success',
-                    '<strong>Merci pour votre réservation !</strong>');
-
-                $this->get('session')->getFlashBag()->add('error', 'Does Not Exist');
-
+                    $contact = $form1["email"]->getData();
 
                 $message = (new \Swift_Message('Nouvelle Reservation'))
-                    ->setFrom('votre@adresse2.fr')
+                    ->setFrom('betisesetvolupthe@gmail.com')
                     ->setTo($contact)
                     ->setBody(
                         $this->renderView(
