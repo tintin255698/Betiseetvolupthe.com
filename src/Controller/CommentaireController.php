@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 
 
+use App\Entity\Portefeuille;
 use App\Entity\User;
 use App\Form\CommentaireType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,11 +19,13 @@ class CommentaireController extends AbstractController
      */
     public function index()
     {
-        $repo = $this->getDoctrine()->getRepository(User::class);
-        $pla = $repo->findall();
+        $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
+
+        dump($repo);
+
 
         return $this->render('commentaire/index.html.twig', [
-            'pla' => $pla]);
+            'repo' => $repo]);
 
     }
 

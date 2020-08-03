@@ -75,14 +75,14 @@ class IndexController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Image::class);
         $pla = $repo->findall();
 
-        $repo1 = $this->getDoctrine()->getRepository(Commentaire::class);
-        $pla1 = $repo1->findby(array(), array('id'=> 'DESC'), 5);
+        $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField2();
+
 
             return $this->render('index/index.html.twig', [
                 'reservationForm' => $form1->createView(),
                 'contactForm' =>$form->createView(),
                 'pla'=>$pla,
-                'pla1'=>$pla1
+                'repo'=>$repo
             ]);
         }
 

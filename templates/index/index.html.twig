@@ -16,7 +16,7 @@
                 <div class="carousel-inner" role="listbox">
 
                     <!-- Slide 1 -->
-                    <div class="carousel-item active" style="background: url(/img/slide/slide-1.PNG);">
+                    <div class="carousel-item active" style="background: url(/img/slide-2.png">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown"><span>Un restaurant</span> unique</h2>
@@ -31,7 +31,7 @@
                     </div>
 
                     <!-- Slide 2 -->
-                    <div class="carousel-item" style="background: url(/img/slide/slide-2.PNG);">
+                    <div class="carousel-item" style="background: url(/img/slide-3.png);">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">Un univers féérique</h2>
@@ -46,7 +46,7 @@
                     </div>
 
                     <!-- Slide 3 -->
-                    <div class="carousel-item" style="background: url(/img/slide/slide-3.PNG);">
+                    <div class="carousel-item" style="background: url(/img/slide-4.png);">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">Des moments inoubliables</h2>
@@ -305,13 +305,16 @@
             <div class="container">
 
                 <div class="owl-carousel testimonials-carousel">
-                    {% for plas1 in pla1 %}
+                    {% for repos in repo %}
                     <div class="testimonial-item">
-                        {{ plas1.contenu }}
-                        <hr>
+                        {{ repos.prenom }} {{ repos.nom }} :
+                        <br>
+                        <br>
+                        {{ repos.contenu }}
+                        <br>
                         <span class="note">
                         {% for i in 1..5 %}
-                        {% if i <=  plas1.note  %}
+                        {% if i <=  repos.note  %}
                             <i class="icofont-star"></i>
             {% else  %}
                 <i class="icofont-star-shape"></i>

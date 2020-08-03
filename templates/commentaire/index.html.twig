@@ -5,19 +5,18 @@
 {% block body %}
 <div class="container">
 
-    <h2 class="titre pb-3">Avis de nos clients</h2>
 
-    {% for plas in pla %}
-        {% for commentaire in plas.commentaires %}
+    <h2 class="titre pb-3">Avis des clients</h2>
+    {% for repos in repo %}
             <div class="bg-light rounded mb-5 py-3 px-3">
-                <strong>{{ plas.prenom }} {{ plas.nom }}</strong> a dit :
+                <strong>{{ repos.prenom }} {{ repos.nom }}</strong> a dit :
                 <blockquote>
-                    {{ commentaire.contenu }}
+                    {{ repos.contenu }}
                 </blockquote>
-                <strong>Note donnee par {{ plas.prenom }} {{ plas.nom }}</strong> :
+                <strong>Note donnée par {{ repos.prenom }} {{ repos.nom }}</strong> :
                 <span class="note">
         {% for i in 1..5 %}
-            {% if i <= commentaire.note %}
+            {% if i <= repos.note %}
                 <i class="icofont-star"></i>
             {% else  %}
                 <i class="icofont-star-shape"></i>
@@ -26,7 +25,7 @@
 </span>
             </div>
         {% endfor%}
-    {% endfor %}
+
 
 
 </div>
