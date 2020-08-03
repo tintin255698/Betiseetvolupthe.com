@@ -4,13 +4,35 @@
 
 {% block body %}
     <div class="container">
+
+        {% if app.user %}
         <h3 class="titre">Ajouter un commentaire</h3>
-
         {{ form_start(form) }}
-
         {{ form_widget(form)}}
-
         <button type="submit" class="btn btn-primary">Ajouter</button>
         {{ form_end(form) }}
+
+        {% else %}
+            <h3 class="titre mt-3">Ajouter un commentaire</h3>
+
+        <p class="text-center mt-5">Nous sommes désolés. Il faut être inscrit et connecté pour nous laisser un commentaire  :)</p>
+
+            <div class="form-row mt-3">
+                <div class="col-lg-6 col-md-6  form-group">
+                    <p class="text-center mt-5 mb-5"><a href = "{{ path ('app_register') }}">Inscription</a></p>
+                </div>
+                <div class="col-lg-6 col-md-6 form-group">
+                    <p class="text-center mt-5 mb-5"><a href = "{{ path ('app_login') }}">Connexion</a></p>
+                </div>
+            </div>
+        <div class="text-center">
+            <img src="/img/betiseetvolupthe.jpg" width="200" height="300"  alt="" class="pb-5">
+        </div>
+
+
+
+
+        {% endif %}
+
     </div>
 {% endblock %}
