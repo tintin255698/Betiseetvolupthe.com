@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
-
-
-use App\Entity\Portefeuille;
-use App\Entity\User;
 use App\Form\CommentaireType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +14,16 @@ class CommentaireController extends AbstractController
     /**
      * @Route("/commentaire", name="commentaire")
      */
-    public function index()
+    public function index(PaginatorInterface $paginator, Request $request)
     {
-        $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
+        $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
         $repo2 = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField3();
-        dump($repo2);
+
+        $repo = $paginator->paginate(
+            $commentaire,
+            $request->query->getInt('page',1),
+            7
+        );
 
 
 

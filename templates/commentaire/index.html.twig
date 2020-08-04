@@ -27,18 +27,11 @@
                             <br>
                     <small>(Calculée sur {{repo|length}} avis)</small>
 </span>
-
                     {% endfor %}
                 </div>
             </div>
         </h2>
     </div>
-
-
-
-
-
-
     {% for repos in repo %}
 
             <div class="bg-light rounded mt-5 mb-5 py-3 px-3">
@@ -57,24 +50,17 @@
         {% endfor %}
 </span>
             </div>
+
         {% endfor%}
+
     {% else %}
     <h2 class="titre pb-3">En attente de commentaire</h2>
     <img src="/img/betiseetvolupthe.jpg" width="200" height="300"  alt="" class="pb-5">
     {% endif %}
-
-
-
+    <div class="navigation">
+        <h3>{{ knp_pagination_render(repo) }}</h3>
+    </div>
 </div>
-
-
-
-
-
-
-
-
-
 
 
 {% endblock %}
