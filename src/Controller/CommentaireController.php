@@ -20,12 +20,16 @@ class CommentaireController extends AbstractController
     public function index()
     {
         $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
+        $repo2 = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField3();
+        dump($repo2);
 
-        dump($repo);
+
+
 
 
         return $this->render('commentaire/index.html.twig', [
-            'repo' => $repo]);
+            'repo' => $repo,
+            'repo2'=>$repo2]);
 
     }
 
@@ -58,8 +62,12 @@ class CommentaireController extends AbstractController
             return $this->redirectToRoute('commentaire');
         }
 
+
+        $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField4();
+
         return $this->render('commentaire/commentaire.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'repo' => $repo
         ));
     }
 

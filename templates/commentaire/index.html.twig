@@ -5,10 +5,43 @@
 {% block body %}
 <div class="container">
 
-
+    {% if repo|length > 0 %}
     <h2 class="titre pb-3">Avis des clients</h2>
+
+    <div class="alert alert-info">
+        <h2 class="alert-heading">
+            <div class="row">
+                <div class="col">
+                    Note globale donnée par nos clients
+                </div>
+                <div class="col">
+                    {% for repos2 in repo2 %}
+                        <span class="note">
+        {% for i in 1..5 %}
+            {% if i <= repos2.note %}
+                <i class="icofont-star"></i>
+            {% else  %}
+                <i class="icofont-star-shape"></i>
+            {% endif %}
+        {% endfor %}
+                            <br>
+                    <small>(Calculée sur {{repo|length}} avis)</small>
+</span>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </h2>
+    </div>
+
+
+
+
+
+
     {% for repos in repo %}
-            <div class="bg-light rounded mb-5 py-3 px-3">
+
+            <div class="bg-light rounded mt-5 mb-5 py-3 px-3">
                 <strong>{{ repos.prenom }} {{ repos.nom }}</strong> a dit :
                 <blockquote>
                     {{ repos.contenu }}
@@ -25,6 +58,10 @@
 </span>
             </div>
         {% endfor%}
+    {% else %}
+    <h2 class="titre pb-3">En attente de commentaire</h2>
+    <img src="/img/betiseetvolupthe.jpg" width="200" height="300"  alt="" class="pb-5">
+    {% endif %}
 
 
 

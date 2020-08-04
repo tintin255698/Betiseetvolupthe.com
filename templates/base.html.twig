@@ -50,8 +50,9 @@
                     <li><a href="">Commander</a></li>
                     <li><a href="{{ path('index')}}#book-a-table">Réserver</a></li>
                     <li><a href="{{ path('index')}}#gallery">Galerie</a></li>
+                    <li><a href="{{ path('index')}}#testimonials">Vos avis</a></li>
                     <li><a href="{{ path('index')}}#contact">Nous contacter</a></li>
-                    <li><a href="{{ path('commentaire')}}">Vos avis</a></li>
+                   
 
                     {% if app.user %}
                     <li class="book-a-table text-center"><a >Espace personnel</a></li>
@@ -84,23 +85,9 @@
 
         </div>
 
-
-
-
-
-
-
     </body>
 
-
-
-
-
-
     {% block body %}{% endblock %}
-
-
-
 
     <footer id="footer">
         <div class="container">

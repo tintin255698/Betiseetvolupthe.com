@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentaireRepository::class)
@@ -19,6 +20,11 @@ class Commentaire
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      notInRangeMessage = "Votre note doit être entre {{ min }} et {{ max }}.",
+     * )
      */
     private $note;
 
@@ -32,7 +38,6 @@ class Commentaire
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-
 
     public function getId(): ?int
     {
