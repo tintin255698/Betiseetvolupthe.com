@@ -264,7 +264,9 @@
                 </div>
                 <div class="form-group">
                     {{ form_widget(reservationForm.message) }}
+                    <div class="class text-right">
                     <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+                    </div>
                 </div>
 
         {{ form_end(reservationForm) }}
@@ -310,7 +312,7 @@
                         {{ repos.prenom }} {{ repos.nom }} :
                         <br>
                         <br>
-                        {{ repos.contenu }}
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i> {{ repos.contenu }} <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                         <br>
                         <span class="note">
                         {% for i in 1..5 %}
@@ -354,25 +356,25 @@
                 <div class="info-wrap">
                     <div class="row">
                         <div class="col-lg-3 col-md-6 info">
-                            <i class="icofont-google-map"></i>
+                            <i class='bx bx-map bx-spin bx-rotate-90' ></i>
                             <h4>Adresse:</h4>
                             <p>79 Rue des Granges<br>25000 Besançon</p>
                         </div>
 
                         <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-                            <i class="icofont-clock-time icofont-rotate-90"></i>
+                            <i class='bx bx-time-five bx-spin bx-rotate-90' ></i>
                             <h4>Horaire:</h4>
                             <p>Mardi-Samedi:<br>12:00 - 22:00</p>
                         </div>
 
                         <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-                            <i class="icofont-envelope"></i>
+                            <i class='bx bx-envelope-open bx-spin bx-rotate-90' ></i>
                             <h4>Email:</h4>
                             <p>eglantinedebetises<br>@hotmail.fr</p>
                         </div>
 
                         <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-                            <i class="icofont-phone"></i>
+                            <i class='bx bx-phone-call bx-spin bx-rotate-90' ></i>
                             <h4>Telephone:</h4>
                             <p>03 81 50 83 45</p>
                         </div>
@@ -394,7 +396,9 @@
                 </div>
                 <div class="form-group">
                 {{ form_widget(contactForm.Message) }}
+                    <div class="class text-right">
                 <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+                </div>
                 </div>
 
                 {{ form_end(contactForm) }}
