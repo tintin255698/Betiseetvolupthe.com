@@ -25,11 +25,13 @@ class Commentaire
      *      max = 5,
      *      notInRangeMessage = "Votre note doit être entre {{ min }} et {{ max }}.",
      * )
+     * @Assert\NotBlank
      */
     private $note;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $contenu;
 
