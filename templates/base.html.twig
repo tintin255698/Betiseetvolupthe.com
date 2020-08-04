@@ -18,7 +18,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/fontawesome.min.js" rel="stylesheet">
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
         <link href="/css/style.css" rel="stylesheet">
-
+        <link href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}" rel="stylesheet">
 
 
 
@@ -70,17 +70,13 @@
     </header><!-- End Header -->
 
 
-    {% for message in ('error') %}
-        <div class="alert alert-notice">
-            {{ message }}
-        </div>
+    {% for label, messages in app.flashes  %}
+            <div class="alert alert-{{ label }} text-center">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor%}
+            </div>
     {% endfor %}
-
-
-
-    {{ dump(app) }}
-
-        </div>
 
     </body>
 
@@ -117,6 +113,8 @@
     <script src="/venobox/venobox.min.js"></script>
     <script src="/owl.carousel/owl.carousel.min.js"></script>
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 
     <!-- Template Main JS File -->
     <script src="/js/main.js"></script>

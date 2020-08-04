@@ -22,12 +22,8 @@ class CommentaireController extends AbstractController
         $repo = $paginator->paginate(
             $commentaire,
             $request->query->getInt('page',1),
-            7
+            10
         );
-
-
-
-
 
         return $this->render('commentaire/index.html.twig', [
             'repo' => $repo,
@@ -51,17 +47,11 @@ class CommentaireController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            try{$doctrine = $this->getDoctrine()->getManager();
+            $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($post);
             $doctrine->flush();
-                $this->addFlash('success', 'Nous vous remercions pour votre commentaire.');
-            } catch(\Exception $e) {
-                // log $e->getMessage()
-                $this->addFlash('error', 'Veuillez remplir correctement le formulaire.');
+            $this->addFlash('success', 'Nous vous remercions pour votre commentaire.');
             }
-
-            return $this->redirectToRoute('commentaire');
-        }
 
 
         $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField4();
@@ -71,14 +61,4 @@ class CommentaireController extends AbstractController
             'repo' => $repo
         ));
     }
-
-
-
-
-
-
-
-
-
-
 }
