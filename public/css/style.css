@@ -1628,9 +1628,10 @@ section {
   font-size: 13px;
 }
 
-span.note i {
+span.note i  {
   color: goldenrod;
 }
+
 
 .btn{
   background: #91125F;

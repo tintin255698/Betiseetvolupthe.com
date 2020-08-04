@@ -19,13 +19,11 @@
                         <span class="note">
         {% for i in 1..5 %}
             {% if i <= repos2.note %}
-                <i class="icofont-star"></i>
+                <i class='bx bxs-star bx-flashing' ></i>
             {% else  %}
-                <i class="icofont-star-shape"></i>
+                <i class='bx bx-star bx-flashing' ></i>
             {% endif %}
         {% endfor %}
-                            <br>
-                    <small>(Calculée sur {{repo|length}} avis)</small>
 </span>
                     {% endfor %}
                 </div>
@@ -43,9 +41,9 @@
                 <span class="note">
         {% for i in 1..5 %}
             {% if i <= repos.note %}
-                <i class="icofont-star"></i>
+                <i class='bx bxs-star bx-spin' ></i>
             {% else  %}
-                <i class="icofont-star-shape"></i>
+                <i class='bx bx-star bx-spin' ></i>
             {% endif %}
         {% endfor %}
 </span>
