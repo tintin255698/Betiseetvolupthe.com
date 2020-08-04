@@ -23,7 +23,12 @@ class IndexController extends AbstractController
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $contact = $form->getData();
+            try{$contact = $form->getData();
+                $this->addFlash('success', 'Nous avons reçu votre message. Nous vous répondrons dès que possible.');
+            } catch(\Exception $e) {
+                // log $e->getMessage()
+                $this->addFlash('error', 'Merci de remplir correctement le formulaire.');
+            }
 
             $message = (new \Swift_Message('Nouveau Contact'))
                 ->setFrom($contact['Email'])
@@ -49,11 +54,11 @@ class IndexController extends AbstractController
                 try{$doctrine = $this->getDoctrine()->getManager();
                 $doctrine->persist($reservation);
                 $doctrine->flush();
-                $this->addFlash('success', 'Votre reservation est effectuee');
+                $this->addFlash('success', 'Nous vous remercions pour votre réservation. Nous nous préparons à vous recevoir le {get.');
+                return $this->redirectToRoute('index');
                 } catch(\Exception $e) {
                     // log $e->getMessage()
-                    $this->addFlash('error', 'Merci de remplir correctement le formulaire');
-
+                    $this->addFlash('error', 'Veuillez remplir correctement le formulaire.');
                 }
 
                     $contact = $form1["email"]->getData();

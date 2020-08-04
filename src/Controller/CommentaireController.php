@@ -51,15 +51,14 @@ class CommentaireController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $doctrine = $this->getDoctrine()->getManager();
+            try{$doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($post);
             $doctrine->flush();
-
-            $this->addFlash(
-                'success',
-                '<strong>Votre commentaire a bien été enregistré !</strong>'
-            );
-
+                $this->addFlash('success', 'Nous vous remercions pour votre commentaire.');
+            } catch(\Exception $e) {
+                // log $e->getMessage()
+                $this->addFlash('error', 'Veuillez remplir correctement le formulaire.');
+            }
 
             return $this->redirectToRoute('commentaire');
         }
