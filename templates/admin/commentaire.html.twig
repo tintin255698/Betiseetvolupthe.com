@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <h1 class="titre mb-3">Insertion des images</h1>
+
+    <table id="admin" class="table table-striped table-bordered text-center" style="width:100%">
+        <thead>
+        <th>Note</th>
+        <th>Commentaire</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+        {% for repos in repo %}
+            <tr>
+            <td>{{ repos.note}}</td>
+            <td>{{ repos.contenu }}</td>
+            <td><a href="{{ path('supprimer_commentaire', {'id':repos.id}) }}" class="btn btn-dark">X</a></td>
+        {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#admin').DataTable();
+        } );
+    </script>
+
+
+{% endblock %}

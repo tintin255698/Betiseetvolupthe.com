@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Image;
 use App\Form\ImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,6 +48,30 @@ class AdminController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('admin');
     }
+
+    /**
+     * @Route("/admin/commentaire/afficher/", name="afficher_commentaire")
+     */
+    public function afficherCommentaire()
+    {
+        $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
+
+        return $this->render('admin/commentaire.html.twig', [
+            'repo'=>$repo
+        ]);
+    }
+
+    /**
+     * @Route("/admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
+     */
+    public function supprimerCommentaire(Commentaire $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($id);
+        $em->flush();
+        return $this->redirectToRoute('afficher_commentaire');
+    }
+
 
 
 }
