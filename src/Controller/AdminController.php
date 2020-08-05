@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Commentaire;
 use App\Entity\Image;
+use App\Entity\Reservation;
+use App\Entity\User;
 use App\Form\ImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,6 +72,30 @@ class AdminController extends AbstractController
         $em->remove($id);
         $em->flush();
         return $this->redirectToRoute('afficher_commentaire');
+    }
+
+    /**
+     * @Route("/admin/reservations", name="reservation")
+     */
+    public function users()
+    {
+        $repo = $this->getDoctrine()->getRepository(reservation::class);
+        $pla = $repo->findall();
+
+        return $this->render('admin/reservation.html.twig', [
+            'pla' => $pla,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
+     */
+    public function supprimerReservation(Reservation $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($id);
+        $em->flush();
+        return $this->redirectToRoute('reservation');
     }
 
 

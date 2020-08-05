@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    {% include 'menu_admin.html.twig' %}
+
+    <h1 class="text-center mt-5 mb-5">Les réservations</h1>
+
+    <table id="admin" class="table table-striped table-bordered text-center" style="width:100%">
+        <thead>
+        <th>Jour</th>
+        <th>Heure</th>
+        <th>Nom</th>
+        <th>Telephone</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+        {% for plas in pla %}
+        <tr>
+            <td>{{ plas.date|date("d/m/Y")}}</td>
+            <td>{{ plas.heure|date('H:i') }}</td>
+            <td>{{ plas.nom }}</td>
+            <td>0{{ plas.telephone }}</td>
+            <td>{{ plas.email }}</td>
+            <td>{{ plas.message }}</td>
+            <td><a href="{{ path('supprimer_commentaire', {'id':plas.id}) }}" class="btn btn-dark"><i class='bx bx-check-double'></i></a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    {% block javascripts %}
+
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#admin').DataTable();
+            } );
+        </script>
+    {% endblock %}
+
+
+{% endblock %}
+

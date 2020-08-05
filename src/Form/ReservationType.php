@@ -32,7 +32,7 @@ class ReservationType extends AbstractType
             ->add('personne', IntegerType::class, [ 'attr'=>['placeholder'=>'Nombre de personnes']])
             ->add('message', TextareaType::class, [
                 'required'=>false,
-                'attr'=>['placeholder'=>'Message']]  )
+                'attr'=>['placeholder'=>'Message si vous souhaitez ajouter des informations complémentaires']]  )
 
         ;
 
