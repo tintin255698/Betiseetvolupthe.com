@@ -27,6 +27,7 @@ class  ResetPassMailController extends AbstractController
         // création d'un formulaire "à la volée", afin que l'internaute puisse renseigner son mail
         $form = $this->createFormBuilder()
             ->add('email', EmailType::class, [
+                'attr'=>['placeholder'=>'Email'],
                 'constraints' => [
                     new Email(),
                     new NotBlank()

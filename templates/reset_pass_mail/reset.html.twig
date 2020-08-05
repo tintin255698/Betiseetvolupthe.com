@@ -1,7 +1,28 @@
-{# resetting/index.html.twig #}
-<h1>Renouvellement du mot de passe</h1>
-{{form_start(form)}}
-	{{form_row(form.password.first)}}
-	{{form_row(form.password.second)}}
-<button class=""  type="submit">Envoyer</button>
-{{form_end(form)}}
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ResetPassMailController!{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="titre mb-3">Renouvellement du mot de passe</h1>
+
+
+		{{form_start(form)}}
+		{{form_row(form.password.first)}}
+		{{form_row(form.password.second)}}
+		<div class="class text-right">
+			<button type="submit" class="btn btn-primary mt-3 mb-5">Valider</button>
+		</div>
+		{{form_end(form)}}
+
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -23,7 +23,6 @@ class ImageType extends AbstractType
                 'label' => "Ajout de l'image",
             'attr' => ['placeholder' => "Ajouter une image"]
         ])
-            ->add('envoyer', SubmitType::class)
         ;
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Symfony\Component\Templating\EngineInterface;
 use Twig\Environment;
 
 /**

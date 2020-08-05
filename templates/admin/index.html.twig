@@ -5,15 +5,23 @@
 {% block body %}
 
             <div class="container">
-                <h1 class="titre mb-3">Insertion des images</h1>
+
+                {% include 'menu_admin.html.twig' %}
+
+                <h1 class="text-center mt-5 mb-5">Insertion des images</h1>
                 {{ form(imageForm) }}
                 {{ form_widget(imageForm) }}
 
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+                </div>
+<br>
+                <br>
+                <hr>
 
+            <h1 class="text-center mt-5 mb-5">Liste des images (multiple de 4 conseillé)</h1>
 
-            <h1 class="text-center mt-5 mb-5">Liste des images (multiple de 4 obligatoire)</h1>
-
-                <table id="admin" class="table table-striped table-bordered" style="width:100%">
+                <table id="admin" class="table table-striped table-bordered text-center" style="width:100%">
                     <thead>
                     <th>Nom de l'image</th>
                     <th>Image</th>
@@ -24,7 +32,7 @@
                         <tr>
                         <td>{{ plas.imageName}}</td>
                         <td><img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('cercle') }}"></td>
-                        <td><a href="{{ path('supprimer_image', {'id':plas.id}) }}"  class="btn btn-dark">Supprimer</a></td>
+                        <td><a href="{{ path('supprimer_image', {'id':plas.id}) }}"  class="btn btn-dark"><i class='bx bx-check-double text-center'></i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

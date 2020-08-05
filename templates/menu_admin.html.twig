@@ -1,0 +1,19 @@
+{% block body %}
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Menu
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#two">Tableau de bord</a>
+            <a class="dropdown-item" href="{{ path('admin')}}">Gerer les images</a>
+            <a class="dropdown-item" href="#two">Voir les reservations</a>
+            <a class="dropdown-item" href="{{ path('afficher_commentaire')}}">Supprimer les commentaires</a>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+

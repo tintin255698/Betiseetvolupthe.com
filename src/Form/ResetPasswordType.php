@@ -17,8 +17,8 @@ class ResetPasswordType extends AbstractType
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array('label' => 'Nouveau mot de passe'),
-                'second_options' => array('label' => 'Confirmer le mot de passe'),
-                'invalid_message' => 'Les 2 mots de passe ne sont pas identiques.',
+                'second_options' => array('label' => 'Confirmer votre nouveau mot de passe'),
+                'invalid_message' => 'Les deux mots de passe ne sont pas identiques.',
             ))
 
         ;
