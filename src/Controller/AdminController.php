@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("admin/image", name="admin")
      */
     public function index(Request $request)
     {
@@ -52,7 +52,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/commentaire/afficher/", name="afficher_commentaire")
+     * @Route("admin/commentaire/afficher/", name="afficher_commentaire")
      */
     public function afficherCommentaire()
     {
@@ -64,7 +64,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
+     * @Route("admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
      */
     public function supprimerCommentaire(Commentaire $id)
     {
@@ -75,7 +75,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/reservations", name="reservation")
+     * @Route("admin/reservations", name="reservation")
      */
     public function users()
     {
@@ -88,7 +88,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
+     * @Route("admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
      */
     public function supprimerReservation(Reservation $id)
     {
