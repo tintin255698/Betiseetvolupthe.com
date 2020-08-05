@@ -11,7 +11,7 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            Vous êtes déjà connecté comme {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
     {% endif %}
 
@@ -26,6 +26,9 @@
             <div class="col-lg-6 col-md-6">
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Entrez votre mot de passe" required>
             </div>
+<br>
+            <br>
+            <a target="_blank"  href="{{ path('request_resetting') }}">Mot de passe oublié ?</a>
         </div>
 
 

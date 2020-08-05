@@ -77,10 +77,6 @@ class User implements UserInterface
      */
     private $isVerified = false;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    private $reset_token;
 
 
     public function __construct()
@@ -278,15 +274,50 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getResetToken(): ?string
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $passwordRequestedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $token;
+
+    /*
+     * Get passwordRequestedAt
+     */
+    public function getPasswordRequestedAt()
     {
-        return $this->reset_token;
+        return $this->passwordRequestedAt;
     }
 
-    public function setResetToken(?string $reset_token): self
+    /*
+     * Set passwordRequestedAt
+     */
+    public function setPasswordRequestedAt($passwordRequestedAt)
     {
-        $this->reset_token = $reset_token;
+        $this->passwordRequestedAt = $passwordRequestedAt;
+        return $this;
+    }
 
+    /*
+     * Get token
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /*
+     * Set token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
         return $this;
     }
 }

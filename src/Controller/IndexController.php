@@ -51,7 +51,6 @@ class IndexController extends AbstractController
                 $doctrine->persist($reservation);
                 $doctrine->flush();
                 $this->addFlash('success', 'Nous vous remercions pour votre réservation');
-                $this->redirect($this->generateUrl('index'. '#book-a-table'));
                 }
 
                     $contact = $form1["email"]->getData();
