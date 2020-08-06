@@ -83,6 +83,12 @@ class User implements UserInterface
     {
         $this->adresses = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->menus = new ArrayCollection();
+        $this->picnics = new ArrayCollection();
+        $this->boissons = new ArrayCollection();
+        $this->vins = new ArrayCollection();
+        $this->thes = new ArrayCollection();
+        $this->repas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -287,6 +293,12 @@ class User implements UserInterface
      */
     private $token;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Repas::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $repas;
+
+
     /*
      * Get passwordRequestedAt
      */
@@ -318,6 +330,37 @@ class User implements UserInterface
     public function setToken($token)
     {
         $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Repas[]
+     */
+    public function getRepas(): Collection
+    {
+        return $this->repas;
+    }
+
+    public function addRepa(Repas $repa): self
+    {
+        if (!$this->repas->contains($repa)) {
+            $this->repas[] = $repa;
+            $repa->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepa(Repas $repa): self
+    {
+        if ($this->repas->contains($repa)) {
+            $this->repas->removeElement($repa);
+            // set the owning side to null (unless already changed)
+            if ($repa->getUser() === $this) {
+                $repa->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

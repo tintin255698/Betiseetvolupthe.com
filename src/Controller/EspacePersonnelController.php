@@ -94,7 +94,7 @@ class EspacePersonnelController extends AbstractController
 
 
     /**
-     * @Route("/gestion/affichage", name="gestion_affichage")
+     * @Route("/espace/affichage", name="gestion_affichage")
      */
 
     public function affichage()
