@@ -28,6 +28,11 @@ class Menu
      */
     private $produit;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
 
     public function getId(): ?int
     {
@@ -56,6 +61,18 @@ class Menu
     public function setProduit(string $produit): self
     {
         $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

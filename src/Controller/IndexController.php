@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commentaire;
 use App\Entity\Image;
+use App\Entity\Repas;
 use App\Entity\Reservation;
 use App\Form\ContactType;
 use App\Form\ReservationType;
@@ -68,18 +69,29 @@ class IndexController extends AbstractController
                 $mailer->send($message);
 
 
-
+        // Images
         $repo = $this->getDoctrine()->getRepository(Image::class);
         $pla = $repo->findall();
 
+
+        // Commentaires
+
         $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField2();
+
+        // Plats
+
+        $repos = $this->getDoctrine()->getRepository(Repas::class);
+        $plat = $repos->findall();
+
+
 
 
             return $this->render('index/index.html.twig', [
                 'reservationForm' => $form1->createView(),
                 'contactForm' =>$form->createView(),
                 'pla'=>$pla,
-                'repo'=>$repo
+                'repo'=>$repo,
+                'plat'=>$plat
             ]);
         }
 

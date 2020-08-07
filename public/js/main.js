@@ -163,8 +163,11 @@
   $(window).on('load', function() {
     var menuIsotope = $('.menu-container').isotope({
       itemSelector: '.menu-item',
-      layoutMode: 'fitRows'
+      layoutMode: 'masonry',
+      percentPosition:true,
+      filter: '.menu',
     });
+
 
     $('#menu-flters li').on('click', function() {
       $("#menu-flters li").removeClass('filter-active');

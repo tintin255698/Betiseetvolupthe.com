@@ -119,109 +119,123 @@
         </section><!-- End Whu Us Section -->
 
         <!-- ======= Menu Section ======= -->
+
+
         <section id="menu" class="menu">
             <div class="container">
 
                 <div class="section-title">
-                    <h2>Check our tasty <span>Menu</span></h2>
+                    <h2><span>Commander</span> à emporter</h2><br><br>
+                    <h3>Commander la veille ou les jours suivants</h3><br>
+                    <h3>Livraison gratuite et écologique Besançon et 10km autours</h3><br><br>
+                    <h4>Pour les vins, les thés, les eaux et les limonades, merci de cliquer sur les produits qui vous  intéressent</h4>
+
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
-                            <li data-filter="*" class="filter-active">Show All</li>
-                            <li data-filter=".filter-starters">Starters</li>
-                            <li data-filter=".filter-salads">Salads</li>
-                            <li data-filter=".filter-specialty">Specialty</li>
+
+
+                            <li data-filter=".filter-menu" class="active">Menu</li>
+                            <li data-filter=".filter-pique-nique">Pique-Nique</li>
+                            <li data-filter=".filter-vin">Vin</li>
+                            <li data-filter=".filter-the">Thé</li>
+                            <li data-filter=".filter-eau">Eau</li>
+                            <li data-filter=".filter-limonade">Limonade</li>
+
                         </ul>
                     </div>
                 </div>
 
                 <div class="row menu-container">
 
-                    <div class="col-lg-6 menu-item filter-starters">
+                                <div class="col-lg-6 menu-item filter-pique-nique">
+
+                                    <ul>Le pique-nique se compose :
+                                    {% for plats in plat %}
+                                    {% for picnic in plats.picnics %}
+                                    <div class="menu-content">
+                                    <li class="ml-5">{{ picnic.produit }}</li>
+
+                                    </div>
+
+                                    {% endfor %}
+                                    {% endfor %}
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary mt-3">Commander</button>
+                                        </div>
+                                    </ul>
+                                </div>
+
+                    <div class="row">
+                        {% for plats in plat %}
+                        {% for vin in plats.vins %}
+                    <div class="col-lg-6 menu-item filter-vin">
+
                         <div class="menu-content">
-                            <a href="#">Lobster Bisque</a><span>$5.95</span>
+                            <a href="#">{{ vin.produit }}</a><span>{{ vin.prix }}€</span>
                         </div>
                         <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
+                            {{ vin.description }}
                         </div>
+
+                    </div>
+                        {% endfor %}
+                        {% endfor %}
                     </div>
 
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <div class="menu-content">
-                            <a href="#">Bread barrel</a><span>$6.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
+                    <div class="row">
+                        {% for plats in plat %}
+                            {% for the in plats.the %}
+                                <div class="col-lg-6 menu-item filter-the">
+
+                                    <div class="menu-content">
+                                        <a href="#">{{ the.produit }}</a><span>{{ the.prix }}€</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
 
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <div class="menu-content">
-                            <a href="#">Crab Cake</a><span>$7.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-                        </div>
+                    <div class="row">
+                        {% for plats in plat %}
+                            {% for juses in plats.juses %}
+                                <div class="col-lg-6 menu-item filter-jus">
+
+                                    <div class="menu-content">
+                                        <a href="#">{{ juses.produit }}</a><span>{{ juses.prix }}€</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
 
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <div class="menu-content">
-                            <a href="#">Caesar Selections</a><span>$8.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
+                    <div class="row">
+                        {% for plats in plat %}
+                            {% for eau in plats.eaus %}
+                                <div class="col-lg-6 menu-item filter-eau">
+
+                                    <div class="menu-content">
+                                        <a href="#">{{ eau.produit }}</a><span>{{ eau.prix }}€</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
 
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <div class="menu-content">
-                            <a href="#">Tuscan Grilled</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-                        </div>
+                    <div class="row">
+                        {% for plats in plat %}
+                            {% for limonade in plats.limonades %}
+                                <div class="col-lg-6 menu-item filter-limonade">
+
+                                    <div class="menu-content">
+                                        <a href="#">{{ limonade.produit }}</a><span>{{ limonade.prix }}€</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
-
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <div class="menu-content">
-                            <a href="#">Mozzarella Stick</a><span>$4.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <div class="menu-content">
-                            <a href="#">Greek Salad</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Fresh spinach, crisp romaine, tomatoes, and Greek olives
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <div class="menu-content">
-                            <a href="#">Spinach Salad</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <div class="menu-content">
-                            <a href="#">Lobster Roll</a><span>$12.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
         </section><!-- End Menu Section -->
 
