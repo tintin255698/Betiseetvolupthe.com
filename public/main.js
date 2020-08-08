@@ -1,4 +1,9 @@
-
+/**
+* Template Name: Delicious - v2.1.0
+* Template URL: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
 !(function($) {
   "use strict";
 
@@ -159,7 +164,7 @@
     return false;
   });
 
-  // Menu list isotope and filter
+// Menu list isotope and filter
   $(window).on('load', function() {
     var menuIsotope = $('.menu-container').isotope({
       itemSelector: '.menu-item',
@@ -178,6 +183,7 @@
       });
     });
   });
+
 
   // Testimonials carousel (uses the Owl Carousel library)
   $(".events-carousel").owlCarousel({

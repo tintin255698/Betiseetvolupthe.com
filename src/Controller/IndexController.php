@@ -78,12 +78,25 @@ class IndexController extends AbstractController
 
         $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField2();
 
-        // Plats
+        // Repas
 
-        $repos = $this->getDoctrine()->getRepository(Repas::class);
-        $plat = $repos->findall();
+        $repo2 = $this->getDoctrine()->getRepository(Repas::class);
+        $jus = $repo2 ->findBy(
+            array('type'=> 'jus'),
+            array('produit' => 'ASC')
+        );
 
-
+        $limonade = $repo2->findByType(['limonade'=>'limonade']);
+        $mortuacienne = $repo2->findByType(['mortuacienne'=>'mortuacienne']);
+        $eau = $repo2->findByType(['eau'=>'eau']);
+        $vin = $repo2->findByType(['vin'=>'vin']);
+        $picnic = $repo2->findByType(['pic-nic'=>'pic-nic']);
+        $the = $repo2->findByType(['the'=>'the']);
+        $entree = $repo2->findByType(['entree'=>'entree']);
+        $plat = $repo2->findByType(['plat'=>'plat']);
+        $dessert = $repo2->findByType(['dessert'=>'dessert']);
+        $piquenique = $repo2->findByType(['pique-nique'=>'pique-nique']);
+        $menu = $repo2->findByType(['menu'=>'menu']);
 
 
             return $this->render('index/index.html.twig', [
@@ -91,9 +104,18 @@ class IndexController extends AbstractController
                 'contactForm' =>$form->createView(),
                 'pla'=>$pla,
                 'repo'=>$repo,
-                'plat'=>$plat
+                'jus' => $jus,
+                'limonade' => $limonade,
+                'mortuacienne' => $mortuacienne,
+                'eau' => $eau,
+                'vin' => $vin,
+                'picnic' => $picnic,
+                'the' => $the,
+                'entree'=>$entree,
+                'plat' => $plat,
+                'dessert' => $dessert,
+                'piquenique' => $piquenique,
+                'menu' => $menu,
             ]);
         }
-
-
 }

@@ -119,16 +119,14 @@
         </section><!-- End Whu Us Section -->
 
         <!-- ======= Menu Section ======= -->
-
-
         <section id="menu" class="menu">
             <div class="container">
 
                 <div class="section-title">
-                    <h2><span>Commander</span> à emporter</h2><br><br>
+                    <h2><span>Commander</span> chez nous !</h2><br><br>
                     <h3>Commander la veille ou les jours suivants</h3><br>
                     <h3>Livraison gratuite et écologique Besançon et 10km autours</h3><br><br>
-                    <h4>Pour les vins, les thés, les eaux et les limonades, merci de cliquer sur les produits qui vous  intéressent</h4>
+                    <h4>Pour les vins, les thés, les eaux et les limonades, merci de cliquer sur les <span>liens</span> des produits qui vous  intéressent</h4>
 
                 </div>
 
@@ -139,6 +137,7 @@
 
                             <li data-filter=".filter-menu" class="active">Menu</li>
                             <li data-filter=".filter-pique-nique">Pique-Nique</li>
+                            <li data-filter=".filter-jus">Jus</li>
                             <li data-filter=".filter-vin">Vin</li>
                             <li data-filter=".filter-the">Thé</li>
                             <li data-filter=".filter-eau">Eau</li>
@@ -150,93 +149,51 @@
 
                 <div class="row menu-container">
 
-                                <div class="col-lg-6 menu-item filter-pique-nique">
 
-                                    <ul>Le pique-nique se compose :
-                                    {% for plats in plat %}
-                                    {% for picnic in plats.picnics %}
-                                    <div class="menu-content">
-                                    <li class="ml-5">{{ picnic.produit }}</li>
-
-                                    </div>
-
-                                    {% endfor %}
-                                    {% endfor %}
-                                        <div class="text-right">
-                                            <button type="submit" class="btn btn-primary mt-3">Commander</button>
-                                        </div>
-                                    </ul>
+                        {% for vins in vin %}
+                            <div class="col-lg-6 menu-item filter-vin">
+                                <div class="menu-content">
+                                    <a href="{{ path('panier_add', {'id':vins.id}) }}">{{ vins.produit }}</a><span>{{ vins.prix }}€</span>
                                 </div>
+                                <div class="menu-ingredients">
+                                    {{ vins.description }}
+                                </div>
+                            </div>
+                            {% endfor %}
 
-                    <div class="row">
-                        {% for plats in plat %}
-                        {% for vin in plats.vins %}
-                    <div class="col-lg-6 menu-item filter-vin">
-
-                        <div class="menu-content">
-                            <a href="#">{{ vin.produit }}</a><span>{{ vin.prix }}€</span>
+                    {% for thes in the %}
+                        <div class="col-lg-6 menu-item filter-the">
+                            <div class="menu-content">
+                                <a href="{{ path('panier_add', {'id':thes.id}) }}">{{ thes.produit }}</a><span>{{ thes.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ thes.description }}
+                            </div>
                         </div>
-                        <div class="menu-ingredients">
-                            {{ vin.description }}
+                    {% endfor %}
+
+                    {% for ju in jus %}
+                        <div class="col-lg-6 menu-item filter-jus">
+                            <div class="menu-content">
+                                <a href="{{ path('panier_add', {'id':ju.id}) }}">{{ ju.produit }}</a><span>{{ ju.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ ju.description }}
+                            </div>
+                    </div>
+                    {% endfor %}
+
+                    </div>
+
                         </div>
 
-                    </div>
-                        {% endfor %}
-                        {% endfor %}
-                    </div>
 
-                    <div class="row">
-                        {% for plats in plat %}
-                            {% for the in plats.the %}
-                                <div class="col-lg-6 menu-item filter-the">
 
-                                    <div class="menu-content">
-                                        <a href="#">{{ the.produit }}</a><span>{{ the.prix }}€</span>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
                     </div>
 
-                    <div class="row">
-                        {% for plats in plat %}
-                            {% for juses in plats.juses %}
-                                <div class="col-lg-6 menu-item filter-jus">
-
-                                    <div class="menu-content">
-                                        <a href="#">{{ juses.produit }}</a><span>{{ juses.prix }}€</span>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-
-                    <div class="row">
-                        {% for plats in plat %}
-                            {% for eau in plats.eaus %}
-                                <div class="col-lg-6 menu-item filter-eau">
-
-                                    <div class="menu-content">
-                                        <a href="#">{{ eau.produit }}</a><span>{{ eau.prix }}€</span>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-
-                    <div class="row">
-                        {% for plats in plat %}
-                            {% for limonade in plats.limonades %}
-                                <div class="col-lg-6 menu-item filter-limonade">
-
-                                    <div class="menu-content">
-                                        <a href="#">{{ limonade.produit }}</a><span>{{ limonade.prix }}€</span>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
             </div>
+
+
         </section><!-- End Menu Section -->
 
         <!-- ======= Book A Table Section ======= -->

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+<div class="container">
+
+
+
+    <h1 class="text-center mt-5 mb-5">Votre panier</h1>
+
+    {% if items | length > 0 %}
+
+        <table class="table table-hover text-center" style="width:100%">
+            <thead class="table-info">
+            <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantite</th>
+            <th>Total</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.product.produit }}</td>
+                    <td>
+                        {% if item.product.type == 'jus' and item.quantity == 2 %}
+                            4€
+                        {% else %}
+                            {{ item.product.prix }}€
+                        {% endif%}
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                        {% if item.product.type == 'jus' and item.quantity == 2 %}
+                            8€
+                        {% else %}
+                        {{ item.product.prix * item.quantity }}€
+                        {% endif%}
+
+                    </td>
+
+
+
+
+                    <td>
+                        <a href="{{ path('panier_remove', {'id':item.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-trash-alt' ></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total HT : </td>
+                    <td>{{ total }}</td>
+
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <h2 class="text-center mt-5 mb-5">Votre panier est vide</h2>
+    {% endif %}
+        </div>
+
+{% endblock %}

@@ -147,7 +147,7 @@ class AppFixtures extends Fixture
 
         //Gestion des jus
 
-        for($i=1; $i<=16; $i++) {
+        for($i=1; $i<=9; $i++) {
             $repas = $repa[mt_rand(0, count($repa) - 1)];
 
             $jus = new Jus();
