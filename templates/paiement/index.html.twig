@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaiementController!{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+
+
+    <h2 class="titre pb-3">Paiement</h2>
+
+        {{ form_start(form, {'attr':{'id': 'payment-form'}})}}
+
+
+    <div id="errors"></div>
+
+    <input type="text" id="cardholder-name" placeholder="Titulaire de la carte">
+
+    <div id="card-elements" class="mb-3"><!--Stripe.js injects the Card Element--></div>
+
+    <div id="card-errors" role="alert"></div>
+
+
+
+        {{ form_widget(form)}}
+
+    <button id="card-button" type="submit" class="btn btn-primary" data-secret="{{ intent['client_secret']}}">Commander - {{ intent.amount / 100 }} €</button>
+
+        {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/example.js"></script>
+{% endblock %}
+
+

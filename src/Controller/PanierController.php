@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/panier", name="panier")
+     * @Route("/article", name="panier")
      */
     public function index(SessionInterface $session, RepasRepository $repasRepository)
     {
@@ -33,8 +33,6 @@ class PanierController extends AbstractController
             $totalItem = $item['product']->getPrix() * $item['quantity'];
                 $total += $totalItem;
             }
-
-
 
         return $this->render('panier/index.html.twig', [
             'items' => $panierWithData,

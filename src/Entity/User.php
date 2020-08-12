@@ -60,13 +60,6 @@ class User implements UserInterface
      */
     private $telephone;
 
-
-    /**
-     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="user")
-     *
-     */
-    private $adresses;
-
     /**
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user", orphanRemoval=true)
      */
@@ -81,14 +74,9 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->adresses = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
-        $this->menus = new ArrayCollection();
-        $this->picnics = new ArrayCollection();
-        $this->boissons = new ArrayCollection();
-        $this->vins = new ArrayCollection();
-        $this->thes = new ArrayCollection();
         $this->repas = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -205,38 +193,6 @@ class User implements UserInterface
         return $this;
     }
 
-
-    /**
-     * @return Collection|Adresse[]
-     */
-    public function getAdresses(): Collection
-    {
-        return $this->adresses;
-    }
-
-    public function addAdress(Adresse $adress): self
-    {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
-            $adress->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdress(Adresse $adress): self
-    {
-        if ($this->adresses->contains($adress)) {
-            $this->adresses->removeElement($adress);
-            // set the owning side to null (unless already changed)
-            if ($adress->getUser() === $this) {
-                $adress->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Commentaire[]
      */
@@ -297,6 +253,12 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Repas::class, mappedBy="user", orphanRemoval=true)
      */
     private $repas;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $commandes;
+
 
 
     /*
@@ -363,4 +325,36 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
+            // set the owning side to null (unless already changed)
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
