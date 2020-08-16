@@ -148,6 +148,24 @@ class User implements UserInterface
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
+
+    /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $stripeCustomerId;
+
+
+    public function getStripeCustomerId()
+    {
+        return $this->stripeCustomerId;
+    }
+    public function setStripeCustomerId($stripeCustomerId)
+    {
+        $this->stripeCustomerId = $stripeCustomerId;
+    }
+
+
+
     /**
      * @see UserInterface
      */

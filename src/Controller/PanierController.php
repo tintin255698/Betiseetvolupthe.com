@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/article", name="panier")
+     * @Route("/panier", name="panier")
      */
     public function index(SessionInterface $session, RepasRepository $repasRepository)
     {

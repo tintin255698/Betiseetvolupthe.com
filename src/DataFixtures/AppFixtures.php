@@ -56,27 +56,6 @@ class AppFixtures extends Fixture
         }
 
 
-
-
-        // Gestion des adresses
-
-        for($i=1; $i<=30; $i++) {
-
-            $user = $users[mt_rand(0,count($users) - 1)];
-
-            $adresse = new Adresse();
-
-            $adresse->setPrenom($faker->firstName);
-            $adresse->setNom($faker->lastName);
-            $adresse->setAdresse($faker->streetName);
-            $adresse->setAdresse2($faker->streetAddress);
-            $adresse->setCp($faker->postcode);
-            $adresse->setVille($faker->city);
-            $adresse->setUser($user);
-
-            $manager->persist($adresse);
-        }
-
         //Gestion des repas
 
         for($i=1; $i<=2; $i++) {

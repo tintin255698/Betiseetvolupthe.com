@@ -1,20 +1,31 @@
-{% extends 'base.html.twig' %}
+
 
 {% block title %}Hello WeebhookController!{% endblock %}
 
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <form action ="#" method="POST">
+    <button id="checkout-button">Checkout</button>
+    <input id="prodId" name="prodId" value="{{ sessId }}">
+    </form>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/BetiseetVolupthe/src/Controller/WeebhookController.php'|file_link(0) }}">src/Controller/WeebhookController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/BetiseetVolupthe/templates/weebhook/index.html.twig'|file_link(0) }}">templates/weebhook/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+{% block javascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+    var stripe = Stripe('pk_test_51HEWz5LDGj5KeXGgk5GqlhnrvTh5Clr5X3t2gZheY6oRsfV9OFQmmoAaYeGa3T7p8Prn2TyOXaTCv4mU99dKLj1k001n8of7TD');
+    stripe.redirectToCheckout({
+        sessionId: document.getElementById("prodId").value
+    }).then(function (result) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer
+        // using `result.error.message`.
+    });
+
+    </script>
+
+
+{% endblock %}
+
 {% endblock %}

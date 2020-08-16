@@ -16,8 +16,8 @@ window.onload = () => {
             displayError.textContent = event.error.message;
         } else {
             displayError.textContent = "";
-    }
-})
+        }
+    })
 
     cardButton.addEventListener("click", () => {
         stripe.handleCardPayment(
@@ -37,4 +37,3 @@ window.onload = () => {
         })
     })
 }
-
