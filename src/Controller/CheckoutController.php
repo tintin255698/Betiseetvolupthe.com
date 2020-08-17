@@ -76,14 +76,14 @@ class CheckoutController extends AbstractController
             'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
         );
         $stripe2->webhookEndpoints->create([
-            'url' => 'https://cd36a5f9aed6.ngrok.io',
+            'url' => 'https://paiement.serverless.social',
             'enabled_events' => [
-                'checkout.session.completed',
+                'payment_intent.succeeded',
             ],
         ]);
 
 
-        return $this->render('weebhook/index.html.twig', [
+        return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,
         ]);
     }

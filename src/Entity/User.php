@@ -77,6 +77,7 @@ class User implements UserInterface
         $this->commentaires = new ArrayCollection();
         $this->repas = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->adresses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,24 +148,6 @@ class User implements UserInterface
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
-
-
-    /**
-     * @ORM\Column(type="string", unique=true, nullable=true)
-     */
-    private $stripeCustomerId;
-
-
-    public function getStripeCustomerId()
-    {
-        return $this->stripeCustomerId;
-    }
-    public function setStripeCustomerId($stripeCustomerId)
-    {
-        $this->stripeCustomerId = $stripeCustomerId;
-    }
-
-
 
     /**
      * @see UserInterface
@@ -277,6 +260,11 @@ class User implements UserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $adresses;
+
 
 
     /*
@@ -369,6 +357,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($commande->getUser() === $this) {
                 $commande->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Adresse[]
+     */
+    public function getAdresses(): Collection
+    {
+        return $this->adresses;
+    }
+
+    public function addAdress(Adresse $adress): self
+    {
+        if (!$this->adresses->contains($adress)) {
+            $this->adresses[] = $adress;
+            $adress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdress(Adresse $adress): self
+    {
+        if ($this->adresses->contains($adress)) {
+            $this->adresses->removeElement($adress);
+            // set the owning side to null (unless already changed)
+            if ($adress->getUser() === $this) {
+                $adress->setUser(null);
             }
         }
 
