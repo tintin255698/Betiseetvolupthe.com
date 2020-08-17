@@ -46,7 +46,13 @@ class PaiementController extends AbstractController
 
 // Handle the checkout.session.completed event
         if ($event->type == 'payment_intent.succeeded') {
-
+            $commande = new repas();
+            $commande->setProduit('test2');
+            $commande->setDescription('test2');
+            $commande->setPrix(4.2);
+            $commande->setType('test2');
+            $em->persist($commande);
+            $em->flush();
         }
 
         http_response_code(200);

@@ -50,7 +50,7 @@ class CheckoutController extends AbstractController
                 'currency' => 'eur',
                 'quantity' => $item['quantity'],
             ]],
-            'success_url' => 'http://127.0.0.1:8000/paiement',
+            'success_url' => 'http://127.0.0.1:8000/accepte',
             'cancel_url' => 'https://127.0.0.1:8000/cancel',
         ]);
 
