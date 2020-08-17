@@ -19,62 +19,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class PaiementController extends AbstractController
 {
     /**
-     * @Route("/paiement", name="paiement")
+     * @Route("", name="paiement")
      */
-    public function index(SessionInterface $session, RepasRepository $repasRepository, EntityManagerInterface $em, Request $request)
+    public function index()
     {
-        $panier = $session->get('panier', []);
-
-
-        $panierWithData = [];
-
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'product' => $repasRepository->find($id),
-                'quantity' => $quantity
-            ];
-        }
-
-        $total = 0;
-        foreach ($panierWithData as $item) {
-            $totalItem = $item['product']->getPrix() * $item['quantity'];
-            $total += $totalItem;
-        }
-
-        $commande = new Commande();
-        if ($session->get('panier', [])) {
-            foreach ($panierWithData as $item) {
-                $commande->setProduit($item['product']->getProduit());
-                $commande->setQuantite($item['quantity']);
-                $commande->setTotal($item['product']->getPrix());
-                $commande->setUser($this->getUser());
-            }
-        }
-
-
-
-        $form = $this->createForm(PaiementType::class, $commande);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $doctrine = $this->getDoctrine()->getManager();
-            $doctrine->persist($commande);
-            $doctrine->flush();
-        }
-
-
         \Stripe\Stripe::setApiKey('sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT');
 
-        $intent = \Stripe\PaymentIntent::create([
-            'amount' => intval($total) * 100,
-            'currency' => 'eur',
-        ]);
+// You can find your endpoint's secret in your webhook settings
+        $endpoint_secret = 'whsec_Z96ClG3IGJzzYVRLNHKtqx9g0N1viaPi';
 
+        $payload = @file_get_contents('php://input');
+        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+        $event = null;
 
-        return $this->render('paiement/index.html.twig', [
-            'items' => $panierWithData,
-            'form' =>$form-> createView(),
-            'intent' => $intent
-        ]);
+        try {
+            $event = \Stripe\Webhook::constructEvent(
+                $payload, $sig_header, $endpoint_secret
+            );
+        } catch (\UnexpectedValueException $e) {
+            // Invalid payload
+            http_response_code(400);
+            exit();
+        } catch (\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            http_response_code(400);
+            exit();
+        }
+
+// Handle the checkout.session.completed event
+        if ($event->type == 'checkout.session.completed') {
+            echo "Bonjour le monde";
+        }
+
+        http_response_code(200);
+
     }
 
 }

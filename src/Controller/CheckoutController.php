@@ -34,51 +34,19 @@ class CheckoutController extends AbstractController
             $total += $totalItem;
         }
 
-        \Stripe\Stripe::setApiKey('sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT');
-
-
-        $token = $request->request->get('stripeToken');
-        $user = $this->getUser();
-        if ($user->getStripeCustomerId()) {
-            $customer = \Stripe\Customer::create([
-                'email' => $user->getEmail(),
-                'source' => $token
-            ]);
-
-            $user->setStripeCustomerId($customer->id);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-        }
-
-        \Stripe\InvoiceItem::create([
-            "amount" => $item['product']->getPrix() * 100,
-            "currency" => "usd",
-            "customer" => $user->getStripeCustomerId(),
-            "description" => "First test charge!",
-        ]);
-
-        $invoice = \Stripe\Invoice::create([
-            "customer" => $user->getStripeCustomerId(),
-            'collection_method' => 'charge_automatically',
-        ]);
-        $invoice->pay();
-
-
         $stripe = new \Stripe\StripeClient(
             'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
         );
 
         $session = $stripe->checkout->sessions->create([
-            'customer' => $user->getStripeCustomerId(),
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'name' => $item['product']->getProduit(),
-                'amount' => $item['product']->getPrix() * 100,
+                'amount' => $total * 100,
                 'currency' => 'eur',
                 'quantity' => $item['quantity'],
             ]],
-            'success_url' => 'https://example.com/success',
+            'success_url' => 'http://127.0.0.1:8000/paiement',
             'cancel_url' => 'https://example.com/cancel',
         ]);
 
@@ -86,6 +54,12 @@ class CheckoutController extends AbstractController
         $sessId = ($stripeSession[0]['id']);
 
 
+        $stripe->webhookEndpoints->create([
+            'url' => 'https://127.0.0.1:8000/paiement',
+            'enabled_events' => [
+                'checkout.session.completed',
+            ],
+        ]);
 
         return $this->render('weebhook/index.html.twig', [
             'sessId' => $sessId,

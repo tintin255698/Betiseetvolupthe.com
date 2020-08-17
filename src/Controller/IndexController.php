@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
     /**
-     * @Route("", name="index")
+     * @Route("index", name="index")
      */
     public function index(Request $request, \Swift_Mailer $mailer )
     {
@@ -92,7 +92,7 @@ class IndexController extends AbstractController
         $vin = $repo2->findByType(['vin'=>'vin']);
         $picnic = $repo2->findByType(['pic-nic'=>'pic-nic']);
         $the = $repo2->findByType(['the'=>'the']);
-        $entree = $repo2->findByType(['entree'=>'entree']);
+        $entree = $repo2->findByType(['entre'=>'entre']);
         $plat = $repo2->findByType(['plat'=>'plat']);
         $dessert = $repo2->findByType(['dessert'=>'dessert']);
         $piquenique = $repo2->findByType(['pique-nique'=>'pique-nique']);
