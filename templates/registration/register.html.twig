@@ -3,12 +3,35 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+
+    {% include 'navbar/index2.html.twig' %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Inscription</h2>
+                <ol>
+                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li>Inscription</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page">
+        <div class="container">
+
+            <div class="mb-5">
+
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <div class="container">
-    <h1 class="titre mb-5">Inscription</h1>
 
         {{ form_start(registrationForm) }}
         <div class="form-row mt-3">
@@ -44,9 +67,17 @@
             </div>
         </div>
         <div class="text-right">
-        <button type="submit" class="btn btn-primary mb-5 mt-5">Inscription</button>
+        <button type="submit" class="btn btn-primary mt-5">Inscription</button>
         </div>
         {{ form_end(registrationForm) }}
 
     </div>
+
+        </div>
+
+
+    </section>
+</main>
+
+
 {% endblock %}

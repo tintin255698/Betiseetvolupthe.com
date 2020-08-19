@@ -1685,6 +1685,12 @@ span.note i  {
   color: goldenrod;
 }
 
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
 
 .btn{
   background: #91125F;
@@ -1702,7 +1708,7 @@ span.note i  {
 
 thead{
   background: #91125F;
-  color: #ffb03b;
+  color: #F5871F;
 }
 
 

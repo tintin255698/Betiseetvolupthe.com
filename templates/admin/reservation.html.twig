@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Gestion des reservations{% endblock %}
 
 {% block stylesheets %}
     <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,7 +9,29 @@
 
 {% block body %}
 
-<div class="container">
+{% include 'navbar/index2.html.twig' %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Gestion des reservations</h2>
+                <ol>
+                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li>Gestion des reservations</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page">
+        <div class="container">
+
+            <div class="mb-5">
 
     {% include 'menu_admin.html.twig' %}
 
@@ -51,6 +73,12 @@
             } );
         </script>
     {% endblock %}
+
+        </div>
+
+    </section>
+
+</main><!-- End #main -->
 
 
 {% endblock %}

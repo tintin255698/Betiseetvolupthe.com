@@ -4,9 +4,33 @@
 
 {% block body %}
 
+     {% include 'navbar/index2.html.twig' %}
 
-    <div class="container">
-        <h1 class="titre mb-5">Inscription</h1>
+<main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Votre panier</h2>
+                <ol>
+                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li>Votre panier</li>
+                </ol>
+            </div>
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+    <section class="inner-page">
+        <div class="container">
+
+            <div class="text-center mt-5 mb-5 progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                     aria-valuenow="100" aria-valuemin="40" aria-valuemax="100" style="width:40%">
+                    40%
+                </div>
+            </div>
+
+        <h1 class="titre mb-5">Enregistrement de votre adresse</h1>
 
         {{ form_start(form) }}
 
@@ -18,5 +42,9 @@
         {{ form_end(form) }}
 
     </div>
+
+
+    </section>
+</main>
 {% endblock %}
 
