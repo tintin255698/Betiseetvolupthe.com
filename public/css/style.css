@@ -1698,3 +1698,23 @@ span.note i  {
   letter-spacing: 1px;
   transition: 0.3s;
 }
+
+thead {
+  background: #e8f2ff;
+}
+
+.row {
+  padding: 4em 3em;
+}
+
+.textbox {
+  height: 700px;
+}
+
+.progress {
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 0;
+}

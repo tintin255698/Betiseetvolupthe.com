@@ -2,6 +2,11 @@
 
 {% block title %}Register{% endblock %}
 
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
+
+
 {% block body %}
 
     {% include 'navbar/index2.html.twig' %}
@@ -26,7 +31,11 @@
     <section class="inner-page">
         <div class="container">
 
-            <div class="mb-5">
+            <div class="mb-5 mt-5">
+
+                <div class="mt-5">
+                    <h1 class="text-center mb-5">Venez vous inscrire !</h1>
+                </div>
 
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>

@@ -136,7 +136,6 @@
                         </div>
 
                 </div>
-
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
@@ -157,16 +156,16 @@
                 <div class="row menu-container">
 
 
-                        {% for vins in vin %}
-                            <div class="col-lg-6 menu-item filter-vin">
-                                <div class="menu-content">
-                                    <a href="{{ path('panier_add', {'id':vins.id}) }}">{{ vins.produit }}</a><span>{{ vins.prix }}€</span>
-                                </div>
-                                <div class="menu-ingredients">
-                                    {{ vins.description }}
-                                </div>
+                    {% for vins in vin %}
+                        <div class="col-lg-6 menu-item filter-vin">
+                            <div class="menu-content">
+                                <a href="{{ path('panier_add', {'id':vins.id}) }}">{{ vins.produit }}</a><span>{{ vins.prix }}€</span>
                             </div>
-                            {% endfor %}
+                            <div class="menu-ingredients">
+                                {{ vins.description }}
+                            </div>
+                        </div>
+                    {% endfor %}
 
                     {% for thes in the %}
                         <div class="col-lg-6 menu-item filter-the">
@@ -187,21 +186,22 @@
                             <div class="menu-ingredients">
                                 {{ ju.description }}
                             </div>
-                    </div>
+                        </div>
                     {% endfor %}
 
-                    </div>
+                </div>
 
-                        </div>
+            </div>
 
 
 
-                    </div>
+            </div>
 
             </div>
 
 
         </section><!-- End Menu Section -->
+
 
         <!-- ======= Book A Table Section ======= -->
         <section id="book-a-table" class="book-a-table">

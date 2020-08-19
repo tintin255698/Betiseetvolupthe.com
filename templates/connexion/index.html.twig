@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConnexionController!{% endblock %}
+
+{% block body %}
+    <p class="text-center mt-5">Vous devez être inscrit et connecté pour commander :)</p>
+
+    <div class="form-row mt-3">
+        <div class="col-lg-6 col-md-6  form-group">
+            <p class="text-center btn mt-5 mb-5"><a href = "{{ path ('app_register') }}">Inscription</a></p>
+        </div>
+        <div class="col-lg-6 col-md-6 form-group">
+            <p class="text-center btn mt-5 mb-5"><a href = "{{ path ('app_login') }}">Connexion</a></p>
+        </div>
+    </div>
+
+{% endblock %}
