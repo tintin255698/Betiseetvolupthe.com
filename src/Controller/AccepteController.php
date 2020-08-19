@@ -35,7 +35,8 @@ class AccepteController extends AbstractController
                 "<strong>Votre adresse est bien validée</strong>"
             );
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('accepte');
+
         }
 
         return $this->render('accepte/index.html.twig', [

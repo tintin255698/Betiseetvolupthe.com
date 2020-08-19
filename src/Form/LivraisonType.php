@@ -2,33 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\Adresse;
+use App\Entity\Livraison;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AccepteType extends AbstractType
+class LivraisonType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('societe')
-            ->add('adresse')
-            ->add('adresse2')
+            ->add('numero')
+            ->add('rue')
             ->add('cp')
             ->add('ville')
-
-
-
+            ->add('valider', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Adresse::class,
+            'data_class' => Livraison::class,
         ]);
     }
 }

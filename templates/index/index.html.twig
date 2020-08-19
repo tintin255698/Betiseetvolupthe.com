@@ -125,8 +125,29 @@
                 <div class="section-title">
                     <h2><span>Commander</span> chez nous !</h2><br><br>
                     <h3>Commander la veille ou les jours suivants</h3><br>
-                    <h3>Livraison gratuite et écologique Besançon et 10km autours</h3><br><br>
+                    <h3>Livraison gratuite et écologique sur 10km</h3><br><br>
                     <h4>Pour les vins, les thés, les eaux et les limonades, merci de cliquer sur les <span>liens</span> des produits qui vous  intéressent</h4>
+                    <h5>Vous voulez savoir si vous pouvez commander ? Cliquez ci-dessous : <br> <br> </h5> <button id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalPreview">
+                        Etes-vous à 10 km ?
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-full-height modal-right" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalPreviewLabel">Calculer la distance</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        {{ form(form) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
 
