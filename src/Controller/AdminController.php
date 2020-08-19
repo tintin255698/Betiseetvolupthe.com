@@ -6,15 +6,63 @@ use App\Entity\Commentaire;
 use App\Entity\Image;
 use App\Entity\Reservation;
 use App\Entity\User;
+use App\Form\EditUserType;
 use App\Form\ImageType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
+
     /**
-     * @Route("admin/image", name="admin")
+     * @Route("admin", name="admin")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function admin()
+    {
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $pla = $repo->findall();
+
+        return $this->render('admin/admin.html.twig', [
+            'pla' => $pla,
+        ]);
+    }
+
+    /**
+     * @Route("admin/modification/{id}", name="admin_modifier")
+     * @IsGranted("ROLE_ADMIN")
+     */
+
+    public function modification(Request $request, User $user)
+    {
+        $form = $this->createForm(EditUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine = $this->getDoctrine()->getManager();
+            $doctrine->persist($user);
+            $doctrine->flush();
+
+
+            $this->addFlash(
+                'success',
+                "<strong>Vous avez bien modifie le statut de l'utilisateur !</strong>"
+            );
+
+            return $this->redirectToRoute('admin');
+        }
+
+        return $this->render('admin/edit.user.html.twig', [
+            'usersform' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("admin/image", name="admin_image")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(Request $request)
     {
@@ -42,6 +90,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/image/supprimer/{id}", name="supprimer_image")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function supprimerImage(Image $id)
     {
@@ -53,6 +102,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("admin/commentaire/afficher/", name="afficher_commentaire")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function afficherCommentaire()
     {
@@ -65,6 +115,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function supprimerCommentaire(Commentaire $id)
     {
@@ -76,6 +127,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("admin/reservations", name="reservation")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function users()
     {
@@ -88,7 +140,8 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
+     * @Route("admin/reservation/supprimer/{id}", name="supprimer_reservation")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function supprimerReservation(Reservation $id)
     {

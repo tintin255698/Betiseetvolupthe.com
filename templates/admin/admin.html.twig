@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+  {% include 'navbar/index2.html.twig' %}
+
+ {% include 'navbar/index2.html.twig' %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Gestion des images</h2>
+                <ol>
+                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li>Gestion des images</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page">
+        <div class="container">
+
+            <div class="mb-5">
+
+                {% include 'menu_admin.html.twig' %}
+        <h1 class="mt-4 mb-4 text-center">Liste des utilisateurs</h1>
+        <table id="admin" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Modifier</th>
+            </thead>
+            <tbody>
+            {% for plas in pla %}
+                <tr>
+                <td>{{ plas.email}}</td>
+                <td>
+                    {% for role in plas.roles %}
+                        {% if role == "ROLE_USER" %}
+                            Utilisateur
+                        {% elseif role == "ROLE_ADMIN"%}
+                            Administrateur
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ plas.prenom }}</td>
+                <td>{{ plas.nom }}</td>
+                <td><a href="{{ path('admin_modifier', {'id':plas.id}) }}" class="btn btn-dark">Modifier</a></td>
+            {%  else %}
+                <tr>
+                    <td colspan="5">Il n'y a pas d'utilisateurs inscrits</td>
+
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+        </div>
+
+    </section>
+
+
+</main><!-- End #main -->
+
+{% endblock %}
+
+
+
+
+

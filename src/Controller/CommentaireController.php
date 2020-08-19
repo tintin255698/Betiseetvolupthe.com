@@ -19,14 +19,18 @@ class CommentaireController extends AbstractController
         $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
         $repo2 = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField3();
 
+        $count = count($commentaire);
         $repo = $paginator->paginate(
             $commentaire,
             $request->query->getInt('page',1),
             10
         );
 
+
+
         return $this->render('commentaire/index.html.twig', [
             'repo' => $repo,
+            'count'=> $count,
             'repo2'=>$repo2]);
 
     }

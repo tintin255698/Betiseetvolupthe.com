@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'administrateur{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h1 class="mt-5 mb-5">Modifier les utilisateurs</h1>
+    {{ form(usersform) }}
+    {{ form_widget(usersform) }}
+
+    </div>
+{% endblock %}

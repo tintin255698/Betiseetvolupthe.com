@@ -243,7 +243,7 @@
                 <div class="form-group">
                     {{ form_widget(reservationForm.message) }}
                     <div class="text-right">
-                    <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+                    <button type="submit" class="btn mt-3">Réserver</button>
                     </div>
                 </div>
 
@@ -267,16 +267,17 @@
 
 
                     {% for plas in pla %}
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('rectangle') }}" class="venobox" data-gall="gallery-item">
-                                <img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}" alt="{{ plas.imageName}}" class="img-fluid">
-                            </a>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('rectangle') }}" class="venobox" data-gall="gallery-item">
+                                    <img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}" alt="{{ plas.imageName}}" class="img-fluid">
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </div>
+
                     {% endfor %}
-            </div>
+                </div>
+                </div>
         </section><!-- End Gallery Section -->
 
 
@@ -375,7 +376,7 @@
                 <div class="form-group">
                 {{ form_widget(contactForm.Message) }}
                     <div class="class text-right">
-                <button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+                <button type="submit" class="btn mt-3">Envoyer</button>
                 </div>
                 </div>
 

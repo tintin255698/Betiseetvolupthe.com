@@ -2,6 +2,11 @@
 
 {% block title %}Avis des clients{% endblock %}
 
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
+
+
 {% block body %}
 
 
@@ -28,8 +33,15 @@
     <section class="inner-page">
         <div class="container">
 
-            <div class="mb-5">
+<div class="text-right">
+    <td><a href="{{ path ('add_commentaire') }}" class="btn">Donner votre avis</a></td>
+</div>
 
+            <div class="mb-5 mt-5">
+
+                <div class="mt-5">
+                <h1 class="text-center mb-5">Vos avis !</h1>
+                </div>
     {% if repo|length > 0 %}
 
 
@@ -37,7 +49,7 @@
         <h2 class="alert-heading">
             <div class="row">
                 <div class="col">
-                    Note globale donnée par nos clients
+                    Note globale donnée par {{ count }} clients
                 </div>
                 <div class="col">
                     {% for repos2 in repo2 %}
