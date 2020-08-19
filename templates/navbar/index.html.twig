@@ -1,0 +1,66 @@
+{% block body %}
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+        <div class="container-fluid mr-5 text-right">
+            <i class='bx bxs-phone bx-tada bx-rotate-180' ></i> 03 81 50 83 45
+            <i class='bx bxs-time bx-tada bx-rotate-180' ></i> Lundi-Samedi: 12:00 - 22:00
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container-fluid d-flex align-items-center">
+
+
+            <div class="logo ml-5 mr-auto">
+                <h1 class="text-light"><a href=""><span>Bêtises et Volupthé</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu margin d-none d-lg-block">
+                <ul class="mr-5">
+
+                    <li class="marge"><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li class="marge"><a href="{{ path('index')}}#menu">Commander</a></li>
+                    <li class="marge"><a href="{{ path('index')}}#book-a-table">Réserver</a></li>
+                    <li class="marge"><a href="{{ path('index')}}#gallery">Galerie</a></li>
+                    <li class="marge"><a href="{{ path('index')}}#testimonials">Vos avis</a></li>
+                    <li class="marge" ><a href="{{ path('index')}}#contact">Nous contacter</a></li>
+                    <li class="drop mr-3"><a href="{{ path('index')}}#contact">Panier <i class='bx bx-cart' ></i></a></li>
+
+
+
+
+                    {% if app.user %}
+
+                        <li class="drop drop-down mr-5"><a href="#">{{ app.user.prenom }} <i class='bx bx-user'></i></a>
+                            <ul>
+                                <li><a href = "{{ path ('app_logout') }}">Deconnexion</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Mon profil</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Mes commandes</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Mes adresses</a></li>
+                            </ul>
+                        </li>
+
+                    {% else %}
+
+                        <li class="drop drop-down mr-5"><a href="#">Mon compte   <i class='bx bx-user'></i></a>
+                            <ul>
+                                <li><a href = "{{ path ('app_login') }}">Connexion</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Inscription</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Mon profil</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Mes commandes</a></li>
+                                <li><a href = "{{ path ('app_register') }}">Mes adresses</a></li>
+                            </ul>
+                        </li>
+
+
+                    {% endif %}
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+
+{% endblock %}

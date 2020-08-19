@@ -93,6 +93,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   padding: 10px 0;
   background: rgba(26, 24, 22, 0.85);
+
 }
 
 #header.header-transparent {
@@ -103,6 +104,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   background: rgba(26, 24, 22, 0.85);
 }
+
 
 #header .logo h1 {
   font-size: 28px;
@@ -138,6 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   list-style: none;
+
 }
 
 .nav-menu > ul > li {
@@ -158,11 +161,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #91125F;
+  color: #ffb03b;
   text-decoration: none;
 }
 
-.nav-menu .book-a-table a {
+.nav-menu .book-a-table {
   background: #91125F;
   color: #fff;
   border-radius: 50px;
@@ -175,10 +178,32 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
 }
 
-.nav-menu .book-a-table a:hover {
+.nav-menu .book-a-table :hover {
   background: #8F7797;
   color: #fff;
 }
+
+.drop {
+  background: #91125F;
+  color: #fff;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.drop :hover{
+  color: #fff;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
 
 .nav-menu .drop-down ul {
   display: block;
@@ -214,7 +239,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
-  color: #91125F;
+  color: #ffb03b;
 }
 
 .nav-menu .drop-down > a:after {
@@ -332,6 +357,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+
+
+
 .mobile-nav .drop-down > a:after {
   content: "\ea99";
   font-family: IcoFont;
@@ -347,6 +375,28 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-nav .drop-down > a {
   padding-right: 35px;
 }
+
+.mobile-nav .drop {
+  background: #fff;
+  color: #91125F;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.mobile-nav .drop :hover{
+  color: #fff;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
 
 .mobile-nav .drop-down ul {
   display: none;
@@ -1649,9 +1699,12 @@ span.note i  {
   padding-top: 10em;
 }
 
-.dropdown{
-  padding-top: 10em;
+
+thead{
+  background: #91125F;
+  color: #ffb03b;
 }
+
 
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows

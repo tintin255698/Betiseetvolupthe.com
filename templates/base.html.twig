@@ -28,53 +28,6 @@
 </head>
 <body>
 
-<!-- ======= Top Bar ======= -->
-<section id="topbar" class="d-flex flex-row bd-highlight align-items-center fixed-top topbar-dark">
-    <div class="pl-5 pr-5">
-        <i class='bx bxs-phone bx-tada bx-rotate-180' ></i> 03 81 50 83 45
-        <i class='bx bxs-time bx-tada bx-rotate-180' ></i> Lundi-Samedi: 12:00 - 22:00
-    </div>
-    <div class="text-right">
-
-        Panier
-    </div>
-</section>
-
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center header-dark">
-
-
-    <div class="logo mr-auto">
-        <h1 class="text-light pl-5"><a href=""><span>Bêtises et Volupthé</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-    </div>
-
-    <nav class="nav-menu d-none d-lg-block pr-5 pl-5">
-        <ul>
-
-            <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
-            <li><a href=>Menus</a></li>
-            <li><a href="{{ path('index')}}#menu">Commander</a></li>
-            <li><a href="{{ path('index')}}#book-a-table">Réserver</a></li>
-            <li><a href="{{ path('index')}}#gallery">Galerie</a></li>
-            <li><a href="{{ path('index')}}#testimonials">Vos avis</a></li>
-            <li><a href="{{ path('index')}}#contact">Nous contacter</a></li>
-
-
-            {% if app.user %}
-                <li class="book-a-table text-center"><a href ="{{ path ('gestion_affichage') }}" >Espace personnel</a></li>
-                <li class="book-a-table text-center"><a href ="{{ path ('app_logout') }}">Deconnexion</a></li>
-
-            {% else %}
-                <li class="book-a-table text-center"><a href = "{{ path ('app_login') }}">Connexion</a></li>
-                <li class="book-a-table text-center"><a href = "{{ path ('app_register') }}">Inscription</a></li>
-            {% endif %}
-        </ul>
-    </nav><!-- .nav-menu -->
-
-    </div>
-</header><!-- End Header -->
 
 
 {% for label, messages in app.flashes  %}

@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
-
-
-
+{% block title %}BetiseetVolupthe{% endblock %}
 
 
 {% block body %}
+
+    {% include 'navbar/index.html.twig' %}
+
+
     <section id="hero">
         <div class="hero-container">
             <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -21,11 +22,6 @@
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown"><span>Un restaurant</span> unique</h2>
                                 <p class="animate__animated animate__fadeInUp">Un zeste d'originalité, un mélange des saveurs, une assiette aussi belle que bonne ..</p>
-                                <div>
-                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Reserver une table</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Commander a emporter</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -36,11 +32,6 @@
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">Un univers féérique</h2>
                                 <p class="animate__animated animate__fadeInUp">Un petit coin de paradis ou le temps est suspendu le temps d’un agréable repas</p>
-                                <div>
-                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Reserver une table</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Commander a emporter</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,11 +42,6 @@
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">Des moments inoubliables </h2>
                                 <p class="animate__animated animate__fadeInUp">Jolie petite enseigne au coeur de la ville idéale pour une petite faim gourmande aux quatre heures</p>
-                                <div>
-                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Nos menus</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Reserver une table</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Commander a emporter</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,9 +110,9 @@
 
                 <div class="section-title">
                     <h2><span>Commander</span> chez nous !</h2><br><br>
-                    <h3>Commander la veille ou les jours suivants</h3><br>
+                    <h3>Commander la veille ou les jours suivants</h3><br><br>
                     <h3>Livraison gratuite et écologique sur 10km</h3><br><br>
-                    <h4>Pour les vins, les thés, les eaux et les limonades, merci de cliquer sur les <span>liens</span> des produits qui vous  intéressent</h4>
+                    <h4>Pour les vins, les thés, les eaux et les limonades, merci de cliquer sur les <span>liens</span> des produits qui vous  intéressent</h4><br><br>
                     <h5>Vous voulez savoir si vous pouvez commander ? Cliquez ci-dessous : <br> <br> </h5> <button id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalPreview">
                         Etes-vous à 10 km ?
                         </button>
@@ -288,7 +274,7 @@
                             </a>
                         </div>
                     </div>
-
+                </div>
                     {% endfor %}
             </div>
         </section><!-- End Gallery Section -->
