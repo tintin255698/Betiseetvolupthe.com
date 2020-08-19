@@ -2,6 +2,11 @@
 
 {% block title %}Envoie email{% endblock %}
 
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
+
+
 {% block body %}
 
     {% include 'navbar/index2.html.twig' %}
@@ -10,6 +15,7 @@
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
         <div class="container">
+
 
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Mot de passe oublié ?</h2>
@@ -22,6 +28,13 @@
     </section><!-- End Breadcrumbs Section -->
     <section class="inner-page">
         <div class="container">
+
+            <div class="mb-5 mt-5">
+
+                <div class="mt-5">
+                    <h1 class="text-center mb-5">Réinitialiser votre mot de passe !</h1>
+                </div>
+
             
     <p  class="mt-5">Demandez à réinitialiser votre mot de passe en renseignant votre email.</p>
 

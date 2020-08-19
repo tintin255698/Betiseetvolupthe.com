@@ -28,16 +28,6 @@
 </head>
 <body>
 
-
-
-{% for label, messages in app.flashes  %}
-    <div class="alert alert-{{ label }} text-center">
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor%}
-    </div>
-{% endfor %}
-
 </body>
 
 {% block body %}{% endblock %}

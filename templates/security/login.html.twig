@@ -2,6 +2,11 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
+
+
 {% block body %}
 
      {% include 'navbar/index2.html.twig' %}
@@ -23,7 +28,7 @@
     <section class="inner-page">
         <div class="container">
 
-
+            {% include ('navbar/flash.html.twig') %}
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -37,7 +42,7 @@
     {% endif %}
 
     <div class="container">
-    <h1 class="text-center mb-5 font-weight-normal">Merci de vous identifier</h1>
+    <h1 class="text-center mt-5 mb-5 font-weight-normal">Merci de vous identifier</h1>
 
 
         <div class="form-row mt-3">
