@@ -138,17 +138,16 @@ class IndexController extends AbstractController
         );
 
         $limonade = $repo2->findByType(['limonade'=>'limonade']);
-        $mortuacienne = $repo2->findByType(['mortuacienne'=>'mortuacienne']);
         $eau = $repo2->findByType(['eau'=>'eau']);
         $vin = $repo2->findByType(['vin'=>'vin']);
-        $picnic = $repo2->findByType(['pic-nic'=>'pic-nic']);
+        $pic = $repo2->findByType(['pic'=>'pic']);
         $the = $repo2->findByType(['the'=>'the']);
         $entree = $repo2->findByType(['entre'=>'entre']);
         $plat = $repo2->findByType(['plat'=>'plat']);
         $dessert = $repo2->findByType(['dessert'=>'dessert']);
-        $piquenique = $repo2->findByType(['pique-nique'=>'pique-nique']);
+        $pique = $repo2->findByType(['pique'=>'pique']);
         $menu = $repo2->findByType(['menu'=>'menu']);
-
+        $autre = $repo2->findByType(['biere'=>'biere']);
 
             return $this->render('index/index.html.twig', [
                 'reservationForm' => $form1->createView(),
@@ -157,15 +156,15 @@ class IndexController extends AbstractController
                 'repo'=>$repo,
                 'jus' => $jus,
                 'limonade' => $limonade,
-                'mortuacienne' => $mortuacienne,
+                'biere'=> $autre,
                 'eau' => $eau,
                 'vin' => $vin,
-                'picnic' => $picnic,
+                'pic' => $pic,
                 'the' => $the,
                 'entree'=>$entree,
                 'plat' => $plat,
                 'dessert' => $dessert,
-                'piquenique' => $piquenique,
+                'pique' => $pique,
                 'menu' => $menu,
                 'form' => $form2->createView(),
             ]);

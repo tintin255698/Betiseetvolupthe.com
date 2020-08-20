@@ -83,9 +83,6 @@ class CheckoutController extends AbstractController
         ]);
 
 
-
-
-
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,
         ]);
