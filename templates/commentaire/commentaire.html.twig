@@ -1,26 +1,34 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}Ajout commentaire{% endblock %}
 
-{% block title %}Inscription{% endblock %}
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
 
 {% block body %}
 
 
+
     <main id="main">
+
+        {% include 'navbar/index2.html.twig' %}
 
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Inner Page</h2>
+                <h2>Ajout d'un commentaire</h2>
                 <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Inner Page</li>
+                    <li><a href="index.html">Acceuil</a></li>
+                    <li>Ajout d'un commentaire</li>
                 </ol>
             </div>
 
         </div>
     </section><!-- End Breadcrumbs Section -->
+
 
     <section class="inner-page">
     <div class="container">
@@ -45,16 +53,21 @@
                 {% endif %}
                 {% endfor %}
                  {% else %}
-            <h3 class="titre mt-3">Ajouter un commentaire</h3>
 
-        <p class="text-center mt-5">Nous sommes désolés. Il faut être inscrit et connecté pour nous laisser un commentaire  :)</p>
+        <h1 class="text-center mt-5">Vous devez être inscrit et connecté pour nous laisser un commentaire !</h1>
 
             <div class="form-row mt-3">
                 <div class="col-lg-6 col-md-6  form-group">
-                    <p class="text-center mt-5 mb-5"><a href = "{{ path ('app_register') }}">Inscription</a></p>
+                    <h5 class="text-center  mt-2 mb-5">Etape 1 (si non inscrit) :</h5>
+                    <div class="text-center">
+                    <p class="text-center btn mb-5"><a href = "{{ path ('app_register') }}">Inscription</a></p>
+                    </div>
                 </div>
-                <div class="col-lg-6 col-md-6 form-group">
-                    <p class="text-center mt-5 mb-5"><a href = "{{ path ('app_login') }}">Connexion</a></p>
+                <div class="col-lg-6 col-md-6  form-group">
+                <h5 class="text-center  mt-2 mb-5">Etape 2 :</h5>
+                    <div class="text-center">
+                <p class="text-center btn mb-5"><a href = "{{ path ('app_login') }}">Connexion</a></p>
+                    </div>
                 </div>
             </div>
         <div class="text-center">
@@ -69,7 +82,6 @@
 
     </div>
 
-        </div>
     </section>
     </main><!-- End #main -->
 {% endblock %}
