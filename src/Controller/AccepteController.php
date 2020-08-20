@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Adresse;
-use App\Entity\Portefeuille;
 use App\Form\AccepteType;
-use App\Form\PortefeuilleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,10 +30,10 @@ class AccepteController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "<strong>Votre adresse est bien validée</strong>"
+                "<strong>Votre adresse est bien validée, merci pour votre commande</strong>"
             );
 
-            return $this->redirectToRoute('accepte');
+            return $this->redirectToRoute('termine');
 
         }
 
@@ -43,4 +41,18 @@ class AccepteController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
+    /**
+     * @Route("/termine", name="termine")
+     */
+    public function termine()
+    {
+        $this->get('session')->remove('panier');
+
+        return $this->render('accepte/termine.html.twig', [
+            'form' => 'form'
+        ]);
+    }
+
 }

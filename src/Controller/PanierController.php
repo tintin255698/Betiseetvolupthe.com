@@ -56,7 +56,7 @@ class PanierController extends AbstractController
             $panier[$id] = 1;
         }
         $session->set('panier', $panier);
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('modal');
     }
 
 
@@ -74,10 +74,5 @@ class PanierController extends AbstractController
         }
         $session->set('panier', $panier);
         return $this->redirectToRoute('panier');
-
     }
-
-
-
-
 }
