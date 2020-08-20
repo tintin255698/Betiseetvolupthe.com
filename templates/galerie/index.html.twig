@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+    {% include 'navbar/index2.html.twig' %}
+
+<main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Galerie</h2>
+                <ol>
+                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li>Galerie</li>
+                </ol>
+            </div>
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+    <div class="inner-page">
+        <div class="container-fluid">
+
+        <div id="gallery" class="gallery">
+
+                    <div class="section-title mt-5">
+                        <h1 class="mt-5">Nos photos !</h1>
+                    </div>
+
+                    <div class="row no-gutters">
+                        {% for plas in pla %}
+                            <div class="col-lg-3 col-md-4">
+                                <div class="gallery-item">
+                                    <a href="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('rectangle') }}" class="venobox" data-gall="gallery-item">
+                                        <img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}" alt="{{ plas.imageName}}" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+        </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

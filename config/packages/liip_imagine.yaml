@@ -3,17 +3,11 @@ liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
     filter_sets:
-        carre:
-            quality: 75
-            filters:
-                thumbnail:
-                    size: [800, 600]
-                    mode: outbound
         rectangle:
             quality: 75
             filters:
                 thumbnail:
-                    size: [800, 600]
+                    size: [2400, 1800]
                     mode: outbound
         cercle:
             quality: 75
@@ -21,5 +15,13 @@ liip_imagine:
                 thumbnail:
                     size: [200, 150]
                     mode: outbound
+        carre:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [800, 600]
+                    mode: outbound
+
+
 
 

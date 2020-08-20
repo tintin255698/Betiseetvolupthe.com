@@ -40,7 +40,6 @@ class IndexController extends AbstractController
             $mailer->send($message);
         }
 
-
             // Formulaire de reservation
 
             $reservation = new Reservation();
@@ -122,8 +121,8 @@ class IndexController extends AbstractController
         }
 
         // Images
-        $repo = $this->getDoctrine()->getRepository(Image::class);
-        $pla = $repo->findall();
+        $image = $this->getDoctrine()->getRepository(Image::class)->findByExampleField2();
+
 
 
         // Commentaires
@@ -154,7 +153,7 @@ class IndexController extends AbstractController
             return $this->render('index/index.html.twig', [
                 'reservationForm' => $form1->createView(),
                 'contactForm' =>$form->createView(),
-                'pla'=>$pla,
+                'pla'=>$image,
                 'repo'=>$repo,
                 'jus' => $jus,
                 'limonade' => $limonade,
