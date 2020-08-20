@@ -45,13 +45,13 @@ class CheckoutController extends AbstractController
         $session = $stripe->checkout->sessions->create([
             'payment_method_types' => ['card'],
             'line_items' => [[
-                'name' => $item['product']->getProduit(),
+                'name' => "Nous vous remercions pour votre commande, d'un total de :",
                 'amount' => $total * 100,
                 'currency' => 'eur',
-                'quantity' => $item['quantity'],
+                'quantity' => '1',
             ]],
             'success_url' => 'http://127.0.0.1:8000/accepte',
-            'cancel_url' => 'https://127.0.0.1:8000/cancel',
+            'cancel_url' => 'https://127.0.0.1:8000/index',
         ]);
 
         if ('success_url') {
