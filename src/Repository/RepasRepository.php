@@ -19,6 +19,36 @@ class RepasRepository extends ServiceEntityRepository
         parent::__construct($registry, Repas::class);
     }
 
+    public function entree()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u, u.produit, u.id, u.type' )
+            ->andwhere('u.type= :plat')
+            ->setParameter('plat', 'entre')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function plat()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u, u.produit, u.id, u.type' )
+            ->andwhere('u.type= :plat')
+            ->setParameter('plat', 'plat')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function dessert()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u, u.produit, u.id, u.type' )
+            ->andwhere('u.type= :plat')
+            ->setParameter('plat', 'dessert')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Repas[] Returns an array of Repas objects
     //  */

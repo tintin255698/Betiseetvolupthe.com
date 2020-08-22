@@ -142,7 +142,7 @@ class IndexController extends AbstractController
         $vin = $repo2->findByType(['vin'=>'vin']);
         $pic = $repo2->findByType(['pic'=>'pic']);
         $the = $repo2->findByType(['the'=>'the']);
-        $entree = $repo2->findByType(['entre'=>'entre']);
+        $entre = $repo2->findByType(['entre'=>'entre']);
         $plat = $repo2->findByType(['plat'=>'plat']);
         $dessert = $repo2->findByType(['dessert'=>'dessert']);
         $pique = $repo2->findByType(['pique'=>'pique']);
@@ -161,7 +161,7 @@ class IndexController extends AbstractController
                 'vin' => $vin,
                 'pic' => $pic,
                 'the' => $the,
-                'entree'=>$entree,
+                'entre'=>$entre,
                 'plat' => $plat,
                 'dessert' => $dessert,
                 'pique' => $pique,

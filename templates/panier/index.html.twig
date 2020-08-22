@@ -63,14 +63,26 @@
                             {{ item.product.prix }}€
                         {% endif%}
                     </td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.quantity }}
+                    {% if item.product.type == 'entre' and item.quantity == 0  %}
+                        <p class="text-danger">(Merci de rajouter une entree)</p>
+                    {% endif %}
+                    {% if item.product.type == 'plat' and item.quantity == 0  %}
+                        <p class="text-danger">(Merci de rajouter un plat)</p>
+                    {% endif %}
+                    {% if item.product.type == 'dessert' and item.quantity == 0  %}
+                        <p class="text-danger">(Merci de rajouter un dessert/fromage)</p>
+                    {% endif %}
+                    {% if item.product.type == 'dessert' and item.quantity == 1 and item.product.type == 'menu' and item.quantity == NULL %}
+                        <p class="text-danger">Merci de rajouter le menu pour que votre commande soit prise en charge, merci</p>
+                    {% endif %}
+                    </td>
                     <td>
                         {% if item.product.type == 'jus' and item.quantity == 2 %}
                             8€
                         {% else %}
                         {{ item.product.prix * item.quantity }}€
                         {% endif%}
-
                     </td>
 
                     <td>
@@ -91,8 +103,11 @@
         </div>
 
         <div class="text-right">
-        <a href="{{ path('payer')}}" class="btn btn-info btn-sm">Payer   <i class='bx bxl-stripe'></i></a>
+        <a href="{{ path('payer')}}" class="btn btn-info btn-sm">Payer<i class='bx bxl-stripe'></i></a>
         </div>
+<br><br><br>
+        <h3 class="text-info text-center">En cas de commande d'un menu, assurer vous d'avoir une entree, un plat et un dessert</h3><br><br>
+        <h3 class="text-info text-center">En cas d'ajout d'un produit du menu, votre commande sera valide a condition d'ajouter le menu a 14.50€</h3>
     {% else %}
         <h2 class="text-center mt-5 mb-5">Votre panier est vide ! </h2>
         <div class="text-center">

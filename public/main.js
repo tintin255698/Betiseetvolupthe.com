@@ -1,9 +1,9 @@
 /**
-* Template Name: Delicious - v2.1.0
-* Template URL: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+ * Template Name: Delicious - v2.1.0
+ * Template URL: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/
+ * Author: BootstrapMade.com
+ * License: https://bootstrapmade.com/license/
+ */
 !(function($) {
   "use strict";
 
@@ -97,7 +97,7 @@
 
     nav_sections.each(function() {
       var top = $(this).offset().top,
-        bottom = top + $(this).outerHeight();
+          bottom = top + $(this).outerHeight();
 
       if (cur_pos >= top && cur_pos <= bottom) {
         if (cur_pos <= bottom) {
@@ -139,8 +139,8 @@
   var heroCarouselIndicators = $("#hero-carousel-indicators");
   heroCarousel.find(".carousel-inner").children(".carousel-item").each(function(index) {
     (index === 0) ?
-    heroCarouselIndicators.append("<li data-target='#heroCarousel' data-slide-to='" + index + "' class='active'></li>"):
-      heroCarouselIndicators.append("<li data-target='#heroCarousel' data-slide-to='" + index + "'></li>");
+        heroCarouselIndicators.append("<li data-target='#heroCarousel' data-slide-to='" + index + "' class='active'></li>"):
+        heroCarouselIndicators.append("<li data-target='#heroCarousel' data-slide-to='" + index + "'></li>");
   });
 
   heroCarousel.on('slid.bs.carousel', function(e) {
@@ -168,9 +168,9 @@
   $(window).on('load', function() {
     var menuIsotope = $('.menu-container').isotope({
       itemSelector: '.menu-item',
-      layoutMode: 'masonry',
+      layoutMode: 'fitRows',
       percentPosition:true,
-      filter: '.menu',
+      filter: '.filter-menu',
     });
 
 

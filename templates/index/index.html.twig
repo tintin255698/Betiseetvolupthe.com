@@ -139,15 +139,14 @@
                 <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
-
-
-                            <li data-filter=".filter-menu" class="active">Menu</li>
-                            <li data-filter=".filter-pique-nique">Pique-Nique</li>
-                            <li data-filter=".filter-jus">Jus</li>
+                            <li data-filter=".filter-menu" class="filter-active">Menu</li>
+                            <li data-filter=".filter-pique">Pique-Nique</li>
+                            <li data-filter=".filter-biere">Bieres et Coca</li>
                             <li data-filter=".filter-vin">Vin</li>
-                            <li data-filter=".filter-the">Thé</li>
-                            <li data-filter=".filter-eau">Eau</li>
                             <li data-filter=".filter-limonade">Limonade</li>
+                            <li data-filter=".filter-jus">Jus</li>
+                            <li data-filter=".filter-eau">Eau</li>
+                            <li data-filter=".filter-the">Thé</li>
 
                         </ul>
                     </div>
@@ -156,50 +155,137 @@
                 <div class="row menu-container">
 
 
-                    {% for vins in vin %}
-                        <div class="col-lg-6 menu-item filter-vin">
-                            <div class="menu-content">
-                                <a href="{{ path('panier_add', {'id':vins.id}) }}">{{ vins.produit }}</a><span>{{ vins.prix }}€</span>
-                            </div>
-                            <div class="menu-ingredients">
-                                {{ vins.description }}
-                            </div>
-                        </div>
-                    {% endfor %}
+                            {% for thes in the %}
+                                <div class="col-lg-6 menu-item filter-the">
+                                    <div class="menu-content">
+                                        {{ thes.produit }}<span>{{ thes.prix }}€</span>
+                                    </div>
+                                    <div class="menu-ingredients">
+                                        {{ thes.description }}<a href="{{ path('panier_add', {'id':thes.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
 
-                    {% for thes in the %}
-                        <div class="col-lg-6 menu-item filter-the">
-                            <div class="menu-content">
-                                <a href="{{ path('panier_add', {'id':thes.id}) }}">{{ thes.produit }}</a><span>{{ thes.prix }}€</span>
-                            </div>
-                            <div class="menu-ingredients">
-                                {{ thes.description }}
-                            </div>
-                        </div>
-                    {% endfor %}
 
+                           <div class="col-lg-6 menu-item filter-jus">
+                           <ul>
+                               <li>4.50€/un</li>
+                               <li>8€/deux identiques</li>
+                           </ul>
+                           </div>
                     {% for ju in jus %}
                         <div class="col-lg-6 menu-item filter-jus">
+                                    <div class="menu-content">
+                                       {{ ju.produit }}<span>{{ ju.prix }}€</span>
+                                    </div>
+                                    <div class="menu-ingredients">
+                                        {{ ju.description }}<a href="{{ path('panier_add', {'id':ju.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                                    </div>
+                            </div>
+                    {% endfor %}
+
+                    {% for vins in vin %}
+                    <div class="col-lg-6 menu-item filter-vin">
                             <div class="menu-content">
-                                <a href="{{ path('panier_add', {'id':ju.id}) }}">{{ ju.produit }}</a><span>{{ ju.prix }}€</span>
+                               {{ vins.produit }}<span>{{ vins.prix }}€</span>
                             </div>
                             <div class="menu-ingredients">
-                                {{ ju.description }}
+                                {{ vins.description }} <a href="{{ path('panier_add', {'id':vins.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
                             </div>
                         </div>
                     {% endfor %}
 
+                    {% for eaux in eau %}
+                        <div class="col-lg-6 menu-item filter-eau">
+                            <div class="menu-content">
+                               {{ eaux.produit }}<span>{{ eaux.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ eaux.description }}<a href="{{ path('panier_add', {'id':eaux.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% for limonades in limonade %}
+                        <div class="col-lg-6 menu-item filter-limonade">
+                            <div class="menu-content">
+                                {{ limonades.produit }}<span>{{ limonades.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ limonades.description }}<a href="{{ path('panier_add', {'id':limonades.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% for bieres in biere %}
+                        <div class="col-lg-6 menu-item filter-biere">
+                            <div class="menu-content">
+                                {{ bieres.produit }}<span>{{ bieres.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ bieres.description }} <a href="{{ path('panier_add', {'id':bieres.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                        <div class="col menu-item filter-pique">
+                            {% for pics in pic %}
+                            <div class="menu-content">
+                            {{ pics.produit }}<span>{{ pics.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ pics.description }}<a href="{{ path('panier_add', {'id':pics.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                            </div>
+                            {% endfor %}
+                            {% for piques in pique %}
+
+                                <p class="sans">{{ piques.produit }}</p>
+
+                            <div class="menu-ingredients">
+                                {{ piques.description }}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+                    <div class="col menu-item filter-menu">
+                        {% for menus in menu %}
+                            <div class="menu-content">
+                               {{ menus.produit }}<span>{{ menus.prix }}€</span>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ menus.description }}<a href="{{ path('menu_add', {'id':menus.id}) }}"><button type="submit" class="btn mt-3">Ajouter</button></a>
+                            </div>
+                        {% endfor %}
+                        <p class="text-center partie mt-5">Entrées</p>
+                        {% for entres in entre %}
+                               <p class="sans">{{ entres.produit }}</p>
+                            <div class="menu-ingredients">
+                                {{ entres.description }}
+                            </div>
+                        {% endfor %}
+                        <p class="text-center partie mt-5">Plats</p>
+                        {% for plats in plat %}
+
+                                <p class="sans">{{ plats.produit }}</p>
+
+                            <div class="menu-ingredients">
+                                {{ plats.description }}
+                            </div>
+                        {% endfor %}
+                        <p class="text-center partie mt-5">Fromages ou desserts</p>
+                        {% for desserts in dessert %}
+
+                                <p class="sans" >{{ desserts.produit }}</p>
+
+                            <div class="menu-ingredients">
+                                {{ desserts.description }}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-
             </div>
-
-
-
-
-
-
         </section><!-- End Menu Section -->
-
 
         <!-- ======= Book A Table Section ======= -->
         <section id="book-a-table" class="book-a-table">

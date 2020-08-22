@@ -915,7 +915,7 @@ section {
   position: relative;
 }
 
-.menu .menu-content::after {
+.menu .menu-content:after {
   content: "......................................................................"
   "...................................................................."
   "....................................................................";
@@ -937,6 +937,28 @@ section {
   color: #ff9b08;
 }
 
+.sans {
+  padding-right: 10px;
+  background: #fff;
+  position: relative;
+  z-index: 3;
+  color: black;
+  margin-top: 30px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.sans:after {
+  content:"";
+}
+
+.partie {
+  border: 2px solid #ffb03b;
+  color:#ffb03b;
+}
+
+
 .menu .menu-content span {
   background: #fff;
   position: relative;
@@ -951,7 +973,6 @@ section {
   font-family: "Comic Neue", sans-serif;
   color: #948c81;
 }
-
 /*--------------------------------------------------------------
 # Specials
 --------------------------------------------------------------*/
@@ -1697,18 +1718,6 @@ span.note i  {
   font-weight: 500;
   letter-spacing: 1px;
   transition: 0.3s;
-}
-
-thead {
-  background: #e8f2ff;
-}
-
-.row {
-  padding: 4em 3em;
-}
-
-.textbox {
-  height: 700px;
 }
 
 .progress {
