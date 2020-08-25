@@ -50,20 +50,18 @@ class CheckoutController extends AbstractController
                 'currency' => 'eur',
                 'quantity' => '1',
             ]],
-            'success_url' => 'http://127.0.0.1:8000/accepte',
+            'success_url' => 'http://127.0.0.1:8000/webhook',
             'cancel_url' => 'https://127.0.0.1:8000/index',
         ]);
 
-
-        $data = 'a,b,c';
-        $len = strlen($data);
-        $numero_commande = '';
-        for($i=0;$i<50;$i++) {
-            $numero_commande .= $data[ rand()%$len ];
-        }
+        $stripe->events->retrieve(
+            'evt_1HK2DCLDGj5KeXGgJAhm8M9B',
+            []
+        );
 
 
-        if ('success_url') {
+
+        if ($this->redirectToRoute('accepte')){
             foreach ($panierWithData as $item) {
                 $commande = new Commande();
                 $commande->setProduit($item['product']->getProduit());
@@ -71,29 +69,12 @@ class CheckoutController extends AbstractController
                 $commande->setTotal($total);
                 $commande->setUser($this->getUser());
                 $em->persist($commande);
-
             }
             $em->flush();
         }
 
-
-
-
-
             $stripeSession = array($session);
         $sessId = ($stripeSession[0]['id']);
-
-
-        $stripe2 = new \Stripe\StripeClient(
-            'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
-        );
-        $stripe2->webhookEndpoints->create([
-            'url' => 'https://paiement.serverless.social',
-            'enabled_events' => [
-                'payment_intent.succeeded',
-            ],
-        ]);
-
 
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,

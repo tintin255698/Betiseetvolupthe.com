@@ -4,10 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Adresse;
 use App\Form\AccepteType;
-use App\Repository\RepasRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccepteController extends AbstractController
@@ -15,7 +13,7 @@ class AccepteController extends AbstractController
     /**
      * @Route("/accepte", name="accepte")
      */
-    public function index(Request $request, SessionInterface $session, RepasRepository $repasRepository)
+    public function index(Request $request)
     {
         $post = new Adresse();
 
@@ -39,20 +37,8 @@ class AccepteController extends AbstractController
 
         }
 
-        $panier = $session->get('panier', []);
-
-
-        $panierWithData = [];
-
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'product' => $repasRepository->find($id),
-                'quantity' => $quantity
-            ];
-        }
         return $this->render('accepte/index.html.twig', [
-            'form' => $form->createView(),
-            'items' => $panierWithData,
+            'form' => $form->createView()
         ]);
     }
 

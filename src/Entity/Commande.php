@@ -46,7 +46,6 @@ class Commande
      */
     private $user;
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +67,7 @@ class Commande
     {
         $this->datetime = new \DateTime();
         $this->produit = new ArrayCollection();
+        $this->paiements = new ArrayCollection();
     }
 
     public function getDatetime(): ?\DateTimeInterface
@@ -117,4 +117,5 @@ class Commande
 
         return $this;
     }
+
 }
