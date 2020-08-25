@@ -5,11 +5,14 @@ namespace App\Controller;
 
 
 
+use App\Entity\Commande;
 use App\Entity\Repas;
+use App\Repository\RepasRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PaiementController extends AbstractController
@@ -17,7 +20,7 @@ class PaiementController extends AbstractController
     /**
      * @Route("", name="paiement")
      */
-    public function index(Request $request, EntityManagerInterface $em)
+    public function index(Request $request, EntityManagerInterface $em, SessionInterface $session, RepasRepository $repasRepository)
     {
         \Stripe\Stripe::setApiKey('sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT');
 
@@ -27,8 +30,6 @@ class PaiementController extends AbstractController
         $header = 'Stripe-Signature';
         $signature = $request->headers->get($header);
         $payload = @file_get_contents('php://input');
-
-
 
         try {
             $event = \Stripe\Webhook::constructEvent(
@@ -46,12 +47,33 @@ class PaiementController extends AbstractController
 
 // Handle the checkout.session.completed event
         if ($event->type == 'payment_intent.succeeded') {
-            $commande = new repas();
-            $commande->setProduit('test2');
-            $commande->setDescription('test2');
-            $commande->setPrix(4.2);
-            $commande->setType('test2');
-            $em->persist($commande);
+
+            $panier = $session->get('panier', []);
+
+            $panierWithData = [];
+
+            foreach ($panier as $id => $quantity) {
+                $panierWithData[] = [
+                    'product' => $repasRepository->find($id),
+                    'quantity' => $quantity
+                ];
+            }
+
+            $total = 0;
+            foreach ($panierWithData as $item) {
+                $totalItem = $item['product']->getPrix() * $item['quantity'];
+                $total += $totalItem;
+            }
+
+            foreach ($panierWithData as $item) {
+                $commande = new Commande();
+                $commande->setProduit($item['product']->getProduit());
+                $commande->setQuantite($item['quantity']);
+                $commande->setTotal($total);
+                $commande->setUser($this->getUser());
+                $em->persist($commande);
+
+            }
             $em->flush();
         }
 
