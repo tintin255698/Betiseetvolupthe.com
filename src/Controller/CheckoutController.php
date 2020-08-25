@@ -54,21 +54,33 @@ class CheckoutController extends AbstractController
             'cancel_url' => 'https://127.0.0.1:8000/index',
         ]);
 
+
+        $data = 'a,b,c';
+        $len = strlen($data);
+        $numero_commande = '';
+        for($i=0;$i<50;$i++) {
+            $numero_commande .= $data[ rand()%$len ];
+        }
+
+
         if ('success_url') {
-            $commande = new Commande();
+            foreach ($panierWithData as $item) {
+                $commande = new Commande();
                 $commande->setProduit($item['product']->getProduit());
                 $commande->setQuantite($item['quantity']);
-                $commande->setTotal($item['product']->getPrix());
+                $commande->setTotal($total);
                 $commande->setUser($this->getUser());
                 $em->persist($commande);
-                $em->flush();
-        } else if ('cancel_url') {
-            $this->addFlash('error', 'no paiement');
+
+            }
+            $em->flush();
         }
 
 
 
-        $stripeSession = array($session);
+
+
+            $stripeSession = array($session);
         $sessId = ($stripeSession[0]['id']);
 
 

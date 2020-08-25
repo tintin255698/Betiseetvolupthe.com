@@ -2,13 +2,8 @@
 
 namespace App\Controller;
 
-
-use App\Entity\Commande;
-use App\Entity\Commentaire;
 use App\Entity\Repas;
-use App\Form\MenuType;
 use App\Repository\RepasRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -38,6 +33,7 @@ class PanierController extends AbstractController
             $totalItem = $item['product']->getPrix() * $item['quantity'];
             $total += $totalItem;
         }
+
 
         return $this->render('panier/index.html.twig', [
             'items' => $panierWithData,
