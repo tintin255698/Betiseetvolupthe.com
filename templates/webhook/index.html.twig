@@ -1,0 +1,269 @@
+
+
+    {% block stylesheets %}
+        <style>
+            @font-face {
+                font-family: 'Open Sans';
+                font-weight: 400;
+                src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format("woff2");
+                unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+            }
+
+            * {
+                font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+                font-size: 15px;
+                font-variant: normal;
+                padding: 0;
+                margin: 0;
+            }
+
+            html {
+                height: 100%;
+            }
+
+            body {
+                background: #F6F9FC;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100%;
+            }
+
+            form {
+                width: 480px;
+                margin: 20px 0;
+            }
+
+            label {
+                position: relative;
+                color: #6A7C94;
+                font-weight: 400;
+                height: 48px;
+                line-height: 48px;
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: row;
+            }
+
+            label > span {
+                width: 115px;
+            }
+
+            .field {
+                background: white;
+                box-sizing: border-box;
+                font-weight: 400;
+                border: 1px solid #CFD7DF;
+                border-radius: 24px;
+                color: #32315E;
+                outline: none;
+                flex: 1;
+                height: 48px;
+                line-height: 48px;
+                padding: 0 20px;
+                cursor: text;
+            }
+
+            .field::-webkit-input-placeholder { color: #CFD7DF; }
+            .field::-moz-placeholder { color: #CFD7DF; }
+
+            .field:focus,
+            .field.StripeElement--focus {
+                border-color: #F99A52;
+            }
+
+            button {
+                float: left;
+                display: block;
+                background-image: linear-gradient(-180deg, #F8B563 0%, #F99A52 100%);
+                box-shadow: 0 1px 2px 0 rgba(0,0,0,0.10), inset 0 -1px 0 0 #E57C45;
+                color: white;
+                border-radius: 24px;
+                border: 0;
+                margin-top: 20px;
+                font-size: 17px;
+                font-weight: 500;
+                width: 100%;
+                height: 48px;
+                line-height: 48px;
+                outline: none;
+            }
+
+            button:focus {
+                background: #EF8C41;
+            }
+
+            button:active {
+                background: #E17422;
+            }
+
+            .outcome {
+                float: left;
+                width: 100%;
+                padding-top: 8px;
+                min-height: 20px;
+                text-align: center;
+            }
+
+            .success, .error {
+                display: none;
+                font-size: 13px;
+            }
+
+            .success.visible, .error.visible {
+                display: inline;
+            }
+
+            .error {
+                color: #E4584C;
+            }
+
+            .success {
+                color: #F8B563;
+            }
+
+            .success .token {
+                font-weight: 500;
+                font-size: 13px;
+            }
+        </style>
+    {% endblock %}
+
+
+{% block body %}
+    <form method="post" id="payment-form" class="flex flex-col w-1/3">
+        <label>
+            <span>Prénom</span>
+            <input name="cardholder-name" class="field" placeholder="Jane" />
+        </label>
+        <label>
+            <span>Nom</span>
+            <input name="cardholder-name" class="field" placeholder="Doe" />
+        </label>
+        <label>
+            <span>Téléphone</span>
+            <input class="field" placeholder="(123) 456-7890" type="tel" />
+        </label>
+        <label>
+            <span>Société</span>
+            <input class="field" placeholder="(123) 456-7890" type="text" />
+        </label>
+        <label>
+            <span>Numéro</span>
+            <input class="field" placeholder="(123) 456-7890" type="number" />
+        </label>
+        <label>
+            <span>Adresse</span>
+            <input class="field" placeholder="(123) 456-7890" type="text" />
+        </label>
+        <label>
+            <span>Code Postale</span>
+            <input name="address-zip" class="field" placeholder="94110" />
+        </label>
+        <label>
+            <span>Carte</span>
+            <div id="card-element" class="field"></div>
+        </label>
+        <button type="submit">Payer</button>
+        <div class="outcome">
+            <div class="error"></div>
+            <div class="success">
+                Success! Your Stripe token is <span class="token"></span>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+ {% block javascripts %}
+         <script src="https://js.stripe.com/v3/"></script>
+<script>
+    // Create a Stripe client.
+    var stripe = Stripe('pk_test_51HEWz5LDGj5KeXGgk5GqlhnrvTh5Clr5X3t2gZheY6oRsfV9OFQmmoAaYeGa3T7p8Prn2TyOXaTCv4mU99dKLj1k001n8of7TD');
+
+    var elements = stripe.elements({
+        fonts: [
+            {
+                family: 'Open Sans',
+                weight: 400,
+                src: 'local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format("woff2")',
+                unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215',
+            },
+        ]
+    });
+
+    var card = elements.create('card', {
+        hidePostalCode: true,
+        style: {
+            base: {
+                iconColor: '#F99A52',
+                color: '#32315E',
+                lineHeight: '48px',
+                fontWeight: 400,
+                fontFamily: '"Open Sans", "Helvetica Neue", "Helvetica", sans-serif',
+                fontSize: '15px',
+
+                '::placeholder': {
+                    color: '#CFD7DF',
+                }
+            },
+        }
+    });
+    card.mount('#card-element');
+
+    function setOutcome(result) {
+        var successElement = document.querySelector('.success');
+        var errorElement = document.querySelector('.error');
+        successElement.classList.remove('visible');
+        errorElement.classList.remove('visible');
+
+        if (result.token) {
+            // Use the token to create a charge or a customer
+            // https://stripe.com/docs/charges
+           stripeTokenHandler(result.token);
+        } else if (result.error) {
+            errorElement.textContent = result.error.message;
+            errorElement.classList.add('visible');
+        }
+    }
+
+    card.on('change', function(event) {
+        setOutcome(event);
+    });
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = document.querySelector('form');
+        var extraDetails = {
+            name: form.querySelector('input[name=cardholder-name]').value,
+            address_zip: form.querySelector('input[name=address-zip]').value
+        };
+        stripe.createToken(card, extraDetails).then(setOutcome);
+    });
+
+    function stripeTokenHandler(token) {
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+// Add Stripe Token to hidden input
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+// Submit form
+        form.submit();
+
+    }
+
+
+
+
+</script>
+
+
+
+
+
+
+
+ {% endblock %}
+
