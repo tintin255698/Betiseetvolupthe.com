@@ -68,12 +68,7 @@ class PaiementController extends AbstractController
         }
 
 
-        if ($event->type == 'payment_intent.succeeded') {
-            $payment = new Paiement();
-            $payment->setValider('oui');
-            $em->persist($payment);
-        $em->flush();
-        }
+        if ($event->type == 'payment_intent.succeeded')
 
         http_response_code(200);
 

@@ -42,26 +42,17 @@ class CheckoutController extends AbstractController
             'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
         );
 
-        $session = $stripe->checkout->sessions->create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'name' => "Nous vous remercions pour votre commande, d'un total de :",
-                'amount' => $total * 100,
-                'currency' => 'eur',
-                'quantity' => '1',
-            ]],
-            'success_url' => 'http://127.0.0.1:8000/webhook',
-            'cancel_url' => 'https://127.0.0.1:8000/index',
-        ]);
-
-        $stripe->events->retrieve(
-            'evt_1HK2DCLDGj5KeXGgJAhm8M9B',
-            []
-        );
-
-
-
-        if ($this->redirectToRoute('accepte')){
+        try {
+            $session = $stripe->checkout->sessions->create([
+                'success_url' => 'https://example.com/success',
+                'cancel_url' => 'https://example.com/cancel',
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'name' => "Nous vous remercions pour votre commande, d'un total de :",
+                    'amount' => $total * 100,
+                    'currency' => 'eur',
+                    'quantity' => '1',
+                ]]]);
             foreach ($panierWithData as $item) {
                 $commande = new Commande();
                 $commande->setProduit($item['product']->getProduit());
@@ -71,10 +62,17 @@ class CheckoutController extends AbstractController
                 $em->persist($commande);
             }
             $em->flush();
+        } catch(\Stripe\Error\Card $e) {
+
+            $this->addFlash("error","Snif, on dirait qu'il y a eu une erreur :(");
+            // The card has been declined
         }
 
             $stripeSession = array($session);
         $sessId = ($stripeSession[0]['id']);
+        $payment = ($stripeSession[0]['payment_intent']);
+
+
 
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,
