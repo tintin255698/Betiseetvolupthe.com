@@ -16,8 +16,16 @@ class WebhookController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $em)
     {
+        $date = date('Y-m-d', strtotime('+1 day'));
 
         if ($request->isMethod('POST')) {
+            $token = $request->request->get('stripeToken');
+
+
+
+
+
+
             $token = $request->request->get('stripeToken');
             \Stripe\Stripe::setApiKey("sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT");
 
@@ -68,7 +76,7 @@ class WebhookController extends AbstractController
         }
 
         return $this->render('webhook/index.html.twig', [
-            'controller_name' => 'WebhookController',
+            'date' => $date,
         ]);
     }
 }

@@ -1,39 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
 
 
     {% block stylesheets %}
+        <link href="/css/footerInner.css" rel="stylesheet">
         <style>
-            @font-face {
-                font-family: 'Open Sans';
-                font-weight: 400;
-                src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format("woff2");
-                unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-            }
-
-            * {
-                font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
-                font-size: 15px;
-                font-variant: normal;
-                padding: 0;
-                margin: 0;
-            }
-
-            html {
-                height: 100%;
-            }
-
-            body {
-                background: #F6F9FC;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 100%;
-            }
-
-            form {
-                width: 480px;
-                margin: 20px 0;
-            }
-
             label {
                 position: relative;
                 color: #6A7C94;
@@ -75,7 +47,7 @@
             button {
                 float: left;
                 display: block;
-                background-image: linear-gradient(-180deg, #F8B563 0%, #F99A52 100%);
+                background: #ffb03b;
                 box-shadow: 0 1px 2px 0 rgba(0,0,0,0.10), inset 0 -1px 0 0 #E57C45;
                 color: white;
                 border-radius: 24px;
@@ -89,94 +61,135 @@
                 outline: none;
             }
 
+            button:hover
+            {
+                color : black;
+                background: #E17422;
+            }
+
             button:focus {
                 background: #EF8C41;
             }
 
             button:active {
-                background: #E17422;
+                background: #ffb03b;
             }
 
-            .outcome {
-                float: left;
-                width: 100%;
-                padding-top: 8px;
-                min-height: 20px;
-                text-align: center;
-            }
-
-            .success, .error {
-                display: none;
-                font-size: 13px;
-            }
-
-            .success.visible, .error.visible {
-                display: inline;
-            }
-
-            .error {
-                color: #E4584C;
-            }
-
-            .success {
-                color: #F8B563;
-            }
-
-            .success .token {
-                font-weight: 500;
-                font-size: 13px;
-            }
         </style>
     {% endblock %}
 
 
 {% block body %}
-    <form method="post" id="payment-form" class="flex flex-col w-1/3">
+
+    {% include 'navbar/index2.html.twig' %}
+
+<main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Paiement</h2>
+                <ol>
+                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li>Paiement</li>
+                </ol>
+            </div>
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+    <section class="inner-page">
+        <div class="container">
+
+            <h3>Progression de la commande :</h3>
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60</div>
+            </div>
+
+
+            <h1 class="mt-5 mb-5 text-center">Paiement de votre commande</h1>
+
+
+
+        <form method="post" id="payment-form">
+
         <label>
             <span>Prénom</span>
-            <input name="cardholder-name" class="field" placeholder="Jane" />
+            <input name="prenom" class="field" placeholder="Jane" required />
         </label>
         <label>
             <span>Nom</span>
-            <input name="cardholder-name" class="field" placeholder="Doe" />
-        </label>
-        <label>
-            <span>Téléphone</span>
-            <input class="field" placeholder="(123) 456-7890" type="tel" />
+            <input name="nom" class="field" placeholder="Doe" required />
         </label>
         <label>
             <span>Société</span>
-            <input class="field" placeholder="(123) 456-7890" type="text" />
+            <input class="field" name="societe" placeholder="Bêtises et Volupthé" type="text" />
         </label>
         <label>
-            <span>Numéro</span>
-            <input class="field" placeholder="(123) 456-7890" type="number" />
+            <span>Téléphone</span>
+            <input class="field" name="telephone" placeholder="03 81 50 83 45" type="tel" required />
+        </label>
+        <label>
+            <span>Numéro rue</span>
+            <input class="field" name="numero" placeholder="79" type="number" required />
         </label>
         <label>
             <span>Adresse</span>
-            <input class="field" placeholder="(123) 456-7890" type="text" />
+            <input class="field" name="adresse" placeholder="Rue des Granges" type="text" required />
         </label>
         <label>
             <span>Code Postale</span>
-            <input name="address-zip" class="field" placeholder="94110" />
+            <input name="code" class="field" placeholder="25000" required/>
         </label>
+        <label>
+            <span>Ville</span>
+            <input name="ville" class="field" placeholder="Besançon" required />
+        </label>
+        <label>
+            <span>Livraison</span>
+            <input type="date" id="start" name="trip-start" class="field" min="{{ date }}" required>
+        </label>
+
         <label>
             <span>Carte</span>
             <div id="card-element" class="field"></div>
         </label>
         <button type="submit">Payer</button>
         <div class="outcome">
-            <div class="error"></div>
-            <div class="success">
-                Success! Your Stripe token is <span class="token"></span>
-            </div>
+          <h3>Merci de commander la veille pour le lendemain au minimum</h3>
         </div>
     </form>
+
+        </div>
+    </section>
+</main>
+
+
+
 {% endblock %}
 
  {% block javascripts %}
-         <script src="https://js.stripe.com/v3/"></script>
-<script>
+
+     <script>
+
+         var delay = 500;
+         $(".progress-bar").each(function(i){
+             $(this).delay( delay*i ).animate( { width: $(this).attr('aria-valuenow') + '%' }, delay );
+
+             $(this).prop('Counter',0).animate({
+                 Counter: $(this).text()
+             }, {
+                 duration: delay,
+                 easing: 'swing',
+                 step: function (now) {
+                     $(this).text(Math.ceil(now)+'%');
+                 }
+             });
+         });
+     </script>
+
+     <script src="https://js.stripe.com/v3/"></script>
+    <script>
     // Create a Stripe client.
     var stripe = Stripe('pk_test_51HEWz5LDGj5KeXGgk5GqlhnrvTh5Clr5X3t2gZheY6oRsfV9OFQmmoAaYeGa3T7p8Prn2TyOXaTCv4mU99dKLj1k001n8of7TD');
 
