@@ -19,12 +19,23 @@ class WebhookController extends AbstractController
         $date = date('Y-m-d', strtotime('+1 day'));
 
         if ($request->isMethod('POST')) {
-            $token = $request->request->get('stripeToken');
 
 
+            $nom = $request->request->get('nom');
+            $prenom = $request->request->get('prenom');
+            $societe = $request->request->get('societe');
+            $telephone = $request->request->get('telephone');
+            $adresse = $request->request->get('adresse');
+            $code = $request->request->get('code');
+            $livraison = $request->request->get('livraison');
 
-
-
+            dump($nom);
+            dump($prenom);
+            dump($societe);
+            dump($telephone);
+            dump($adresse);
+            dump($code);
+            dump($livraison);
 
             $token = $request->request->get('stripeToken');
             \Stripe\Stripe::setApiKey("sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT");

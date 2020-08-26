@@ -12,13 +12,13 @@
                 font-weight: 400;
                 height: 48px;
                 line-height: 48px;
-                margin-bottom: 10px;
+                margin-bottom: 40px;
                 display: flex;
                 flex-direction: row;
             }
 
             label > span {
-                width: 115px;
+                width: 150px;
             }
 
             .field {
@@ -44,7 +44,7 @@
                 border-color: #F99A52;
             }
 
-            button {
+            .button {
                 float: left;
                 display: block;
                 background: #ffb03b;
@@ -61,17 +61,17 @@
                 outline: none;
             }
 
-            button:hover
+            .button:hover
             {
                 color : black;
                 background: #E17422;
             }
 
-            button:focus {
+            .button:focus {
                 background: #EF8C41;
             }
 
-            button:active {
+            .button:active {
                 background: #ffb03b;
             }
 
@@ -83,95 +83,86 @@
 
     {% include 'navbar/index2.html.twig' %}
 
-<main id="main">
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-        <div class="container">
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Paiement</h2>
-                <ol>
-                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
-                    <li>Paiement</li>
-                </ol>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Paiement</h2>
+                    <ol>
+                        <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                        <li>Paiement</li>
+                    </ol>
+                </div>
             </div>
-        </div>
-    </section><!-- End Breadcrumbs Section -->
-    <section class="inner-page">
-        <div class="container">
+        </section><!-- End Breadcrumbs Section -->
+        <section class="inner-page">
+            <div class="container">
 
-            <h3>Progression de la commande :</h3>
+                <h3>Progression de la commande :</h3>
 
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60</div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60</div>
+                </div>
+
+
+                <h1 class="mt-5 mb-5 text-center">Paiement de votre commande</h1>
+
+
+
+                <form method="post" id="payment-form">
+
+                    <label>
+                        <span>Prénom :</span>
+                        <input name="prenom" class="field" placeholder="Jane" required />
+                    </label>
+                    <label>
+                        <span>Nom :</span>
+                        <input name="nom" class="field" placeholder="Doe" required />
+                    </label>
+                    <label>
+                        <span>Société :</span>
+                        <input class="field" name="societe" placeholder="Bêtises et Volupthé" type="text" />
+                    </label>
+                    <label>
+                        <span>Téléphone :</span>
+                        <input class="field" name="telephone" placeholder="03 81 50 83 45" type="tel" required />
+                    </label>
+                    <label>
+                        <span>Adresse :</span>
+                        <input class="field" name="adresse" placeholder="Rue des Granges" type="text" required />
+                    </label>
+                    <label>
+                        <span>Code postale :</span>
+                        <input name="code" class="field" placeholder="25000" required/>
+                    </label>
+                    <label>
+                        <span>Ville :</span>
+                        <input name="ville" class="field" placeholder="Besançon" required />
+                    </label>
+                    <label>
+                        <span>Livraison :</span>
+                        <input type="date" id="start" name="livraison" class="field" min="{{ date }}" required>
+                    </label>
+
+                    <label>
+                        <span>Carte bancaire :</span>
+                        <div id="card-element" class="field"></div>
+                    </label>
+                    <button class="button">Payer <small>With by Stripe <i class='bx bxl-stripe' ></i></small></button>
+                </form>
+
             </div>
-
-
-            <h1 class="mt-5 mb-5 text-center">Paiement de votre commande</h1>
-
-
-
-        <form method="post" id="payment-form">
-
-        <label>
-            <span>Prénom</span>
-            <input name="prenom" class="field" placeholder="Jane" required />
-        </label>
-        <label>
-            <span>Nom</span>
-            <input name="nom" class="field" placeholder="Doe" required />
-        </label>
-        <label>
-            <span>Société</span>
-            <input class="field" name="societe" placeholder="Bêtises et Volupthé" type="text" />
-        </label>
-        <label>
-            <span>Téléphone</span>
-            <input class="field" name="telephone" placeholder="03 81 50 83 45" type="tel" required />
-        </label>
-        <label>
-            <span>Numéro rue</span>
-            <input class="field" name="numero" placeholder="79" type="number" required />
-        </label>
-        <label>
-            <span>Adresse</span>
-            <input class="field" name="adresse" placeholder="Rue des Granges" type="text" required />
-        </label>
-        <label>
-            <span>Code Postale</span>
-            <input name="code" class="field" placeholder="25000" required/>
-        </label>
-        <label>
-            <span>Ville</span>
-            <input name="ville" class="field" placeholder="Besançon" required />
-        </label>
-        <label>
-            <span>Livraison</span>
-            <input type="date" id="start" name="trip-start" class="field" min="{{ date }}" required>
-        </label>
-
-        <label>
-            <span>Carte</span>
-            <div id="card-element" class="field"></div>
-        </label>
-        <button type="submit">Payer</button>
-        <div class="outcome">
-          <h3>Merci de commander la veille pour le lendemain au minimum</h3>
-        </div>
-    </form>
-
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 
 
 
 {% endblock %}
 
  {% block javascripts %}
-
      <script>
-
          var delay = 500;
          $(".progress-bar").each(function(i){
              $(this).delay( delay*i ).animate( { width: $(this).attr('aria-valuenow') + '%' }, delay );
@@ -187,7 +178,6 @@
              });
          });
      </script>
-
      <script src="https://js.stripe.com/v3/"></script>
     <script>
     // Create a Stripe client.
@@ -224,34 +214,25 @@
     card.mount('#card-element');
 
     function setOutcome(result) {
-        var successElement = document.querySelector('.success');
-        var errorElement = document.querySelector('.error');
-        successElement.classList.remove('visible');
-        errorElement.classList.remove('visible');
-
         if (result.token) {
             // Use the token to create a charge or a customer
             // https://stripe.com/docs/charges
-           stripeTokenHandler(result.token);
+            stripeTokenHandler(result.token);
         } else if (result.error) {
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');
         }
     }
-
     card.on('change', function(event) {
         setOutcome(event);
     });
-
     document.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault();
         var form = document.querySelector('form');
-        var extraDetails = {
-            name: form.querySelector('input[name=cardholder-name]').value,
-            address_zip: form.querySelector('input[name=address-zip]').value
-        };
-        stripe.createToken(card, extraDetails).then(setOutcome);
+        stripe.createToken(card).then(setOutcome);
     });
+
+
 
     function stripeTokenHandler(token) {
         // Insert the token ID into the form so it gets submitted to the server
@@ -264,12 +245,7 @@
         form.appendChild(hiddenInput);
 // Submit form
         form.submit();
-
     }
-
-
-
-
 </script>
 
 
