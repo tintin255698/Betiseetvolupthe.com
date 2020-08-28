@@ -44,8 +44,6 @@ class CheckoutController extends AbstractController
 
         try {
             $session = $stripe->checkout->sessions->create([
-                'success_url' => 'https://example.com/success',
-                'cancel_url' => 'https://example.com/cancel',
                 'payment_method_types' => ['card'],
                 'line_items' => [[
                     'name' => "Nous vous remercions pour votre commande, d'un total de :",
@@ -68,11 +66,22 @@ class CheckoutController extends AbstractController
             // The card has been declined
         }
 
+
+
+
             $stripeSession = array($session);
         $sessId = ($stripeSession[0]['id']);
         $payment = ($stripeSession[0]['payment_intent']);
 
+        $intent = $stripe->paymentIntents->confirm(
+            $payment,
+            []
+        );
 
+        $intent = $stripe->paymentIntents->capture(
+            $payment,
+            []
+        );
 
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,

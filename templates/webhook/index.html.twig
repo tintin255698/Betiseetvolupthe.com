@@ -131,7 +131,7 @@
                     </label>
                     <label>
                         <span>Adresse :</span>
-                        <input class="field" name="adresse" placeholder="Rue des Granges" type="text" required />
+                        <input class="field" name="adresse" placeholder="79 Rue des Granges" type="text" required />
                     </label>
                     <label>
                         <span>Code postale :</span>
@@ -145,12 +145,18 @@
                         <span>Livraison :</span>
                         <input type="date" id="start" name="livraison" class="field" min="{{ date }}" required>
                     </label>
-
+                    <input type="hidden" name="stripe">
+                    <label>
+                        <span>Titulaire carte :</span>
+                        <input type="text" id="cardholder-name" class="field" placeholder="Titulaire de la carte">
+                    </label>
                     <label>
                         <span>Carte bancaire :</span>
-                        <div id="card-element" class="field"></div>
+                        <div id="card-element" class="field mr-3"></div>
+                        <div id="errors"></div>
+                        <div id="card-errors" role="alert"></div>
                     </label>
-                    <button class="button">Payer <small>With by Stripe <i class='bx bxl-stripe' ></i></small></button>
+                    <button id="card-button" class="btn" type="button" data-secret="{{ intent.client_secret }}">Payer - {{ intent.amount /100 }}<small>With by Stripe <i class='bx bxl-stripe' ></i></small></button>
                 </form>
 
             </div>
@@ -180,8 +186,21 @@
      </script>
      <script src="https://js.stripe.com/v3/"></script>
     <script>
+
+
+
+
+
+
     // Create a Stripe client.
+
     var stripe = Stripe('pk_test_51HEWz5LDGj5KeXGgk5GqlhnrvTh5Clr5X3t2gZheY6oRsfV9OFQmmoAaYeGa3T7p8Prn2TyOXaTCv4mU99dKLj1k001n8of7TD');
+
+    let redirect = "/index.php"
+    let cardHolderName = document.getElementById("cardholder-name")
+    let cardButton = document.getElementById("card-button")
+    let clientSecret = cardButton.dataset.secret;
+
 
     var elements = stripe.elements({
         fonts: [
@@ -194,58 +213,70 @@
         ]
     });
 
-    var card = elements.create('card', {
-        hidePostalCode: true,
-        style: {
-            base: {
-                iconColor: '#F99A52',
-                color: '#32315E',
-                lineHeight: '48px',
-                fontWeight: 400,
-                fontFamily: '"Open Sans", "Helvetica Neue", "Helvetica", sans-serif',
-                fontSize: '15px',
+    let style = {
+        base: {
+            iconColor: '#F99A52',
+            color: '#32315E',
+            lineHeight: '48px',
+            fontWeight: 400,
+            fontFamily: '"Open Sans", "Helvetica Neue", "Helvetica", sans-serif',
+            fontSize: '15px',
+            '::placeholder': {
+                color: '#CFD7DF',
+        }
+    }};
 
-                '::placeholder': {
-                    color: '#CFD7DF',
+    let card = elements.create("card", { style: style });
+
+        card.mount("#card-element")
+
+card.addEventListener("change", (event) => {
+    let displayError = document.getElementById("card-errors")
+    displayError.style.color = "#FF0000";
+    if(event.error){
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = "";
+    }
+} )
+
+    var response = fetch('/secret').then(function(response) {
+        return response.json();
+    }).then(function(responseJson) {
+        var clientSecret = responseJson.client_secret;
+        // Call stripe.confirmCardPayment() with the client secret.
+    });
+
+
+    cardButton.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: cardHolderName.value
                 }
-            },
-        }
-    });
-    card.mount('#card-element');
-
-    function setOutcome(result) {
-        if (result.token) {
-            // Use the token to create a charge or a customer
-            // https://stripe.com/docs/charges
-            stripeTokenHandler(result.token);
-        } else if (result.error) {
-            errorElement.textContent = result.error.message;
-            errorElement.classList.add('visible');
-        }
-    }
-    card.on('change', function(event) {
-        setOutcome(event);
-    });
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var form = document.querySelector('form');
-        stripe.createToken(card).then(setOutcome);
+            }
+        }).then(function(response) {
+            if (response.error) {
+                // Show error to your customer (e.g., insufficient funds)
+                let error = document.getElementById("errors")
+                error.innerText = response.error.message
+                error.style.color = "#FF0000";
+            } else {
+                // The payment has been processed!
+                if (response.paymentIntent.status && response.paymentIntent === 'succeeded') {
+                    f = document.getElementById("payment-form");
+                    f.elements["stripe"].value = 'montexte';
+                }
+            }
+        });
     });
 
 
 
-    function stripeTokenHandler(token) {
-        // Insert the token ID into the form so it gets submitted to the server
-        var form = document.getElementById('payment-form');
-// Add Stripe Token to hidden input
-        var hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'stripeToken');
-        hiddenInput.setAttribute('value', token.id);
-        form.appendChild(hiddenInput);
-// Submit form
-        form.submit();
-    }
+
+
 </script>
 
 

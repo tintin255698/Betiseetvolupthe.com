@@ -19,10 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class PaiementController extends AbstractController
 {
     /**
-     * @Route("", name="paiement")
+     * @Route("paiement", name="paiement")
      */
     public function index(Request $request, EntityManagerInterface $em, SessionInterface $session, RepasRepository $repasRepository)
     {
+
+
+
+
         \Stripe\Stripe::setApiKey('sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT');
 
 // You can find your endpoint's secret in your webhook settings
