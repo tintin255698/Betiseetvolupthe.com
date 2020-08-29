@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Adresse;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,7 +24,10 @@ class AccepteType extends AbstractType
             ->add('adresse2', TextType::class, ['label'=>'Complément de votre adresse (facultatif)', 'required' => false] )
             ->add('cp', NumberType::class, ['label'=>'Code postal'])
             ->add('ville', TextType::class, ['label'=>'Ville'])
-            ->add('Valider', SubmitType::class)
+            ->add('livraison', DateType::class,['widget' => 'single_text',
+                'attr'   => ['min' => ( new \DateTime('now +1 day'))->format('Y-m-d H:i:s')]])
+        ->add('Submit', SubmitType::class)
+
         ;
     }
 

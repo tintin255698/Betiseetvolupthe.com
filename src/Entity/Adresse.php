@@ -58,6 +58,11 @@ class Adresse
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $livraison;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -155,6 +160,18 @@ class Adresse
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLivraison(): ?\DateTimeInterface
+    {
+        return $this->livraison;
+    }
+
+    public function setLivraison(\DateTimeInterface $livraison): self
+    {
+        $this->livraison = $livraison;
 
         return $this;
     }

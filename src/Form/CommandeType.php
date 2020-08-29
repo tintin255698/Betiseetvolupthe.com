@@ -3,7 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Commande;
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -25,6 +26,7 @@ class CommandeType extends AbstractType
             ->add('ville', TextType::class, ['label'=>'Ville', 'attr'=>['placeholder'=>'Besançon']])
             ->add('livraison', DateType::class, array(
                 'widget' => 'single_text'))
+            ->add('valider', SubmitType::class)
         ;
     }
 

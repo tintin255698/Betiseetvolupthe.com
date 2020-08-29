@@ -19,60 +19,46 @@ use Symfony\Component\Routing\Annotation\Route;
 class PaiementController extends AbstractController
 {
     /**
-     * @Route("paiement", name="paiement")
+     * @Route("", name="paiement")
      */
     public function index(Request $request, EntityManagerInterface $em, SessionInterface $session, RepasRepository $repasRepository)
     {
 
-
-
-
         \Stripe\Stripe::setApiKey('sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT');
 
 // You can find your endpoint's secret in your webhook settings
-        $endpoint_secret = 'whsec_aceUbsHXSeRjvshdcqJ6rpbNGZFDwm9u';
-        $event = null;
-        $header = 'Stripe-Signature';
-        $signature = $request->headers->get($header);
+        $endpoint_secret = 'whsec_evJkprgfTdUF66196QIJOYATNr0mii1E
+
+';
         $payload = @file_get_contents('php://input');
-
-
+        $event = null;
 
         try {
-            $event = \Stripe\Webhook::constructEvent(
-                $payload, $signature, $endpoint_secret
+            $event = \Stripe\Event::constructFrom(
+                json_decode($payload, true)
             );
-        } catch (\UnexpectedValueException $e) {
+        } catch(\UnexpectedValueException $e) {
             // Invalid payload
             http_response_code(400);
             exit();
-        } catch (\Stripe\Exception\SignatureVerificationException $e) {
-            // Invalid signature
-            http_response_code(400);
-            exit();
         }
 
-// Handle the checkout.session.completed event
-        $panier = $session->get('panier', []);
-
-        $panierWithData = [];
-
-
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'product' => $repasRepository->find($id),
-                'quantity' => $quantity
-            ];
+// Handle the event
+        switch ($event->type) {
+            case 'payment_intent.succeeded':
+                return $this->redirectToRoute('termine');
+                break;
+            case 'payment_method.attached':
+                $paymentMethod = $event->data->object; // contains a \Stripe\PaymentMethod
+                // Then define and call a method to handle the successful attachment of a PaymentMethod.
+                // handlePaymentMethodAttached($paymentMethod);
+                break;
+            // ... handle other event types
+            default:
+                // Unexpected event type
+                http_response_code(400);
+                exit();
         }
-
-        $total = 0;
-        foreach ($panierWithData as $item) {
-            $totalItem = $item['product']->getPrix() * $item['quantity'];
-            $total += $totalItem;
-        }
-
-
-        if ($event->type == 'payment_intent.succeeded')
 
         http_response_code(200);
 

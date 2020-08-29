@@ -44,13 +44,19 @@ class CheckoutController extends AbstractController
 
         try {
             $session = $stripe->checkout->sessions->create([
+                'success_url' => 'http://127.0.0.1:8000/termine',
+                'cancel_url' => 'https://example.com/cancel',
                 'payment_method_types' => ['card'],
-                'line_items' => [[
-                    'name' => "Nous vous remercions pour votre commande, d'un total de :",
-                    'amount' => $total * 100,
-                    'currency' => 'eur',
-                    'quantity' => '1',
-                ]]]);
+                'line_items' => [
+                    [
+                        'amount' => $total * 100,
+                        'quantity' => 1,
+                        'currency' => 'eur',
+                        'name'=> 'Total :'
+                    ],
+                ],
+                'mode' => 'payment',
+            ]);
             foreach ($panierWithData as $item) {
                 $commande = new Commande();
                 $commande->setProduit($item['product']->getProduit());
@@ -60,28 +66,26 @@ class CheckoutController extends AbstractController
                 $em->persist($commande);
             }
             $em->flush();
-        } catch(\Stripe\Error\Card $e) {
+        } catch(\Stripe\Exception\CardException $e) {
 
-            $this->addFlash("error","Snif, on dirait qu'il y a eu une erreur :(");
-            // The card has been declined
+        } catch (\Stripe\Exception\RateLimitException $e) {
+            // Too many requests made to the API too quickly
+        } catch (\Stripe\Exception\InvalidRequestException $e) {
+            // Invalid parameters were supplied to Stripe's API
+        } catch (\Stripe\Exception\AuthenticationException $e) {
+            // Authentication with Stripe's API failed
+            // (maybe you changed API keys recently)
+        } catch (\Stripe\Exception\ApiConnectionException $e) {
+            // Network communication with Stripe failed
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            // Display a very generic error to the user, and maybe send
+            // yourself an email
+        } catch (Exception $e) {
+            // Something else happened, completely unrelated to Stripe
         }
-
-
-
 
             $stripeSession = array($session);
         $sessId = ($stripeSession[0]['id']);
-        $payment = ($stripeSession[0]['payment_intent']);
-
-        $intent = $stripe->paymentIntents->confirm(
-            $payment,
-            []
-        );
-
-        $intent = $stripe->paymentIntents->capture(
-            $payment,
-            []
-        );
 
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,

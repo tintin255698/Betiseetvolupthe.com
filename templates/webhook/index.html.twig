@@ -89,10 +89,10 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Paiement</h2>
+                    <h2>Adresse</h2>
                     <ol>
                         <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
-                        <li>Paiement</li>
+                        <li>Adresse</li>
                     </ol>
                 </div>
             </div>
@@ -107,8 +107,9 @@
                 </div>
 
 
-                <h1 class="mt-5 mb-5 text-center">Paiement de votre commande</h1>
+                <h1 class="mt-5 mb-5 text-center">Adresse de livraison</h1>
 
+                {% include ('navbar/flash.html.twig') %}
 
 
                 <form method="post" id="payment-form">
@@ -119,7 +120,7 @@
                     </label>
                     <label>
                         <span>Nom :</span>
-                        <input name="nom" class="field" placeholder="Doe" required />
+                        <input name="nom" class="field" id="nom" placeholder="Doe" required />
                     </label>
                     <label>
                         <span>Société :</span>
@@ -130,8 +131,12 @@
                         <input class="field" name="telephone" placeholder="03 81 50 83 45" type="tel" required />
                     </label>
                     <label>
+                        <span>Numero :</span>
+                        <input class="field" name="numero" placeholder="79" type="number" required />
+                    </label>
+                    <label>
                         <span>Adresse :</span>
-                        <input class="field" name="adresse" placeholder="79 Rue des Granges" type="text" required />
+                        <input class="field" name="adresse" placeholder="Rue des Granges" type="text" required />
                     </label>
                     <label>
                         <span>Code postale :</span>
@@ -145,18 +150,9 @@
                         <span>Livraison :</span>
                         <input type="date" id="start" name="livraison" class="field" min="{{ date }}" required>
                     </label>
-                    <input type="hidden" name="stripe">
-                    <label>
-                        <span>Titulaire carte :</span>
-                        <input type="text" id="cardholder-name" class="field" placeholder="Titulaire de la carte">
-                    </label>
-                    <label>
-                        <span>Carte bancaire :</span>
-                        <div id="card-element" class="field mr-3"></div>
-                        <div id="errors"></div>
-                        <div id="card-errors" role="alert"></div>
-                    </label>
-                    <button id="card-button" class="btn" type="button" data-secret="{{ intent.client_secret }}">Payer - {{ intent.amount /100 }}<small>With by Stripe <i class='bx bxl-stripe' ></i></small></button>
+                    <div class="class text-right">
+                        <button id="card-button" class="btn" type="submit">Payer<small> With by Stripe <i class='bx bxl-stripe' ></i></small></button>
+                    </div>
                 </form>
 
             </div>
@@ -186,92 +182,36 @@
      </script>
      <script src="https://js.stripe.com/v3/"></script>
     <script>
-
-
-
-
-
-
     // Create a Stripe client.
 
-    var stripe = Stripe('pk_test_51HEWz5LDGj5KeXGgk5GqlhnrvTh5Clr5X3t2gZheY6oRsfV9OFQmmoAaYeGa3T7p8Prn2TyOXaTCv4mU99dKLj1k001n8of7TD');
-
-    let redirect = "/index.php"
-    let cardHolderName = document.getElementById("cardholder-name")
-    let cardButton = document.getElementById("card-button")
-    let clientSecret = cardButton.dataset.secret;
 
 
-    var elements = stripe.elements({
-        fonts: [
-            {
-                family: 'Open Sans',
-                weight: 400,
-                src: 'local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format("woff2")',
-                unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215',
-            },
-        ]
-    });
+        let cardButton = document.getElementById('card-button');
 
-    let style = {
-        base: {
-            iconColor: '#F99A52',
-            color: '#32315E',
-            lineHeight: '48px',
-            fontWeight: 400,
-            fontFamily: '"Open Sans", "Helvetica Neue", "Helvetica", sans-serif',
-            fontSize: '15px',
-            '::placeholder': {
-                color: '#CFD7DF',
-        }
-    }};
+        cardButton.addEventListener('click', () => {
+            window.location = "content.html"
+                        var data = {};
+                        data['nom'] = $('#nom').val()
+                        data['prenom'] = $('#prenom').val()
+                        data['societe'] = $('#societe').val()
+                        data['telephone'] = $('#telephone').val()
+                        data['numero'] = $('#numero').val()
+                        data['adresse'] = $('#adresse').val()
+                        data['code'] = $('#code').val()
+                        data['ville'] = $('#ville').val()
+                        data['livraison'] = $('#livraison').val()
+                        console.log(data)
+                        $("#card-button").click(function () {
+                            $.ajax({
+                                url: "{{ path('webhook') }}",
+                                type: 'POST',
+                                data: data,
+                            });
 
-    let card = elements.create("card", { style: style });
+                        });
 
-        card.mount("#card-element")
+            });
 
-card.addEventListener("change", (event) => {
-    let displayError = document.getElementById("card-errors")
-    displayError.style.color = "#FF0000";
-    if(event.error){
-        displayError.textContent = event.error.message;
-    } else {
-        displayError.textContent = "";
-    }
-} )
-
-    var response = fetch('/secret').then(function(response) {
-        return response.json();
-    }).then(function(responseJson) {
-        var clientSecret = responseJson.client_secret;
-        // Call stripe.confirmCardPayment() with the client secret.
-    });
-
-
-    cardButton.addEventListener('click', function(ev) {
-        ev.preventDefault();
-        stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    name: cardHolderName.value
-                }
-            }
-        }).then(function(response) {
-            if (response.error) {
-                // Show error to your customer (e.g., insufficient funds)
-                let error = document.getElementById("errors")
-                error.innerText = response.error.message
-                error.style.color = "#FF0000";
-            } else {
-                // The payment has been processed!
-                if (response.paymentIntent.status && response.paymentIntent === 'succeeded') {
-                    f = document.getElementById("payment-form");
-                    f.elements["stripe"].value = 'montexte';
-                }
-            }
-        });
-    });
 
 
 

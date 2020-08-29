@@ -30,7 +30,6 @@
     </section><!-- End Breadcrumbs Section -->
     <section class="inner-page">
         <div class="container">
-            {% if items | length > 0 %}
             <div class="class mt-5">
             <h3 class="mt-5">Progression de la commande :</h3>
             </div>
@@ -54,21 +53,14 @@
 
 <div class="mt-5">
         {{ form(form) }}
+    <div class="text-right">
+        <h2 class="text-center text-info">Merci de commander la veille pour le lendemain au minimum</h2>
+    <button class="btn mt-3" type="submit">Payer - {{ total }}€ - <small> With Stripe <i class='bx bxl-stripe' ></i></small></button>
+        <button type="submit" class="btn mt-3">Réserver</button>
 
-
-
-        </div>
-
-            {% else %}
-                <h2 class="text-center mt-5 mb-5">Votre panier est vide ! </h2>
-                <div class="text-center">
-                    <img src="/img/betiseetvolupthe.jpg" width="200" height="300"  alt="" class="pb-5">
-                </div>
-            {% endif %}
-
-
+</div>
     </div>
-
+        </div>
     </section>
 </main>
 {% endblock %}

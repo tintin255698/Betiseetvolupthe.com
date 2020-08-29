@@ -103,7 +103,7 @@
         </div>
 
         <div class="text-right">
-        <a href="{{ path('payer')}}" class="btn btn-info btn-sm">Payer<i class='bx bxl-stripe'></i></a>
+        <button type="submit" class="btn" {% if total < 10 %} disabled="disabled" {% endif %} onclick="window.open('http://127.0.0.1:8000/accepte');">Continuer</button>
         </div>
 <br><br><br>
         <h3 class="text-info text-center">En cas de commande d'un menu, assurer vous d'avoir une entree, un plat et un dessert</h3><br><br>
