@@ -7,7 +7,7 @@
 {% block body %}
     <form action ="#" method="POST">
         <button id="checkout-button">Checkout</button>
-        <input id="prodId" name="prodId" value="{{ sessId }}">
+        <input type= "hidden" id="prodId" name="prodId" value="{{ sessId }}">
     </form>
 
     {% block javascripts %}

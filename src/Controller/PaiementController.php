@@ -5,11 +5,9 @@ namespace App\Controller;
 
 
 
-use App\Entity\Commande;
-use App\Entity\Paiement;
-use App\Entity\Repas;
+
+
 use App\Repository\RepasRepository;
-use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +44,25 @@ class PaiementController extends AbstractController
 // Handle the event
         switch ($event->type) {
             case 'payment_intent.succeeded':
-                return $this->redirectToRoute('termine');
+
+                $panier = $session->get('panier', []);
+                $panierWithData = [];
+                foreach ($panier as $id => $quantity) {
+                    $panierWithData[] = [
+                        'product' => $repasRepository->find($id),
+                        'quantity' => $quantity
+                    ];
+                }
+
+                $total = 0;
+                foreach ($panierWithData as $item) {
+                    $totalItem = $item['product']->getPrix() * $item['quantity'];
+                    $total += $totalItem;
+                }
+
+
+
+
                 break;
             case 'payment_method.attached':
                 $paymentMethod = $event->data->object; // contains a \Stripe\PaymentMethod
@@ -62,9 +78,15 @@ class PaiementController extends AbstractController
 
         http_response_code(200);
 
-        return new Response();
+
+
+        return $this->render('paiement/index.html.twig', [
+            'controller' => 'controller',
+        ]);
 
     }
+
+
 
 }
 

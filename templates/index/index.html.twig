@@ -31,7 +31,7 @@
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">Un univers féérique</h2>
-                                <p class="animate__animated animate__fadeInUp">Un petit coin de paradis ou le temps est suspendu le temps d’un agréable repas</p>
+                                <p class="animate__animated animate__fadeInUp">Un petit coin de paradis où le temps est suspendu le temps d’un agréable repas</p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown">Des moments inoubliables </h2>
-                                <p class="animate__animated animate__fadeInUp">Jolie petite enseigne au coeur de la ville idéale pour une petite faim gourmande aux quatre heures</p>
+                                <p class="animate__animated animate__fadeInUp">Jolie enseigne au coeur de la ville idéale pour une petite faim gourmande</p>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         <div class="box">
                             <span>01</span>
                             <h4>De la magie</h4>
-                            <p>Un p'tit coin de paradis avec un personnel au top. Un cadre atypique qui rappel un peu le monde d'Alice au pays des merveilles </p>
+                            <p>Un p'tit coin de paradis avec un personnel au top. Un cadre atypique qui rappelle un peu le monde d'Alice au pays des merveilles </p>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@
                         <div class="box">
                             <span>02</span>
                             <h4>Une cuisine faite maison</h4>
-                            <p>Des plats succulents aux saveurs savamment entremêlés afin de vous surprendre aussi bien les papilles que les yeux!<br><br></p>
+                            <p>Des plats succulents aux saveurs savamment entremêlées afin de vous surprendre aussi bien les papilles que les yeux!<br><br></p>
                         </div>
                     </div>
 
@@ -346,7 +346,7 @@
 
                 <div class="section-title">
                     <h2>Quelques Photos de <span>Notre Restaurant ...</span></h2>
-                    <p>Elles sont toutes ici :</p>
+                    <p>Elles sont toutes ici <i class='bx bx-image bx-burst' ></i> !!! </p>
                     <p><a href="{{ path('galerie') }}" class="btn btn-dark">Voir toutes les photos</a></p>
 
                 </div>
@@ -357,7 +357,7 @@
                     {% for plas in pla %}
                         <div class="col-lg-3 col-md-4">
                             <div class="gallery-item">
-                                <a href="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('rectangle') }}" class="venobox" data-gall="gallery-item">
+                                <a href="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}" class="venobox" data-gall="gallery-item">
                                     <img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}" alt="{{ plas.imageName}}" class="img-fluid">
                                 </a>
                             </div>
@@ -409,7 +409,7 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2><span>Contacter</span> nous</h2>
+                    <h2><span>Contactez</span> nous</h2>
                     <p>N'hésitez pas à nous contacter, nous vous ferons un plaisir de vous répondre.</p>
                 </div>
             </div>

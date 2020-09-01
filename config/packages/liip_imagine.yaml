@@ -3,24 +3,15 @@ liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
     filter_sets:
-        rectangle:
-            quality: 75
-            filters:
-                thumbnail:
-                    size: [2400, 1800]
-                    mode: outbound
-        cercle:
-            quality: 75
-            filters:
-                thumbnail:
-                    size: [200, 150]
-                    mode: outbound
-        carre:
-            quality: 75
-            filters:
-                thumbnail:
-                    size: [800, 600]
-                    mode: outbound
+       carre:
+           filters:
+               # use and setup the "fixed" filter
+               fixed:
+                   # set the fixed size to "120x90" pixels
+                   width: 800
+                   height: 600
+
+
 
 
 

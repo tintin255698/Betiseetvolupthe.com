@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Votre panier</h2>
                 <ol>
-                    <li><a href="{{ path('index')}}#hero">Acceuil</a></li>
+                    <li><a href="{{ path('index')}}#hero">Accueil</a></li>
                     <li>Votre panier</li>
                 </ol>
             </div>
@@ -106,8 +106,8 @@
         <button type="submit" class="btn" {% if total < 10 %} disabled="disabled" {% endif %} onclick="window.open('http://127.0.0.1:8000/accepte');">Continuer</button>
         </div>
 <br><br><br>
-        <h3 class="text-info text-center">En cas de commande d'un menu, assurer vous d'avoir une entree, un plat et un dessert</h3><br><br>
-        <h3 class="text-info text-center">En cas d'ajout d'un produit du menu, votre commande sera valide a condition d'ajouter le menu a 14.50€</h3>
+        <h3 class="text-info text-center">En cas de commande d'un menu, assurez-vous d'avoir une entrée, un plat et un dessert</h3><br><br>
+        <h3 class="text-info text-center">En cas d'ajout d'un produit du menu, votre commande sera valide à condition d'ajouter le menu à 14.50€</h3>
     {% else %}
         <h2 class="text-center mt-5 mb-5">Votre panier est vide ! </h2>
         <div class="text-center">

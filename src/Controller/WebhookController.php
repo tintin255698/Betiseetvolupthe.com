@@ -41,6 +41,12 @@ class WebhookController extends AbstractController
             $total += $totalItem;
         }
 
+
+
+        $this->get('session')->remove('panier');
+
+
+
         $date = date('Y-m-d', strtotime('+1 day'));
 
         \Stripe\Stripe::setApiKey("sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT");

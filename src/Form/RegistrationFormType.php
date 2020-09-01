@@ -6,7 +6,6 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -50,7 +49,7 @@ class RegistrationFormType extends AbstractType
                 'second_options'=> array('label' => 'Confirmation du mot de passe', 'attr'=>['placeholder'=>'Entrer la confirmation de votre mot de passe']),
             ))
             ->add('agreeTerms', CheckboxType::class, [
-                'label'=>'Accepter les condition : ',
+                'label'=>'Accepter les conditions : ',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

@@ -71,9 +71,25 @@ class AccepteController extends AbstractController
     /**
      * @Route("/termine", name="termine")
      */
-    public function termine()
+    public function termine( SessionInterface $session)
     {
-        $this->get('session')->remove('panier');
+        $payment = $session->get('payement');
+
+        \Stripe\Stripe::setApiKey(
+            'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
+        );
+
+        $intent = \Stripe\PaymentIntent::retrieve([
+            'id' => $payment
+        ]);
+
+
+        $payload = @file_get_contents('php://input');
+
+
+        dump($intent);
+        dump($payload);
+
 
         return $this->render('accepte/termine.html.twig', [
             'form' => 'form'

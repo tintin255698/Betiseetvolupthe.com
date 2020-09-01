@@ -42,8 +42,8 @@ class CheckoutController extends AbstractController
             'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
         );
 
-        try {
-            $session = $stripe->checkout->sessions->create([
+
+            $session2 = $stripe->checkout->sessions->create([
                 'success_url' => 'http://127.0.0.1:8000/termine',
                 'cancel_url' => 'https://example.com/cancel',
                 'payment_method_types' => ['card'],
@@ -66,26 +66,24 @@ class CheckoutController extends AbstractController
                 $em->persist($commande);
             }
             $em->flush();
-        } catch(\Stripe\Exception\CardException $e) {
 
-        } catch (\Stripe\Exception\RateLimitException $e) {
-            // Too many requests made to the API too quickly
-        } catch (\Stripe\Exception\InvalidRequestException $e) {
-            // Invalid parameters were supplied to Stripe's API
-        } catch (\Stripe\Exception\AuthenticationException $e) {
-            // Authentication with Stripe's API failed
-            // (maybe you changed API keys recently)
-        } catch (\Stripe\Exception\ApiConnectionException $e) {
-            // Network communication with Stripe failed
-        } catch (\Stripe\Exception\ApiErrorException $e) {
-            // Display a very generic error to the user, and maybe send
-            // yourself an email
-        } catch (Exception $e) {
-            // Something else happened, completely unrelated to Stripe
-        }
 
-            $stripeSession = array($session);
+            $stripeSession = array($session2);
         $sessId = ($stripeSession[0]['id']);
+
+
+
+
+        $stripeSession = array($session2);
+        $payment2 = ($stripeSession[0]['payment_intent']);
+
+        $session->set('payment', $payment2);
+        $payment = $session->get('payment');
+
+
+
+
+
 
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,
