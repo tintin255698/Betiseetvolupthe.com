@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresse;
+use App\Entity\Commande;
 use App\Entity\Commentaire;
 use App\Entity\Image;
 use App\Entity\Reservation;
 use App\Entity\User;
+use App\Form\AdresseType;
 use App\Form\EditUserType;
 use App\Form\ImageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -150,6 +153,42 @@ class AdminController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('reservation');
     }
+
+    /**
+     * @Route("admin/afficher/commande", name="afficher_commande")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function afficherCommande()
+    {
+
+        $repo = $this->getDoctrine()->getRepository(Commande::class);
+        $pla = $repo->findall();
+
+
+        return $this->render('admin/commande.html.twig', [
+            'pla' => $pla,
+        ]);
+
+    }
+
+    /**
+     * @Route("admin/afficher/user/{id}", name="afficher_user")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function afficherUser($id)
+    {
+
+        $repo = $this->getDoctrine()->getRepository(Adresse::class)->findByExampleField($id);
+
+        dd($repo);
+
+        return $this->render('admin/user.html.twig', [
+            'pla' => $repo,
+        ]);
+
+    }
+
+
 
 
 

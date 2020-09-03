@@ -34,6 +34,7 @@ class PanierController extends AbstractController
             $total += $totalItem;
         }
 
+        dd($item);
 
         return $this->render('panier/index.html.twig', [
             'items' => $panierWithData,

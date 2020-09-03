@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PaiementController extends AbstractController
 {
     /**
-     * @Route("", name="paiement")
+     * @Route("paiement", name="paiement")
      */
     public function index(Request $request, EntityManagerInterface $em, SessionInterface $session, RepasRepository $repasRepository)
     {

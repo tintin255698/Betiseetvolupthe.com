@@ -57,33 +57,14 @@ class CheckoutController extends AbstractController
                 ],
                 'mode' => 'payment',
             ]);
-            foreach ($panierWithData as $item) {
-                $commande = new Commande();
-                $commande->setProduit($item['product']->getProduit());
-                $commande->setQuantite($item['quantity']);
-                $commande->setTotal($total);
-                $commande->setUser($this->getUser());
-                $em->persist($commande);
-            }
-            $em->flush();
-
 
             $stripeSession = array($session2);
         $sessId = ($stripeSession[0]['id']);
-
-
-
 
         $stripeSession = array($session2);
         $payment2 = ($stripeSession[0]['payment_intent']);
 
         $session->set('payment', $payment2);
-        $payment = $session->get('payment');
-
-
-
-
-
 
         return $this->render('checkout/index.html.twig', [
             'sessId' => $sessId,
