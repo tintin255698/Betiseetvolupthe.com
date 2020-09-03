@@ -172,22 +172,63 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/afficher/user/{id}", name="afficher_user")
+     * @Route("admin/supprimer/commande/{id}", name="supprimer_commande")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function afficherUser($id)
+    public function supprimerCommande(Commande $id)
     {
 
-        $repo = $this->getDoctrine()->getRepository(Adresse::class)->findByExampleField($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($id);
+        $em->flush();
+        return $this->redirectToRoute('afficher_commande');
 
-        dd($repo);
+    }
 
-        return $this->render('admin/user.html.twig', [
-            'pla' => $repo,
+    /**
+     * @Route("admin/afficher/adresse", name="afficher_adresse")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function afficherAdresse()
+    {
+
+        $repo = $this->getDoctrine()->getRepository(Adresse::class);
+        $pla = $repo->findall();
+
+
+        return $this->render('admin/adresse.html.twig', [
+            'pla' => $pla,
         ]);
 
     }
 
+
+    /**
+     * @Route("admin/supprimer/commande/{id}", name="supprimer_commande")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function supprimerAdresse(Adresse $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($id);
+        $em->flush();
+        return $this->redirectToRoute('afficher_adresse');
+
+    }
+
+
+    /**
+     * @Route("admin/dashboard", name="dashboard")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function dashboard()
+    {
+        return $this->render('admin/dashboard.html.twig', [
+            'pla' => 'dashboard'
+        ]);
+
+    }
 
 
 
