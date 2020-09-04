@@ -26,7 +26,7 @@ class AccepteType extends AbstractType
             ->add('ville', TextType::class, ['label'=>'Ville'])
             ->add('livraison', DateType::class,['widget' => 'single_text',
                 'attr'   => ['min' => ( new \DateTime('now +1 day'))->format('Y-m-d H:i:s')]])
-        ->add('Submit', SubmitType::class)
+        ->add('Valider', SubmitType::class)
 
         ;
     }

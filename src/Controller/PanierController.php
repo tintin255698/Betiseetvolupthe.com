@@ -43,7 +43,7 @@ class PanierController extends AbstractController
     /**
      * @Route("/panier/add/{id}", name="panier_add")
      */
-    public function add($id, Request $request, RepasRepository $repasRepository)
+    public function add($id, Request $request)
     {
 
         $session = $request->getSession();
@@ -58,15 +58,6 @@ class PanierController extends AbstractController
         }
         $session->set('panier', $panier);
 
-
-        $panierWithData = [];
-
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'product' => $repasRepository->find($id),
-                'quantity' => $quantity
-            ];
-        }
         return $this->redirectToRoute('modal');
     }
 

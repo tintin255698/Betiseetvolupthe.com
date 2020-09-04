@@ -19,27 +19,6 @@ class AccepteController extends AbstractController
      */
     public function index(Request $request, SessionInterface $session, RepasRepository $repasRepository)
     {
-
-        $panier = $session->get('panier', []);
-
-
-        $panierWithData = [];
-
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'product' => $repasRepository->find($id),
-                'quantity' => $quantity
-            ];
-        }
-
-        $total = 0;
-        foreach ($panierWithData as $item) {
-            $totalItem = $item['product']->getPrix() * $item['quantity'];
-            $total += $totalItem;
-        }
-
-        $date = date('Y-m-d', strtotime('+1 day'));
-
         $post = new Adresse();
 
         $post->setUser($this->getUser());
@@ -53,19 +32,12 @@ class AccepteController extends AbstractController
             $doctrine->persist($post);
             $doctrine->flush();
 
-            $this->addFlash(
-                'success',
-                "<strong>Votre adresse est bien validée, merci pour votre commande</strong>"
-            );
-
             return $this->redirectToRoute('checkout');
 
         }
 
         return $this->render('accepte/index.html.twig', [
             'form' => $form->createView(),
-            'date' =>$date,
-            'total'=>$total
         ]);
     }
 

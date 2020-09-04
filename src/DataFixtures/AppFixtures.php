@@ -49,17 +49,16 @@ class AppFixtures extends Fixture
 
         //Gestion des repas
 
-        for($i=1; $i<=2; $i++) {
-
-            $user = $users[mt_rand(0, count($users) - 1)];
+        for($i=1; $i<=30; $i++) {
 
             $repas = new Repas();
             $repas->setProduit($faker->company);
             $repas->setPrix($faker->randomNumber(2));
-            $repas->setUser($user);
+            $repas->setDescription($faker->sentence);
+            $repas->setType('limonade');
 
             $manager->persist($repas);
-            $repa[] = $repas;
+
         }
 
 
