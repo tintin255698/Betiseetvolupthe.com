@@ -21,13 +21,11 @@
             <nav class="nav-menu margin d-none d-lg-block">
                 <ul class="mr-5">
 
-                    <li class="marge"><a href="{{ path('index')}}#hero">Accueil</a></li>
-                    <li class="marge"><a href="{{ path('index')}}#menu">Commander</a></li>
-                    <li class="marge"><a href="{{ path('index')}}#book-a-table">Réserver</a></li>
-                    <li class="marge"><a href="{{ path('galerie') }}">Galerie</a></li>
-                    <li class="marge"><a href="{{ path('commentaire')}}">Vos avis</a></li>
-                    <li class="marge" ><a href="{{ path('index')}}#contact">Nous contacter</a></li>
-                    <li class="drop mr-3"><a href="{{ path ('panier') }}">Panier <i class='bx bx-cart' ></i></a></li>
+                    <li class="border-left"><a href="{{ path('index')}}#hero">Notre restaurant </a></li>
+                    <li class="border-left"><a href="{{ path('index')}}#menu">Commander</a></li>
+                    <li class="border-left"><a href="{{ path('galerie') }}">Galerie</a></li>
+                    <li class="border-left"><a href="{{ path('index')}}#contact">Nous contacter</a></li>
+                    <li class=" drop mr-1"><a href="{{ path ('panier') }}">Panier <i class='bx bx-cart' ></i></a></li>
 
                     {% if app.user %}
 
