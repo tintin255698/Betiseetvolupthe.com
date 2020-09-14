@@ -19,7 +19,6 @@ class CommandeType extends AbstractType
             ->add('nom', TextType::class, ['label'=>'Nom', 'attr'=>['placeholder'=>'Jone']])
             ->add('prenom', TextType::class, ['label'=>'Prénom', 'attr'=>['placeholder'=>'Jone']])
             ->add('societe', TextType::class, ['label'=>'Société', 'attr'=>['placeholder'=>'Bêtises et Volupthé']])
-            ->add('telephone', NumberType::class, ['label'=>'Téléphone', 'attr'=>['placeholder'=>'03 81 50 83 45']])
             ->add('numero', NumberType::class, ['label'=>'Numéro de rue', 'attr'=>['placeholder'=>'79']])
             ->add('adresse', TextType::class, ['label'=>'Adresse', 'attr'=>['placeholder'=>'Rue des Granges']])
             ->add('code', NumberType::class, ['label'=>'Code postal', 'attr'=>['placeholder'=>'25000']])
