@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Entity\Repas;
 use App\Entity\User;
+use App\Repository\ComposantMenuRepository;
+use App\Repository\MenuRepository;
 use App\Repository\RepasRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,13 +19,15 @@ class CheckoutController extends AbstractController
     /**
      * @Route("/checkout", name="checkout")
      */
-    public function index(Request $request,  SessionInterface $session, RepasRepository $repasRepository, EntityManagerInterface $em)
+    public function index(Request $request,  SessionInterface $session, RepasRepository $repasRepository, ComposantMenuRepository $composantMenuRepository, MenuRepository $menuRepository, EntityManagerInterface $em)
     {
-
-
         $panier = $session->get('panier', []);
+        $menu = $session->get('menu', []);
+        $menu2 = $session->get('menu2', []);
 
         $panierWithData = [];
+        $menuWithData = [];
+        $menuWithData2 = [];
 
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
@@ -32,11 +36,35 @@ class CheckoutController extends AbstractController
             ];
         }
 
+        foreach ($menu as $id => $quantity2) {
+            $menuWithData[] = [
+                'product' => $composantMenuRepository->find($id),
+                'quantity' => $quantity2
+            ];
+        }
+
+        foreach ($menu2 as $id => $quantity3) {
+            $menuWithData2[] = [
+                'product' => $menuRepository->find($id),
+                'quantity' => $quantity3
+            ];
+        }
+
+
         $total = 0;
         foreach ($panierWithData as $item) {
             $totalItem = $item['product']->getPrix() * $item['quantity'];
             $total += $totalItem;
         }
+
+
+        $tot = 0;
+        foreach ($menuWithData2 as $item2) {
+            $totalItem2 = $item2['product']->getPrix() * $item2['quantity'];
+            $tot += $totalItem2;
+        }
+
+        $totaux = $tot + $total;
 
         $stripe = new \Stripe\StripeClient(
             'sk_test_51HEWz5LDGj5KeXGgHutzw0dSS6rfrCstf8wrV0G8Xrxwrtuc7YuNLTXXfT5KDVPHM3Xx3vv0pT04Jtj6eVjEPdj200yU5O6TaT'
@@ -47,7 +75,7 @@ class CheckoutController extends AbstractController
                 'payment_method_types' => ['card'],
                 'line_items' => [
                     [
-                        'amount' => $total * 100,
+                        'amount' => $totaux * 100,
                         'quantity' => 1,
                         'currency' => 'eur',
                         'name'=> 'Total :'

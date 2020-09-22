@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Livraison;
+use App\Entity\Menu;
 use App\Entity\Repas;
+use App\Entity\User;
 use App\Form\LivraisonType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,6 +83,9 @@ class MenuController extends AbstractController
         $menu = $repo2->findByType(['menu' => 'menu']);
         $autre = $repo2->findByType(['biere' => 'biere']);
 
+        $repo = $this->getDoctrine()->getRepository(Menu::class);
+        $pla = $repo->findall();
+
         return $this->render('menu/index.html.twig', [
             'jus' => $jus,
             'limonade' => $limonade,
@@ -94,6 +99,7 @@ class MenuController extends AbstractController
             'dessert' => $dessert,
             'pique' => $pique,
             'menu' => $menu,
+            'pla' => $pla,
             'form' => $form2->createView(),
         ]);
     }

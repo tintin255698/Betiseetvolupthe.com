@@ -179,12 +179,12 @@
 
 
         <div class="col menu-item filter-menu">
-            {% for menus in menu %}
+            {% for plas in pla %}
                 <div class="menu-content">
-                    <a href="{{ path('menu_add', {'id':menus.id}) }}">{{ menus.produit }}</a><span>{{ menus.prix }}€</span>
+                    <a href="{{ path('menu_add', {'id':plas.id}) }}">{{ plas.produit }}</a><span>{{ plas.prix }}€</span>
                 </div>
                 <div class="menu-ingredients">
-                    {{ menus.description }}
+                    {{ plas.description }}
                 </div>
             {% endfor %}
             <p class="text-center partie mt-5">Entrées</p>
