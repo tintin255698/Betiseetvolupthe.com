@@ -20,12 +20,12 @@ class PanierController extends AbstractController
     public function index(SessionInterface $session, RepasRepository $repasRepository, ComposantMenuRepository $composantMenuRepository, MenuRepository $menuRepository)
     {
         $panier = $session->get('panier', []);
+        $composant = $session->get('composant', []);
         $menu = $session->get('menu', []);
-        $menu2 = $session->get('menu2', []);
 
         $panierWithData = [];
+        $composantWithData = [];
         $menuWithData = [];
-        $menuWithData2 = [];
 
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
@@ -34,17 +34,17 @@ class PanierController extends AbstractController
             ];
         }
 
-        foreach ($menu as $id => $quantity2) {
-            $menuWithData[] = [
+        foreach ($composant as $id => $quantity) {
+            $composantWithData[] = [
                 'product' => $composantMenuRepository->find($id),
-                'quantity' => $quantity2
+                'quantity' => $quantity
             ];
         }
 
-        foreach ($menu2 as $id => $quantity3) {
-            $menuWithData2[] = [
+        foreach ($menu as $id => $quantity) {
+            $menuWithData[] = [
                 'product' => $menuRepository->find($id),
-                'quantity' => $quantity3
+                'quantity' => $quantity
             ];
         }
 
@@ -55,24 +55,22 @@ class PanierController extends AbstractController
             $total += $totalItem;
         }
 
-
         $tot = 0;
-        foreach ($menuWithData2 as $item2) {
-            $totalItem2 = $item2['product']->getPrix() * $item2['quantity'];
-            $tot += $totalItem2;
+        foreach ($menuWithData as $item) {
+            $totalItem = $item['product']->getPrix() * $item['quantity'];
+            $tot += $totalItem;
         }
 
         $totaux = $tot + $total;
 
 
         return $this->render('panier/index.html.twig', [
-            'items' => $panierWithData,
-            'items2' => $menuWithData,
-            'items3' => $menuWithData2,
+            'panier' => $panierWithData,
+            'composant' => $composantWithData,
+            'menu' => $menuWithData,
             'total' => $total,
             'tot' => $tot,
             'totaux' => $totaux,
-            'menu' => $menu
         ]);
     }
 
@@ -95,7 +93,6 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier');
     }
 
-
     /**
      * @Route("/menu/add/{id}", name="menu_add")
      */
@@ -104,23 +101,55 @@ class PanierController extends AbstractController
         $session = $request->getSession();
 
 
-        $menu2 = $session->get('menu2', []);
+        $menu = $session->get('menu', []);
 
-        if(!empty($menu2[$id])){
-            $menu2[$id]++;
+        if(!empty($menu[$id])){
+            $menu[$id]++;
         } else {
-            $menu2[$id] = 1;
+            $menu[$id] = 1;
         }
-        $session->set('menu2', $menu2);
-        return $this->redirectToRoute('entree');
+        $session->set('menu', $menu);
+        return $this->redirectToRoute('panier');
+    }
+
+    /**
+     * @Route("/composant/add/{id}", name="composant_add")
+     */
+    public function menu2($id, Request $request){
+
+        $session = $request->getSession();
+
+
+        $composant = $session->get('composant', []);
+
+        if(!empty($composant[$id])){
+            $composant[$id]++;
+        } else {
+            $composant[$id] = 1;
+        }
+        $session->set('composant', $composant);
+        return $this->redirectToRoute('panier');
     }
 
 
+    /**
+     * @Route("/panier/one/{id}", name="panier_one")
+     */
+    public function addBoisson($id, SessionInterface $session)
+    {
+
+        $panier = $session->get('panier', []);
+        if (!empty($panier[$id])) {
+            $panier[$id]++;
+        }
+        $session->set('panier', $panier);
+        return $this->redirectToRoute('panier');
+    }
 
     /**
      * @Route("/panier/remove/{id}", name="panier_remove")
      */
-    public function remove($id, SessionInterface $session)
+    public function removeBoisson($id, SessionInterface $session)
     {
 
         $panier = $session->get('panier', []);
@@ -133,6 +162,75 @@ class PanierController extends AbstractController
         $session->set('panier', $panier);
         return $this->redirectToRoute('panier');
     }
+
+
+
+    /**
+     * @Route("/menu2/one/{id}", name="menu2_one")
+     */
+    public function oneMenu2($id, SessionInterface $session)
+    {
+        $menu2 = $session->get('menu2', []);
+
+        if (!empty($menu2[$id])) {
+            $menu2[$id]++;
+        }
+        $session->set('menu2', $menu2);
+        return $this->redirectToRoute('panier');
+    }
+
+
+    /**
+     * @Route("/menu2/remove/{id}", name="menu2_remove")
+     */
+    public function removeMenu2($id, SessionInterface $session)
+    {
+        $menu2 = $session->get('menu2', []);
+
+        if (!empty($menu2[$id])) {
+            $menu2[$id]--;
+        } else if (empty($menu2[$id])) {
+            unset($menu2[$id]);
+        }
+        $session->set('menu2', $menu2);
+        return $this->redirectToRoute('panier');
+    }
+
+
+    /**
+     * @Route("/menu/one/{id}", name="menu_one")
+     */
+    public function oneMenu($id, SessionInterface $session)
+    {
+        $menu = $session->get('menu', []);
+
+        if (!empty($menu[$id])) {
+            $menu[$id]++;
+        }
+        $session->set('menu', $menu);
+        return $this->redirectToRoute('panier');
+    }
+
+
+    /**
+     * @Route("/menu/remove/{id}", name="menu_remove")
+     */
+    public function removeMenu($id, SessionInterface $session)
+    {
+        $menu = $session->get('menu', []);
+
+        if (!empty($menu[$id])) {
+            $menu[$id]--;
+        } else if (empty($menu[$id])) {
+            unset($menu[$id]);
+        }
+        $session->set('menu', $menu);
+        return $this->redirectToRoute('panier');
+    }
+
+
+
+
 
 
     /**
@@ -232,5 +330,8 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('modal');
     }
 }
+
+
+
 
 

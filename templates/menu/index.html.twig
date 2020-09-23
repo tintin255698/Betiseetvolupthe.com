@@ -188,29 +188,20 @@
                 </div>
             {% endfor %}
             <p class="text-center partie mt-5">Entrées</p>
+            <p>Choisissez votre entrée :</p><br>
             {% for entres in entre %}
-                <p class="sans">{{ entres.produit }}</p>
-                <div class="menu-ingredients">
-                    {{ entres.description }}
-                </div>
+                <p class="sans"><a href="{{ path('composant_add', {'id':entres.id}) }}">{{ entres.produit }}</a></p>
             {% endfor %}
+
             <p class="text-center partie mt-5">Plats</p>
-            {% for plats in plat %}
-
-                <p class="sans">{{ plats.produit }}</p>
-
-                <div class="menu-ingredients">
-                    {{ plats.description }}
-                </div>
-            {% endfor %}
+            <p>Choisissez votre plats :</p><br>
+            {% for repas in repa %}
+                    <p class="sans"><a href="{{ path('composant_add', {'id':repas.id}) }}">{{ repas.produit }}</a></p>
+                {% endfor %}
             <p class="text-center partie mt-5">Fromages ou desserts</p>
+            <p>Choisissez votre dessert ou formage :</p><br>
             {% for desserts in dessert %}
-
-                <p class="sans" >{{ desserts.produit }}</p>
-
-                <div class="menu-ingredients">
-                    {{ desserts.description }}
-                </div>
+                    <p class="sans"><a href="{{ path('composant_add', {'id':desserts.id}) }}">{{ desserts.produit }}</a></p>
             {% endfor %}
         </div>
     </div>

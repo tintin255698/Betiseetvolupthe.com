@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ComposantMenu;
 use App\Entity\Livraison;
 use App\Entity\Menu;
 use App\Entity\Repas;
@@ -71,14 +72,15 @@ class MenuController extends AbstractController
             array('produit' => 'ASC')
         );
 
+        $entre = $this->getDoctrine()->getRepository(ComposantMenu::class)->entree();
+        $repa = $this->getDoctrine()->getRepository(ComposantMenu::class)->plat();
+        $dessert = $this->getDoctrine()->getRepository(ComposantMenu::class)->dessert();
+
         $limonade = $repo2->findByType(['limonade' => 'limonade']);
         $eau = $repo2->findByType(['eau' => 'eau']);
         $vin = $repo2->findByType(['vin' => 'vin']);
         $pic = $repo2->findByType(['pic' => 'pic']);
         $the = $repo2->findByType(['the' => 'the']);
-        $entre = $repo2->findByType(['entre' => 'entre']);
-        $plat = $repo2->findByType(['plat' => 'plat']);
-        $dessert = $repo2->findByType(['dessert' => 'dessert']);
         $pique = $repo2->findByType(['pique' => 'pique']);
         $menu = $repo2->findByType(['menu' => 'menu']);
         $autre = $repo2->findByType(['biere' => 'biere']);
@@ -94,12 +96,12 @@ class MenuController extends AbstractController
             'vin' => $vin,
             'pic' => $pic,
             'the' => $the,
-            'entre' => $entre,
-            'plat' => $plat,
-            'dessert' => $dessert,
             'pique' => $pique,
             'menu' => $menu,
             'pla' => $pla,
+            'entre' => $entre,
+            'repa' => $repa,
+            'dessert' => $dessert,
             'form' => $form2->createView(),
         ]);
     }

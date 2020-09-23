@@ -39,7 +39,7 @@
 
 
 
-        {% if items3 | length > 0 or items2 | length > 0 or items | length > 0 %}
+        {% if panier | length > 0 or menu | length > 0 or composant | length > 0 %}
         <p>Menu :</p>
         <div class="table-responsive mt-5">
             <table class="table table-hover text-center" style="width:100%">
@@ -49,26 +49,31 @@
                     <th>Prix</th>
                     <th>Quantite</th>
                     <th>Total</th>
+                    <th>Ajouter</th>
                     <th>Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for items in items3 %}
+                {% for menus in menu %}
                     <tr>
-                        <td>{{ items.product.produit }}</td>
-                        <td> {{ items.product.prix }}</td>
-                        <td>{{ items.quantity }}€</td>
-                        <td>{{ items.product.prix * items.quantity }}€</td>
-
-
+                        <td>{{ menus.product.produit }}</td>
+                        <td> {{ menus.product.prix }}</td>
+                        <td>{{ menus.quantity }}€</td>
+                        <td>{{ menus.product.prix * menus.quantity }}€</td>
+                        <td>
+                            <a href="{{ path('menu2_one', {'id':menus.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-add-to-queue'></i></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('menu2_remove', {'id':menus.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-trash-alt' ></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
 
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3" class="text-right">Total : </td>
-                    <td>{{ tot }}</td>
+                    <td colspan="3" class="text-right">Total menus : </td>
+                    <td>{{ tot }}€</td>
                 </tr>
                 </tfoot>
             </table>
@@ -88,13 +93,21 @@
                 <tr>
                     <th>Produit</th>
                     <th>Quantite</th>
+                    <th>Ajouter</th>
+                    <th>Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for items in items2 %}
+                {% for composants in composant %}
                     <tr>
-                        <td>{{ items.product.produit }}</td>
-                        <td>{{ items.quantity }}</td>
+                        <td>{{ composants.product.produit }}</td>
+                        <td>{{ composants.quantity }}</td>
+                        <td>
+                            <a href="{{ path('menu_add', {'id':composants.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-add-to-queue'></i></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('menu_remove', {'id':composants.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-trash-alt' ></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
 
@@ -113,31 +126,35 @@
             <th>Prix</th>
             <th>Quantite</th>
             <th>Total</th>
+            <th>Ajouter</th>
             <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
-            {% for item in items %}
+            {% for paniers in panier %}
                 <tr>
-                    <td>{{ item.product.produit }}</td>
+                    <td>{{ paniers.product.produit }}</td>
                     <td>
-                        {% if item.product.type == 'jus' and item.quantity == 2 %}
+                        {% if paniers.product.type == 'jus' and paniers.quantity == 2 %}
                             4€
                         {% else %}
-                            {{ item.product.prix }}€
+                            {{ paniers.product.prix }}€
                         {% endif%}
                     </td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ paniers.quantity }}</td>
                     <td>
-                        {% if item.product.type == 'jus' and item.quantity == 2 %}
+                        {% if paniers.product.type == 'jus' and paniers.quantity == 2 %}
                             8€
                         {% else %}
-                        {{ item.product.prix * item.quantity }}€
+                        {{ paniers.product.prix * paniers.quantity }}€
                         {% endif%}
                     </td>
 
                     <td>
-                        <a href="{{ path('panier_remove', {'id':item.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-trash-alt' ></i></a>
+                        <a href="{{ path('panier_add', {'id':paniers.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-add-to-queue'></i></a>
+                    </td>
+                    <td>
+                        <a href="{{ path('panier_remove', {'id':paniers.product.id}) }}" class="btn btn-danger btn-sm"><i class='bx bx-trash-alt' ></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -145,7 +162,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" class="text-right">Total : </td>
+                    <td colspan="3" class="text-right">Total boissons et autres : </td>
                     <td>{{ total }}€</td>
 
                 </tr>
@@ -159,9 +176,9 @@
 
             <div class="text-right">
         <button type="submit" class="btn"
-                {% for item in items3 %}
-                 {% for items in items2 %}
-                {% if item.quantity != items.quantity %}
+                {% for composants in composant %}
+                 {% for menus in menu %}
+                {% if menus.quantity != composants.quantity %}
                 disabled="disabled" {% endif %} {% endfor%} {% endfor%} onclick="window.open('http://127.0.0.1:8000/accepte');">Continuer - total général : {{ totaux }}€</button>
         </div>
 <br><br><br>
