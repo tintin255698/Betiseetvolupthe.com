@@ -69,7 +69,6 @@
         <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
                 <li data-filter=".filter-menu" class="filter-active">Menu</li>
-                <li data-filter=".filter-pique">Pique-Nique</li>
                 <li data-filter=".filter-biere">Bieres et Coca</li>
                 <li data-filter=".filter-vin">Vin</li>
                 <li data-filter=".filter-limonade">Limonade</li>
@@ -188,20 +187,20 @@
                 </div>
             {% endfor %}
             <p class="text-center partie mt-5">Entrées</p>
-            <p>Choisissez votre entrée :</p><br>
-            {% for entres in entre %}
-                <p class="sans"><a href="{{ path('composant_add', {'id':entres.id}) }}">{{ entres.produit }}</a></p>
-            {% endfor %}
+                {% for entres in entre %}
+                    <p class="sans">{{ entres.produit }}</p>
+                {% endfor %}
+
 
             <p class="text-center partie mt-5">Plats</p>
-            <p>Choisissez votre plats :</p><br>
+
             {% for repas in repa %}
-                    <p class="sans"><a href="{{ path('composant_add', {'id':repas.id}) }}">{{ repas.produit }}</a></p>
+                    <p class="sans">{{ repas.produit }}</p>
                 {% endfor %}
+
             <p class="text-center partie mt-5">Fromages ou desserts</p>
-            <p>Choisissez votre dessert ou formage :</p><br>
             {% for desserts in dessert %}
-                    <p class="sans"><a href="{{ path('composant_add', {'id':desserts.id}) }}">{{ desserts.produit }}</a></p>
+                    <p class="sans">{{ desserts.produit }}</p>
             {% endfor %}
         </div>
     </div>

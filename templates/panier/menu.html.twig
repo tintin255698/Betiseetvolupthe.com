@@ -46,17 +46,14 @@
 <div class="text-center h5">
     <div class="mb-5">
 
-    <label for="entre" class="h4">Choisissez votre entrée :</label><br>
-                    <select name="entre" id="entre">
-                        {% for plas in pla %}
-                            <option value="{{ plas.id }}">{{ plas.produit }}</option>
-                        {% endfor %}
-                    </select>
+        <p class="text-center partie mt-5">Entrées</p>
+        <p>Choisissez votre entrée :</p><br>
+        {% for entres in entre %}
+            <p class="sans"><a href="{{ path('entree_add', {'id':entres.id}) }}">{{ entres.produit }}</a></p>
+        {% endfor %}
 <br>
 </div>
-                    {% for plas in pla|slice(0,1) %}
-                        <a href="{{ path('entree_add', {'id':plas.id}) }}"><button type="submit"  class="btn mt-3">Ajouter</button></a>
-                    {% endfor %}
+
 </div>
     </div>
 
@@ -86,5 +83,15 @@
             });
 
         </script>
+        <script>
+            function noBack(){window.history.forward()}
 
+            noBack();
+
+            window.onload=noBack;
+
+            window.onpageshow=function(evt){if(evt.persisted)noBack()}
+
+            window.onunload=function(){void(0)}
+        </script>
     {% endblock %}

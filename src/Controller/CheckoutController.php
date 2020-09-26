@@ -22,12 +22,12 @@ class CheckoutController extends AbstractController
     public function index(Request $request,  SessionInterface $session, RepasRepository $repasRepository, ComposantMenuRepository $composantMenuRepository, MenuRepository $menuRepository, EntityManagerInterface $em)
     {
         $panier = $session->get('panier', []);
+        $composant = $session->get('composant', []);
         $menu = $session->get('menu', []);
-        $menu2 = $session->get('menu2', []);
 
         $panierWithData = [];
+        $composantWithData = [];
         $menuWithData = [];
-        $menuWithData2 = [];
 
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
@@ -36,17 +36,17 @@ class CheckoutController extends AbstractController
             ];
         }
 
-        foreach ($menu as $id => $quantity2) {
-            $menuWithData[] = [
+        foreach ($composant as $id => $quantity) {
+            $composantWithData[] = [
                 'product' => $composantMenuRepository->find($id),
-                'quantity' => $quantity2
+                'quantity' => $quantity
             ];
         }
 
-        foreach ($menu2 as $id => $quantity3) {
-            $menuWithData2[] = [
+        foreach ($menu as $id => $quantity) {
+            $menuWithData[] = [
                 'product' => $menuRepository->find($id),
-                'quantity' => $quantity3
+                'quantity' => $quantity
             ];
         }
 
@@ -57,11 +57,10 @@ class CheckoutController extends AbstractController
             $total += $totalItem;
         }
 
-
         $tot = 0;
-        foreach ($menuWithData2 as $item2) {
-            $totalItem2 = $item2['product']->getPrix() * $item2['quantity'];
-            $tot += $totalItem2;
+        foreach ($menuWithData as $item) {
+            $totalItem = $item['product']->getPrix() * $item['quantity'];
+            $tot += $totalItem;
         }
 
         $totaux = $tot + $total;

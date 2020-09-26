@@ -109,129 +109,37 @@ class PanierController extends AbstractController
             $menu[$id] = 1;
         }
         $session->set('menu', $menu);
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('entree');
     }
 
     /**
-     * @Route("/composant/add/{id}", name="composant_add")
+     * @Route("/menu/remove", name="menu_remove")
      */
-    public function menu2($id, Request $request){
-
-        $session = $request->getSession();
-
-
-        $composant = $session->get('composant', []);
-
-        if(!empty($composant[$id])){
-            $composant[$id]++;
-        } else {
-            $composant[$id] = 1;
-        }
-        $session->set('composant', $composant);
-        return $this->redirectToRoute('panier');
-    }
-
-
-    /**
-     * @Route("/panier/one/{id}", name="panier_one")
-     */
-    public function addBoisson($id, SessionInterface $session)
+    public function removeMenu()
     {
 
-        $panier = $session->get('panier', []);
-        if (!empty($panier[$id])) {
-            $panier[$id]++;
-        }
-        $session->set('panier', $panier);
+        $this->get('session')->remove('menu');
+
         return $this->redirectToRoute('panier');
     }
 
     /**
-     * @Route("/panier/remove/{id}", name="panier_remove")
+     * @Route("/composant/remove", name="composant_remove")
      */
-    public function removeBoisson($id, SessionInterface $session)
+    public function removeComposant()
     {
-
-        $panier = $session->get('panier', []);
-
-        if (!empty($panier[$id])) {
-            $panier[$id]--;
-        } else if (empty($panier[$id])) {
-            unset($panier[$id]);
-        }
-        $session->set('panier', $panier);
+        $this->get('session')->remove('composant');
         return $this->redirectToRoute('panier');
     }
-
-
 
     /**
-     * @Route("/menu2/one/{id}", name="menu2_one")
+     * @Route("/panier/remove", name="panier_remove")
      */
-    public function oneMenu2($id, SessionInterface $session)
+    public function removePanier()
     {
-        $menu2 = $session->get('menu2', []);
-
-        if (!empty($menu2[$id])) {
-            $menu2[$id]++;
-        }
-        $session->set('menu2', $menu2);
+        $this->get('session')->remove('panier');
         return $this->redirectToRoute('panier');
     }
-
-
-    /**
-     * @Route("/menu2/remove/{id}", name="menu2_remove")
-     */
-    public function removeMenu2($id, SessionInterface $session)
-    {
-        $menu2 = $session->get('menu2', []);
-
-        if (!empty($menu2[$id])) {
-            $menu2[$id]--;
-        } else if (empty($menu2[$id])) {
-            unset($menu2[$id]);
-        }
-        $session->set('menu2', $menu2);
-        return $this->redirectToRoute('panier');
-    }
-
-
-    /**
-     * @Route("/menu/one/{id}", name="menu_one")
-     */
-    public function oneMenu($id, SessionInterface $session)
-    {
-        $menu = $session->get('menu', []);
-
-        if (!empty($menu[$id])) {
-            $menu[$id]++;
-        }
-        $session->set('menu', $menu);
-        return $this->redirectToRoute('panier');
-    }
-
-
-    /**
-     * @Route("/menu/remove/{id}", name="menu_remove")
-     */
-    public function removeMenu($id, SessionInterface $session)
-    {
-        $menu = $session->get('menu', []);
-
-        if (!empty($menu[$id])) {
-            $menu[$id]--;
-        } else if (empty($menu[$id])) {
-            unset($menu[$id]);
-        }
-        $session->set('menu', $menu);
-        return $this->redirectToRoute('panier');
-    }
-
-
-
-
-
 
     /**
      * @Route("/menu/entree", name="entree")
@@ -243,7 +151,7 @@ class PanierController extends AbstractController
 
 
         return $this->render('panier/menu.html.twig', array(
-            'pla' => $entre,
+            'entre' => $entre,
         ));
     }
 
@@ -254,14 +162,15 @@ class PanierController extends AbstractController
     {
         $session = $request->getSession();
 
-        $menu = $session->get('menu', []);
 
-        if (!empty($menu[$id])) {
-            $menu[$id]++;
+        $composant = $session->get('composant', []);
+
+        if(!empty($composant[$id])){
+            $composant[$id]++;
         } else {
-            $menu[$id] = 1;
+            $composant[$id] = 1;
         }
-        $session->set('menu', $menu);
+        $session->set('composant', $composant);
 
         return $this->redirectToRoute('plat');
     }
@@ -274,7 +183,7 @@ class PanierController extends AbstractController
         $plat = $this->getDoctrine()->getRepository(ComposantMenu::class)->plat();
 
         return $this->render('panier/plat.html.twig', array(
-            'pla' => $plat,
+            'plat' => $plat,
         ));
     }
 
@@ -283,18 +192,17 @@ class PanierController extends AbstractController
      */
     public function platAdd($id, Request $request)
     {
-
         $session = $request->getSession();
 
-        $menu = $session->get('menu', []);
 
+        $composant = $session->get('composant', []);
 
-        if (!empty($menu[$id])) {
-            $menu[$id]++;
+        if(!empty($composant[$id])){
+            $composant[$id]++;
         } else {
-            $menu[$id] = 1;
+            $composant[$id] = 1;
         }
-        $session->set('menu', $menu);
+        $session->set('composant', $composant);
 
         return $this->redirectToRoute('dessert');
     }
@@ -307,7 +215,7 @@ class PanierController extends AbstractController
         $plat = $this->getDoctrine()->getRepository(ComposantMenu::class)->dessert();
 
         return $this->render('panier/dessert.html.twig', array(
-            'pla' => $plat,
+            'dessert' => $plat,
         ));
     }
 
@@ -316,16 +224,16 @@ class PanierController extends AbstractController
      */
     public function dessertAdd($id, Request $request)
     {
-        $session = $request->getSession();
+            $session = $request->getSession();
 
-        $menu = $session->get('menu', []);
+            $composant = $session->get('composant', []);
 
-        if (!empty($menu[$id])) {
-            $menu[$id]++;
-        } else {
-            $menu[$id] = 1;
-        }
-        $session->set('menu', $menu);
+            if(!empty($composant[$id])){
+                $composant[$id]++;
+            } else {
+                $composant[$id] = 1;
+            }
+            $session->set('composant', $composant);
 
         return $this->redirectToRoute('modal');
     }

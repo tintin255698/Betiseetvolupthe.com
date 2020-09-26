@@ -4,11 +4,13 @@ namespace App\Form;
 
 use App\Entity\Adresse;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,8 +26,13 @@ class AccepteType extends AbstractType
             ->add('adresse2', TextType::class, ['label'=>'Complément de votre adresse (facultatif)', 'required' => false] )
             ->add('cp', NumberType::class, ['label'=>'Code postal'])
             ->add('ville', TextType::class, ['label'=>'Ville'])
-            ->add('livraison', DateType::class,['widget' => 'single_text',
-                'attr'   => ['min' => ( new \DateTime('now +1 day'))->format('Y-m-d H:i:s')]])
+            ->add('periode', ChoiceType::class,  ['label'=>'Moment de votre livraison',
+                'choices'  =>
+                    [
+                        'Midi : livraison entre 12h et 13h30' => 'Midi : livraison entre 12h et 13h30',
+                        'Soir : livraison entre 20h et 21h 30' => 'Soir : livraison entre 20h et 21h 30',
+                    ],
+            ])
         ->add('Valider', SubmitType::class)
 
         ;

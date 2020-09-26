@@ -59,9 +59,10 @@ class Adresse
     private $user;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=255)
      */
-    private $livraison;
+    private $Periode;
+
 
     public function getId(): ?int
     {
@@ -164,14 +165,14 @@ class Adresse
         return $this;
     }
 
-    public function getLivraison(): ?\DateTimeInterface
+    public function getPeriode(): ?string
     {
-        return $this->livraison;
+        return $this->Periode;
     }
 
-    public function setLivraison(\DateTimeInterface $livraison): self
+    public function setPeriode(string $Periode): self
     {
-        $this->livraison = $livraison;
+        $this->Periode = $Periode;
 
         return $this;
     }
