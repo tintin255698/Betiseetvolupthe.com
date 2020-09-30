@@ -32,10 +32,6 @@
                 <h3 class="mt-5">Progression de la commande :</h3>
             </div>
 
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
-            </div>
-
             <div class="class mt-5 mb-5">
                 <h1 class="text-center mb-5">Bêtises et Volup'Thé vous remercie pour votre commande !</h1>
             </div>
@@ -52,22 +48,13 @@
 
     {% block javascripts %}
         <script>
-
-            var delay = 500;
-            $(".progress-bar").each(function(i){
-                $(this).delay( delay*i ).animate( { width: $(this).attr('aria-valuenow') + '%' }, delay );
-
-                $(this).prop('Counter',0).animate({
-                    Counter: $(this).text()
-                }, {
-                    duration: delay,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(Math.ceil(now)+'%');
-                    }
-                });
-            });
-
+            function Redirect()
+            {
+                window.location="{{ path('index')}}";
+            }
+            document.write("You will be redirected to a new page in 5 seconds");
+            setTimeout('Redirect()', 2000);
         </script>
+
 
     {% endblock %}
