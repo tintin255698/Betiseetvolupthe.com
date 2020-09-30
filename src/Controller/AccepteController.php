@@ -151,8 +151,6 @@ class AccepteController extends AbstractController
                 );
             $mailer->send($message);
 
-
-
             $message = (new \Swift_Message('Nouvelle Commande'))
                 ->setFrom('betisesetvolupthe@gmail.com')
                 ->setTo('betisesetvolupthe@gmail.com')
@@ -164,11 +162,6 @@ class AccepteController extends AbstractController
                     'text/html'
                 );
             $mailer->send($message);
-
-
-
-
-
 
             $this->get('session')->remove('panier');
             $this->get('session')->remove('composant');

@@ -25,8 +25,6 @@ class IndexController extends AbstractController
         // Images
         $image = $this->getDoctrine()->getRepository(Image::class)->findByExampleField2();
 
-
-
             return $this->render('index/index.html.twig', [
                 'pla'=>$image,
             ]);

@@ -104,57 +104,6 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("admin/commentaire/afficher/", name="afficher_commentaire")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function afficherCommentaire()
-    {
-        $repo = $this->getDoctrine()->getRepository(Commentaire::class)->findByExampleField();
-
-        return $this->render('admin/commentaire.html.twig', [
-            'repo'=>$repo
-        ]);
-    }
-
-    /**
-     * @Route("admin/commentaire/supprimer/{id}", name="supprimer_commentaire")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function supprimerCommentaire(Commentaire $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($id);
-        $em->flush();
-        return $this->redirectToRoute('afficher_commentaire');
-    }
-
-    /**
-     * @Route("admin/reservations", name="reservation")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function users()
-    {
-        $repo = $this->getDoctrine()->getRepository(reservation::class);
-        $pla = $repo->findall();
-
-        return $this->render('admin/reservation.html.twig', [
-            'pla' => $pla,
-        ]);
-    }
-
-    /**
-     * @Route("admin/reservation/supprimer/{id}", name="supprimer_reservation")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function supprimerReservation(Reservation $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($id);
-        $em->flush();
-        return $this->redirectToRoute('reservation');
-    }
-
-    /**
      * @Route("admin/afficher/commande", name="afficher_commande")
      * @IsGranted("ROLE_ADMIN")
      */

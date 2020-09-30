@@ -29,11 +29,6 @@ class MenuController extends AbstractController
             $cp = $form2["cp"]->getData();
             $ville = $form2["ville"]->getData();
 
-            dump($numero);
-            dump($rue);
-            dump($cp);
-            dump($ville);
-
             $opts = array('http' => array('header' => "User-Agent: Betiseetvolupthe"));
             $context = stream_context_create($opts);
 
@@ -42,8 +37,8 @@ class MenuController extends AbstractController
             $obj = json_decode($json, true);
 
             $pi80 = M_PI / 180;
-            $lat1 = $obj[0]['lat'] * $pi80 ;
-            $lng1 = $obj[0]['lon'] * $pi80 ;
+            $lat1 = 0.82444263611449 ;
+            $lng1 = 0.10520404384452 ;
 
             $json2 = file_get_contents('http://nominatim.openstreetmap.org/search?format=json&limit=1&q=' . $numero . ' ' . $rue . ',' . $cp . ' ' . $ville, false, $context);
 
