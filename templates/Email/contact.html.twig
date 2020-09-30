@@ -1,6 +1,52 @@
-<h1>Nouveau Contact</h1>
+<h1>Nouvelle commande</h1>
 
-<p>Nom : {{ contact.Nom }}</p>
-<p>Email : {{ contact.Email }}</p>
-<p>Sujet : {{ contact.Sujet }} </p>
-<p>Message : {{ contact.Message|raw }}</p>
+<h2>Adresse de livraison</h2>
+
+{% for contacts in contact %}
+<p>Nom : {{ contacts.nom }}</p>
+<p>Prenom : {{ contacts.prenom }}</p>
+<p>Email : {{ contacts.user.email }}</p>
+<p>Telephone : {{ contacts.user.telephone }}</p>
+<p>Societe : {{ contacts.societe }}</p>
+<p>Adresse : {{ contacts.adresse }}</p>
+<p>Adresse (suite) : {{ contacts.adresse2 }}</p>
+<p>Code Postal : {{ contacts.cp }}</p>
+<p>Ville : {{ contacts.ville }}</p>
+{% endfor %}
+
+
+<h2>Date de livraison</h2>
+
+{% for commandes in commande %}
+<p>Date : {{ commandes.datetime|date("d/m/Y") }}</p>
+{% endfor %}
+{% for contacts in contact %}
+<p>Quand : {{ contacts.Periode }}</p>
+{% endfor %}
+
+
+
+<h2>Menu</h2>
+{% for menus in menu %}
+        <p>Produit : {{ menus.product.produit }}</p>
+        <p>Prix : {{ menus.product.prix }}€</p>
+        <p>Quantite : {{ menus.quantity }}</p>
+{% endfor %}
+<h3>Total menu : {{ tot }}€</h3>
+
+
+<h2>Composant du menu</h2>
+{% for composants in composant %}
+        <p>Produit : {{ composants.product.produit }}</p>
+        <p>Quantite : {{ composants.quantity }}</p>
+{% endfor %}
+
+
+<h2>Boissons</h2>
+{% for paniers in panier %}
+        <p>Produit : {{ paniers.product.produit }}</p>
+        <p>Quantite : {{ paniers.quantity }}</p>
+{% endfor %}
+<h3>Total boissons : {{ total }}€</h3>
+
+<h3>Total : {{ totaux }}€</h3>

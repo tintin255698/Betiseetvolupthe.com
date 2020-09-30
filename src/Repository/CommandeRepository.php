@@ -19,6 +19,22 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
+
+    public function findByExampleField($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.user= :user_id')
+            ->setParameter('user_id', $id)
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
     // /**
     //  * @return Commande[] Returns an array of Commande objects
     //  */

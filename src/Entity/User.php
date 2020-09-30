@@ -78,6 +78,8 @@ class User implements UserInterface
         $this->repas = new ArrayCollection();
         $this->commandes = new ArrayCollection();
         $this->adresses = new ArrayCollection();
+        $this->commandeComposants = new ArrayCollection();
+        $this->commandeMenus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,6 +267,16 @@ class User implements UserInterface
      */
     private $adresses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CommandeComposant::class, mappedBy="user")
+     */
+    private $commandeComposants;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CommandeMenu::class, mappedBy="user")
+     */
+    private $commandeMenus;
+
 
 
     /*
@@ -388,6 +400,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($adress->getUser() === $this) {
                 $adress->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommandeComposant[]
+     */
+    public function getCommandeComposants(): Collection
+    {
+        return $this->commandeComposants;
+    }
+
+    public function addCommandeComposant(CommandeComposant $commandeComposant): self
+    {
+        if (!$this->commandeComposants->contains($commandeComposant)) {
+            $this->commandeComposants[] = $commandeComposant;
+            $commandeComposant->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeComposant(CommandeComposant $commandeComposant): self
+    {
+        if ($this->commandeComposants->contains($commandeComposant)) {
+            $this->commandeComposants->removeElement($commandeComposant);
+            // set the owning side to null (unless already changed)
+            if ($commandeComposant->getUser() === $this) {
+                $commandeComposant->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommandeMenu[]
+     */
+    public function getCommandeMenus(): Collection
+    {
+        return $this->commandeMenus;
+    }
+
+    public function addCommandeMenu(CommandeMenu $commandeMenu): self
+    {
+        if (!$this->commandeMenus->contains($commandeMenu)) {
+            $this->commandeMenus[] = $commandeMenu;
+            $commandeMenu->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeMenu(CommandeMenu $commandeMenu): self
+    {
+        if ($this->commandeMenus->contains($commandeMenu)) {
+            $this->commandeMenus->removeElement($commandeMenu);
+            // set the owning side to null (unless already changed)
+            if ($commandeMenu->getUser() === $this) {
+                $commandeMenu->setUser(null);
             }
         }
 

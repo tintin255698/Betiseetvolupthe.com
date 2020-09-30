@@ -4,7 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Adresse;
 use App\Entity\Commande;
+use App\Entity\CommandeComposant;
+use App\Entity\CommandeMenu;
+use App\Entity\Image;
+use App\Entity\User;
 use App\Form\AccepteType;
+use App\Repository\AdresseRepository;
+use App\Repository\ComposantMenuRepository;
+use App\Repository\MenuRepository;
 use App\Repository\RepasRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,7 +51,7 @@ class AccepteController extends AbstractController
     /**
      * @Route("/termine", name="termine")
      */
-    public function termine(SessionInterface $session, RepasRepository $repasRepository, EntityManagerInterface $em)
+    public function termine(SessionInterface $session, RepasRepository $repasRepository, \Swift_Mailer $mailer, EntityManagerInterface $em,  ComposantMenuRepository $composantMenuRepository, MenuRepository $menuRepository)
     {
         $payment = $session->get('payment');
 
@@ -57,12 +64,29 @@ class AccepteController extends AbstractController
         ]);
 
         $panier = $session->get('panier', []);
+        $composant = $session->get('composant', []);
+        $menu = $session->get('menu', []);
 
         $panierWithData = [];
+        $composantWithData = [];
+        $menuWithData = [];
 
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
                 'product' => $repasRepository->find($id),
+                'quantity' => $quantity
+            ];
+        }
+        foreach ($composant as $id => $quantity) {
+            $composantWithData[] = [
+                'product' => $composantMenuRepository->find($id),
+                'quantity' => $quantity
+            ];
+        }
+
+        foreach ($menu as $id => $quantity) {
+            $menuWithData[] = [
+                'product' => $menuRepository->find($id),
                 'quantity' => $quantity
             ];
         }
@@ -73,6 +97,14 @@ class AccepteController extends AbstractController
             $total += $totalItem;
         }
 
+        $tot = 0;
+        foreach ($menuWithData as $item) {
+            $totalItem = $item['product']->getPrix() * $item['quantity'];
+            $tot += $totalItem;
+        }
+
+        $totaux = $tot + $total;
+
         if ($intent) {
             foreach ($panierWithData as $item) {
                 $commande = new Commande();
@@ -82,8 +114,48 @@ class AccepteController extends AbstractController
                 $commande->setUser($this->getUser());
                 $em->persist($commande);
             }
+            foreach ($composantWithData as $item) {
+                $composant = new CommandeComposant();
+                $composant->setProduit($item['product']->getProduit());
+                $composant->setQuantite($item['quantity']);
+
+                $composant->setUser($this->getUser());
+                $em->persist($composant);
+            }
+            foreach ($menuWithData as $item) {
+                $menu = new CommandeMenu();
+                $menu->setProduit($item['product']->getProduit());
+                $menu->setQuantite($item['quantity']);
+                $menu->setTotal($tot);
+                $menu->setUser($this->getUser());
+                $em->persist($menu);
+            }
             $em->flush();
+            $contact = $this->getUser()->getId();
+            $image = $this->getDoctrine()->getRepository(Adresse::class)->findByExampleField($contact);
+            $commande = $this->getDoctrine()->getRepository(Commande::class)->findByExampleField($contact);
+            dump($image);
+            dump($commande);
+
+
+
+            $message = (new \Swift_Message('Nouvelle Commande'))
+                ->setFrom('betisesetvolupthe@gmail.com')
+                ->setTo('betisesetvolupthe@gmail.com')
+                ->setBody(
+                    $this->renderView(
+                        'email/contact.html.twig', ['panier' => $panierWithData, 'composant'=>$composantWithData,
+                            'menu' =>$menuWithData, 'total' => $total, 'tot'=>$tot, 'totaux'=>$totaux, 'contact' => $image, 'commande' => $commande ]
+                    ),
+                    'text/html'
+                );
+            $mailer->send($message);
+
+
+
             $this->get('session')->remove('panier');
+            $this->get('session')->remove('composant');
+            $this->get('session')->remove('menu');
         }
         return $this->render('accepte/termine.html.twig', [
             'form' => 'form'
