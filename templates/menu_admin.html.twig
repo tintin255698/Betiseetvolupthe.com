@@ -6,11 +6,13 @@
         Menu
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#two">Tableau de bord</a>
-            <a class="dropdown-item" href="{{ path('admin')}}">Gerer les images</a>
-            <a class="dropdown-item" href="{{ path('reservation')}}">Voir les reservations</a>
-            <a class="dropdown-item" href="{{ path('reservation')}}">Voir les commandes</a>
-            <a class="dropdown-item" href="{{ path('afficher_commentaire')}}">Supprimer les commentaires</a>
+            <a class="dropdown-item" href="{{ path('dashboard')}}">Tableau de bord</a>
+            <a class="dropdown-item" href="{{ path('admin')}}">Gerer les utilisateurs</a>
+            <a class="dropdown-item" href="{{ path('admin_image')}}">Ajouter/Supprimer les image</a>
+            <a class="dropdown-item" href="">Ajouter/modifier/supprimer menu</a>
+            <a class="dropdown-item" href="">Ajouter/modifier/supprimer composants du menu</a>
+            <a class="dropdown-item" href="">Ajouter/modifier/supprimer boissons</a>
+            <a class="dropdown-item" href="">Voir les commandes</a>
         </div>
     </div>
 

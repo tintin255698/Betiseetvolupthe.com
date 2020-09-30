@@ -100,7 +100,7 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($id);
         $em->flush();
-        return $this->redirectToRoute('admin');
+        return $this->redirectToRoute('admin_image');
     }
 
     /**

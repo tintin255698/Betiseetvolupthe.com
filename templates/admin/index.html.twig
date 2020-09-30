@@ -53,7 +53,7 @@
                     {% for plas in pla %}
                         <tr>
                         <td>{{ plas.imageName}}</td>
-                        <td><img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}"></td>
+                        <td><img src="{{ vich_uploader_asset(plas, 'imageFile')|imagine_filter('carre') }}" width="100"> </td>
                         <td><a href="{{ path('supprimer_image', {'id':plas.id}) }}"  class="btn btn-dark"><i class='bx bx-check-double text-center'></i></a></td>
                         </tr>
                     {% endfor %}

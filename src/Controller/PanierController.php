@@ -90,7 +90,7 @@ class PanierController extends AbstractController
             $panier[$id] = 1;
         }
         $session->set('panier', $panier);
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('modal');
     }
 
     /**
@@ -119,16 +119,8 @@ class PanierController extends AbstractController
     {
 
         $this->get('session')->remove('menu');
-
-        return $this->redirectToRoute('panier');
-    }
-
-    /**
-     * @Route("/composant/remove", name="composant_remove")
-     */
-    public function removeComposant()
-    {
         $this->get('session')->remove('composant');
+
         return $this->redirectToRoute('panier');
     }
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Dessert{% endblock %}
 
 {% block stylesheets %}
     <link href="/css/footerInner.css" rel="stylesheet">
@@ -36,7 +36,7 @@
 
 
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">100</div>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
                 </div>
 
                 <div class="class mt-5 mb-5">
@@ -45,7 +45,7 @@
 
                 <div class="text-center h5">
                     <div class="mb-5">
-                        <p>Choisissez votre dessert ou fromage :</p><br>
+                        <h3>Choisissez votre dessert ou fromage</h3><br>
                         {% for desserts in dessert %}
                             <p class="sans"><a href="{{ path('dessert_add', {'id':desserts.id}) }}">{{ desserts.produit }}</a></p>
                         {% endfor %}

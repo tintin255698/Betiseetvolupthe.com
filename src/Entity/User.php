@@ -60,10 +60,6 @@ class User implements UserInterface
      */
     private $telephone;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user", orphanRemoval=true)
-     */
-    private $commentaires;
 
     /**
      * @ORM\Column(type="boolean")
@@ -74,7 +70,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->commentaires = new ArrayCollection();
         $this->repas = new ArrayCollection();
         $this->commandes = new ArrayCollection();
         $this->adresses = new ArrayCollection();
@@ -192,37 +187,6 @@ class User implements UserInterface
     public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Commentaire[]
-     */
-    public function getCommentaires(): Collection
-    {
-        return $this->commentaires;
-    }
-
-    public function addCommentaire(Commentaire $commentaire): self
-    {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires[] = $commentaire;
-            $commentaire->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommentaire(Commentaire $commentaire): self
-    {
-        if ($this->commentaires->contains($commentaire)) {
-            $this->commentaires->removeElement($commentaire);
-            // set the owning side to null (unless already changed)
-            if ($commentaire->getUser() === $this) {
-                $commentaire->setUser(null);
-            }
-        }
 
         return $this;
     }

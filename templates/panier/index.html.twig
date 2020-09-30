@@ -35,11 +35,10 @@
         </div>
 
 
+        {% if panier | length > 0 or menu | length > 0 or composant | length > 0 %}
+
         <h1 class="mt-5 text-center">Votre panier</h1>
 
-
-
-        {% if panier | length > 0 or menu | length > 0 or composant | length > 0 %}
         <h2>Menu :</h2>
         <p><a href="{{ path('menu_remove')}}" class="btn btn-dark">Supprimer les menus</a></p>
         <div class="table-responsive mt-5">
@@ -80,7 +79,6 @@
 
 
         <h2>Detail de votre menu :</h2>
-        <p><a href="{{ path('composant_remove')}}" class="btn btn-dark">Recomposer votre menu</a></p>
         <div class="table-responsive mt-5">
             <table class="table table-hover text-center" style="width:100%">
                 <thead>
@@ -145,8 +143,6 @@
                 </tr>
             </tfoot>
         </table>
-
-
 
 
         </div>

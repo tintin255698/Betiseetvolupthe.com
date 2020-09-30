@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Entrée{% endblock %}
 
 {% block stylesheets %}
     <link href="/css/footerInner.css" rel="stylesheet">
@@ -39,15 +39,16 @@
         <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">33</div>
     </div>
 
-    <div class="class mt-5 mb-5">
-        <h1 class="text-center mb-5">Votre entrée !</h1>
-    </div>
-
-<div class="text-center h5">
+<div class="text-center">
     <div class="mb-5">
 
-        <p class="text-center partie mt-5">Entrées</p>
-        <p>Choisissez votre entrée :</p><br>
+
+        <div class="class mt-5 mb-5">
+            <h1 class="text-center mb-5">Votre entrée !</h1>
+        </div>
+
+
+        <h2 class="mt-5">Choisissez votre entrée</h2><br>
         {% for entres in entre %}
             <p class="sans"><a href="{{ path('entree_add', {'id':entres.id}) }}">{{ entres.produit }}</a></p>
         {% endfor %}
