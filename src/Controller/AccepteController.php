@@ -137,6 +137,20 @@ class AccepteController extends AbstractController
             dump($image);
             dump($commande);
 
+            $email = $this->getUser()->getEmail();
+
+            $message = (new \Swift_Message('Facture'))
+                ->setFrom('betisesetvolupthe@gmail.com')
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView(
+                        'email/reservation.html.twig', ['panier' => $panierWithData, 'composant'=>$composantWithData,
+                            'menu' =>$menuWithData, 'total' => $total, 'tot'=>$tot, 'totaux'=>$totaux, 'contact' => $image, 'commande' => $commande ]
+                    ),
+                    'text/html'
+                );
+            $mailer->send($message);
+
 
 
             $message = (new \Swift_Message('Nouvelle Commande'))
@@ -150,6 +164,9 @@ class AccepteController extends AbstractController
                     'text/html'
                 );
             $mailer->send($message);
+
+
+
 
 
 

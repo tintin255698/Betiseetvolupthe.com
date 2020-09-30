@@ -1,7 +1,24 @@
-<h1>Nouvelle Reservation</h1>
+<h1>Merci d'avoir commandé dans notre restaurant !!! </h1>
 
-<p>Nom : {{ reservation.nom }}</p>
-<p>Email : {{ reservation.email }}</p>
-<p>Telephone : {{ reservation.telephone }}</p>
-<p>Nombre : {{ reservation.personne }}</p>
-<p>Message : {{ reservation.message|raw }}</p>
+<h2>Voici votre facture : </h2>
+
+<h2>Menu</h2>
+{% for menus in menu %}
+{% endfor %}
+<h3>Total menu : {{ tot }}€</h3>
+
+
+<h2>Composant du menu</h2>
+{% for composants in composant %}
+
+{% endfor %}
+
+
+<h2>Boissons</h2>
+{% for paniers in panier %}
+
+{% endfor %}
+<h3>Total boissons : {{ total }}€</h3>
+
+<h3>Total : {{ totaux }}€</h3>
+
