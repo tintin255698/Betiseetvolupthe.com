@@ -19,7 +19,7 @@ class IndexController extends AbstractController
     /**
      * @Route("", name="index")
      */
-    public function index(Request $request, \Swift_Mailer $mailer )
+    public function index()
     {
 
         // Images

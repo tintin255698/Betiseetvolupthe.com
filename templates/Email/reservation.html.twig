@@ -4,19 +4,24 @@
 
 <h2>Menu</h2>
 {% for menus in menu %}
+    <p>Produit : {{ menus.product.produit }}</p>
+    <p>Prix : {{ menus.product.prix }}€</p>
+    <p>Quantite : {{ menus.quantity }}</p>
 {% endfor %}
 <h3>Total menu : {{ tot }}€</h3>
 
 
 <h2>Composant du menu</h2>
 {% for composants in composant %}
-
+    <p>Produit : {{ composants.product.produit }}</p>
+    <p>Quantite : {{ composants.quantity }}</p>
 {% endfor %}
 
 
 <h2>Boissons</h2>
 {% for paniers in panier %}
-
+    <p>Produit : {{ paniers.product.produit }}</p>
+    <p>Quantite : {{ paniers.quantity }}</p>
 {% endfor %}
 <h3>Total boissons : {{ total }}€</h3>
 
