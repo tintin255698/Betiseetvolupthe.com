@@ -1,124 +1,59 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-  {% include 'navbar/index2.html.twig' %}
+    {% include 'navbar/index2.html.twig' %}
 
-<main id="main">
+    <main id="main">
 
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-        <div class="container">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Commande</h2>
-                <ol>
-                    <li><a href="{{ path('index')}}#hero">Accueil</a></li>
-                    <li>Commande</li>
-                </ol>
-            </div>
-
-        </div>
-    </section><!-- End Breadcrumbs Section -->
-
-    <section class="inner-page">
-        <div class="container">
-
-            <div class="mb-5">
-
-                {% include 'menu_admin.html.twig' %}
-                <h1 class="mt-4 mb-4 text-center">Liste des commandes</h1>
-                <table id="admin" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                    <th colspan="5" class="text-center">Commande</th>
-                    <th colspan="4" class="text-center">Client</th>
-                    <th colspan="7" class="text-center">Adresse de livraison</th>
-                    </thead>
-                    <tbody>
-                    <tr>
-                    <td>Date de commande</td>
-                    <td>Date de livraison</td>
-                    <td>Produits</td>
-                    <td>Quantite</td>
-                    <td>Total commande</td>
-                    <td>Nom</td>
-                    <td>Prenom</td>
-                    <td>Telephone</td>
-                    <td>E-mail</td>
-                    <td>Nom</td>
-                    <td>Prenom</td>
-                    <td>Societe</td>
-                    <td>Adresse</td>
-                    <td>Adresse 2</td>
-                    <td>Code postal</td>
-                    <td>Ville</td>
-                    <td>Suppression</td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    {% for plas in pla %}
-                    <tr>
-                        <td>{{ plas.datetime|date("d/m/Y") }}</td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.livraison|date("d/m/Y") }}
-                            {% endfor %}
-                        </td>
-                        <td>{{ plas.produit }}</td>
-                        <td>{{ plas.quantite }}</td>
-                        <td>{{ plas.total }}</td>
-                        <td>{{ plas.user.nom }}</td>
-                        <td>{{ plas.user.prenom }}</td>
-                        <td>{{ plas.user.telephone }}</td>
-                        <td> {{ plas.user.email }}</td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.nom }}
-                            {% endfor %}
-                        </td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.prenom }}
-                            {% endfor %}
-                        </td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.societe }}
-                            {% endfor %}
-                        </td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.adresse }}
-                            {% endfor %}
-                        </td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.adresse2 }}
-                            {% endfor %}
-                        </td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.cp }}
-                            {% endfor %}
-                        </td>
-                        <td> {% for adresse in plas.user.adresses %}
-                                {{ adresse.ville }}
-                            {% endfor %}
-                        </td>
-
-
-
-
-
-
-
-    <td><a href="{{ path('supprimer_commande', {'id':plas.id}) }}" class="btn btn-dark"><i class='bx bx-check-double'></i></a></td>
-{% endfor %}
-
-
-
-                </table>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Gestion des images</h2>
+                    <ol>
+                        <li><a href="{{ path('index')}}#hero">Accueil</a></li>
+                        <li>Gestion des images</li>
+                    </ol>
+                </div>
 
             </div>
-        </div>
+        </section><!-- End Breadcrumbs Section -->
 
-    </section>
+        <section class="inner-page">
+            <div class="container">
+
+                <div class="mb-5">
+
+                    {% include 'menu_admin.html.twig' %}
+
+                    <h1 class="mt-4 mb-4 text-center">Commande classée par catégorie </h1>
+                    <table id="admin" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                        <th>Menus</th>
+                        <th>Detail des menus</th>
+                        <th>Boissons</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a href="{{ path('commande_menu') }}" class="btn btn-dark">Voir</a></td>
+                            <td><a href="{{ path('commande_composant') }}" class="btn btn-dark">Voir</a></td>
+                            <td><a href="{{ path('commande_boisson') }}" class="btn btn-dark">Voir</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
 
 
-</main><!-- End #main -->
+    </main><!-- End #main -->
 
 {% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter composant{% endblock %}
+
+{% block body %}
+    {% include 'navbar/index2.html.twig' %}
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Composant</h2>
+                    <ol>
+                        <li><a href="{{ path('index')}}#hero">Accueil</a></li>
+                        <li>Composant</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+
+        <section class="inner-page">
+            <div class="container">
+
+                <div class="mb-5">
+
+                    {% include 'menu_admin.html.twig' %}
+                    <h1 class="mt-4 mb-4 text-center">Modifier le menu</h1>
+
+                    {{ form(boisson) }}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main><!-- End #main -->
+
+{% endblock %}

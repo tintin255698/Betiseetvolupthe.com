@@ -40,11 +40,9 @@
             <img src="/img/{{ asset('logo.jpg') }}">
             </div>
         </div>
-
     </section>
 </main>
 {% endblock %}
-
 
     {% block javascripts %}
         <script>
@@ -52,9 +50,7 @@
             {
                 window.location="{{ path('index')}}";
             }
-            document.write("You will be redirected to a new page in 5 seconds");
+            document.write("You will be redirected to a new page in 3 seconds");
             setTimeout('Redirect()', 3000);
         </script>
-
-
     {% endblock %}

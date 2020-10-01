@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    {% include 'navbar/index2.html.twig' %}
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Menu</h2>
+                    <ol>
+                        <li><a href="{{ path('index')}}#hero">Accueil</a></li>
+                        <li>Menu</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+
+        <section class="inner-page">
+            <div class="container">
+
+                <div class="mb-5">
+
+                    {% include 'menu_admin.html.twig' %}
+
+                    {% for label, messages in app.flashes  %}
+                        <div class="alert alert-{{ label }} alert-dismissible fade show text-center">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor%}
+                        </div>
+                    {% endfor %}
+
+                    <h1 class="mt-4 mb-4 text-center">Gestion des menus</h1>
+                    <table id="admin" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Description</th>
+                        <th>Modifier</th>
+                        </thead>
+                        <tbody>
+                        {% for plas in pla %}
+                            <tr>
+                            <td>{{ plas.produit}}</td>
+                            <td>{{ plas.prix }}€</td>
+                            <td>{{ plas.description }}</td>
+                            <td><a href="{{ path('modify_menu', {'id':plas.id}) }}" class="btn btn-dark">Modifier</a></td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main><!-- End #main -->
+
+{% endblock %}

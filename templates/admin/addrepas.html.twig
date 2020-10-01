@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter boisson{% endblock %}
+
+{% block body %}
+    {% include 'navbar/index2.html.twig' %}
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Ajouter une boisson</h2>
+                    <ol>
+                        <li><a href="{{ path('index')}}#hero">Accueil</a></li>
+                        <li>Ajouter une boisson</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+
+        <section class="inner-page">
+            <div class="container">
+                <div class="mb-5">
+                    {% include 'menu_admin.html.twig' %}
+                    <h1 class="mt-4 mb-4 text-center">Ajouter une boisson</h1>
+                    <p class="mt-5 mb-5 text-center">Type : eau, vin, biere, the, limonade, jus</p>
+                    {{ form(boisson) }}
+                </div>
+            </div>
+        </section>
+    </main><!-- End #main -->
+
+{% endblock %}
