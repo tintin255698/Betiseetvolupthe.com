@@ -36,6 +36,17 @@ class AdresseRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByExampleField2($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.user= :user_id')
+            ->setParameter('user_id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Adresse

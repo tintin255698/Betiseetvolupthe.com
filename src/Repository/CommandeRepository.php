@@ -26,8 +26,6 @@ class CommandeRepository extends ServiceEntityRepository
             ->select('a')
             ->where('a.user= :user_id')
             ->setParameter('user_id', $id)
-            ->orderBy('a.id', 'DESC')
-            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
             ;

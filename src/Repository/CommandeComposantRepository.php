@@ -19,6 +19,17 @@ class CommandeComposantRepository extends ServiceEntityRepository
         parent::__construct($registry, CommandeComposant::class);
     }
 
+    public function findByExampleField($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.user= :user_id')
+            ->setParameter('user_id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return CommandeComposant[] Returns an array of CommandeComposant objects
     //  */
