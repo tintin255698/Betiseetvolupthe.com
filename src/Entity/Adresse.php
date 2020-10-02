@@ -63,6 +63,16 @@ class Adresse
      */
     private $Periode;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $Datetime;
+
+
+    public function __construct()
+    {
+        $this->Datetime = new \DateTime('now +1 day');
+    }
 
     public function getId(): ?int
     {
@@ -173,6 +183,18 @@ class Adresse
     public function setPeriode(string $Periode): self
     {
         $this->Periode = $Periode;
+
+        return $this;
+    }
+
+    public function getDatetime(): ?\DateTimeInterface
+    {
+        return $this->Datetime;
+    }
+
+    public function setDatetime(\DateTimeInterface $Datetime): self
+    {
+        $this->Datetime = $Datetime;
 
         return $this;
     }

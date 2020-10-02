@@ -2,6 +2,15 @@
 
 <h2>Voici votre facture : </h2>
 
+<h2>Date de livraison</h2>
+
+{% for contacts in contact %}
+    <p>Date : {{ contacts.datetime|date("d/m/Y") }}</p>
+{% endfor %}
+{% for contacts in contact %}
+    <p>Quand : {{ contacts.Periode }}</p>
+{% endfor %}
+
 <h2>Menu</h2>
 {% for menus in menu %}
     <p>Produit : {{ menus.product.produit }}</p>

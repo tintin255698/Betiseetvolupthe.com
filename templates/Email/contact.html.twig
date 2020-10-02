@@ -17,8 +17,8 @@
 
 <h2>Date de livraison</h2>
 
-{% for commandes in commande %}
-<p>Date : {{ commandes.datetime|date("d/m/Y") }}</p>
+{% for contacts in contact %}
+<p>Date : {{ contacts.datetime|date("d/m/Y") }}</p>
 {% endfor %}
 {% for contacts in contact %}
 <p>Quand : {{ contacts.Periode }}</p>
