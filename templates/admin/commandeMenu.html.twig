@@ -77,9 +77,14 @@
       <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
       <script>
           $(document).ready(function() {
-              $('#admin').DataTable();
-          } );
-      </script>
+              $('#admin').DataTable({
 
+                  language: {
+                      url: "https://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+                  }
+
+              });
+          });
+      </script>
 
   {% endblock %}

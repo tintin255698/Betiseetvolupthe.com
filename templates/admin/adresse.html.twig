@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration{% endblock %}
+{% block stylesheets %}
+    <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="https:/cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block title %}Adresse{% endblock %}
 
 {% block body %}
     {% include 'navbar/index2.html.twig' %}
@@ -66,3 +71,21 @@
     </main><!-- End #main -->
 
 {% endblock %}
+
+ {% block javascripts %}
+
+     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+     <script>
+         $(document).ready(function() {
+             $('#admin').DataTable({
+
+                 language: {
+                     url: "https://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+                 }
+
+             });
+         });
+     </script>
+
+
+ {% endblock %}

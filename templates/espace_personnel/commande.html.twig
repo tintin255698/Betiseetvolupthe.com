@@ -1,11 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galerie{% endblock %}
+
+{% block stylesheets %}
+    <link href="/css/footerInner.css" rel="stylesheet">
+{% endblock %}
+
 
 {% block body %}
-
 
     {% include 'navbar/index2.html.twig' %}
 
     <main id="main">
-
         <!-- ======= Breadcrumbs Section ======= -->
         <section class="breadcrumbs">
             <div class="container">
@@ -17,16 +23,16 @@
                         <li>Vos commandes</li>
                     </ol>
                 </div>
-
             </div>
         </section><!-- End Breadcrumbs Section -->
-
-        <section class="inner-page">
+        <div class="inner-page">
             <div class="container">
 
-                <div class="mb-5">
-                    {% include 'menu_user.html.twig' %}
-                </div>
+                <div id="gallery" class="gallery">
+
+                    <div class="section-title mt-5">
+                        <h1 class="mt-5">Vos commandes</h1>
+                    </div>
 
                 <h2 class="mb-5">{{ app.user.prenom }}, <small>voici vos commandes :</small></h2>
 
@@ -35,7 +41,7 @@
 
                         <thead>
                         <th>Menus</th>
-                        <th>Detail des menus</th>
+                        <th>Détail des menus</th>
                         <th>Boissons</th>
                         </thead>
                         <tbody>

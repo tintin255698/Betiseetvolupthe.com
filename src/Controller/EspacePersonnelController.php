@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresse;
 use App\Entity\Commande;
 use App\Entity\CommandeComposant;
 use App\Entity\CommandeMenu;
@@ -148,7 +149,6 @@ class EspacePersonnelController extends AbstractController
     {
 
         $user = $this->getUser()->getId();
-
         $repo = $this->getDoctrine()->getRepository(CommandeMenu::class)->findByExampleField($user);
 
         return $this->render('espace_personnel/menu.html.twig', array(
@@ -162,7 +162,6 @@ class EspacePersonnelController extends AbstractController
     {
 
         $user = $this->getUser()->getId();
-
         $repo = $this->getDoctrine()->getRepository(CommandeComposant::class)->findByExampleField($user);
 
         return $this->render('espace_personnel/composant.html.twig', array(
@@ -176,13 +175,24 @@ class EspacePersonnelController extends AbstractController
     {
 
         $user = $this->getUser()->getId();
-
         $repo = $this->getDoctrine()->getRepository(Commande::class)->findByExampleField($user);
 
         return $this->render('espace_personnel/repas.html.twig', array(
             'repo' => $repo,
         ));}
 
+    /**
+     * @Route("/gestion/personnelle/adresse", name="adresse_affichage")
+     */
+    public function affichageAdresse()
+    {
+
+        $user = $this->getUser()->getId();
+        $repo = $this->getDoctrine()->getRepository(Adresse::class)->findByExampleField2($user);
+
+        return $this->render('espace_personnel/adresse.html.twig', array(
+            'repo' => $repo,
+        ));}
 
 
 
