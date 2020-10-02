@@ -2,11 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Entity\CommandeComposant;
+use App\Entity\CommandeMenu;
+use App\Entity\ComposantMenu;
+use App\Entity\Menu;
 use App\Entity\MotDePasse;
+use App\Entity\Portefeuille;
+use App\Entity\Repas;
 use App\Entity\User;
 use App\Form\EditUserType;
 use App\Form\GestionPersonnelleType;
 use App\Form\MdpType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -92,7 +100,6 @@ class EspacePersonnelController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/espace/affichage", name="gestion_affichage")
      */
@@ -111,7 +118,6 @@ class EspacePersonnelController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/gestion/supprimer/{id}", name="gestion_suppression")
      */
@@ -124,6 +130,62 @@ class EspacePersonnelController extends AbstractController
 
         return $this->redirectToRoute('index');
     }
+
+    /**
+     * @Route("/gestion/personnelle/commande", name="commande_affichage")
+     */
+    public function Commande()
+    {
+        return $this->render('espace_personnel/commande.html.twig', array(
+            'repo' => 'repo',
+        ));}
+
+
+    /**
+     * @Route("/gestion/personnelle/menu", name="menu_affichage")
+     */
+    public function affichageMenu()
+    {
+
+        $user = $this->getUser()->getId();
+
+        $repo = $this->getDoctrine()->getRepository(CommandeMenu::class)->findByExampleField($user);
+
+        return $this->render('espace_personnel/menu.html.twig', array(
+            'repo' => $repo,
+        ));}
+
+    /**
+     * @Route("/gestion/personnelle/composant", name="composant_affichage")
+     */
+    public function affichageComposant()
+    {
+
+        $user = $this->getUser()->getId();
+
+        $repo = $this->getDoctrine()->getRepository(CommandeComposant::class)->findByExampleField($user);
+
+        return $this->render('espace_personnel/composant.html.twig', array(
+            'repo' => $repo,
+        ));}
+
+    /**
+     * @Route("/gestion/personnelle/boisson", name="boisson_affichage")
+     */
+    public function affichageBoisson()
+    {
+
+        $user = $this->getUser()->getId();
+
+        $repo = $this->getDoctrine()->getRepository(Commande::class)->findByExampleField($user);
+
+        return $this->render('espace_personnel/repas.html.twig', array(
+            'repo' => $repo,
+        ));}
+
+
+
+
 
 
 

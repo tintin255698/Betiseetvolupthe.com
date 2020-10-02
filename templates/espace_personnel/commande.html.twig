@@ -1,0 +1,56 @@
+
+{% block body %}
+
+
+    {% include 'navbar/index2.html.twig' %}
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Vos commandes</h2>
+                    <ol>
+                        <li><a href="{{ path('index')}}#hero">Accueil</a></li>
+                        <li>Vos commandes</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+
+        <section class="inner-page">
+            <div class="container">
+
+                <div class="mb-5">
+                    {% include 'menu_user.html.twig' %}
+                </div>
+
+                <h2 class="mb-5">{{ app.user.prenom }}, <small>voici vos commandes :</small></h2>
+
+                <div class="table-responsive">
+                    <table id="admin" class="table table-striped table-bordered text-center" style="width:100%">
+
+                        <thead>
+                        <th>Menus</th>
+                        <th>Detail des menus</th>
+                        <th>Boissons</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a href="{{ path('menu_affichage') }}" class="btn btn-dark">Voir</a></td>
+                            <td><a href="{{ path('composant_affichage') }}" class="btn btn-dark">Voir</a></td>
+                            <td><a href="{{ path('boisson_affichage') }}" class="btn btn-dark">Voir</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}
